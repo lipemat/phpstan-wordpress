@@ -1,6 +1,7 @@
 {
   "name": "lipemat/phpstan-wordpress",
   "type": "phpstan-extension",
+  "license": "MIT",
   "config": {
     "vendor-dir": "vendor",
     "preferred-install": "dist",

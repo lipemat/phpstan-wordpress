@@ -1,0 +1,12 @@
+parameters:
+  dynamicConstantNames:
+    - SCRIPT_DEBUG
+    - WPCOM_IS_VIP_ENV
+  scanFiles:
+    - stubs.php
+    - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
+    - vendor/php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php
+    - vendor/php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php
+  checkGenericClassInNonGenericObjectType: false
+  ignoreErrors:
+    - '#^Function apply_filters invoked with [34567] parameters, 2 required\.$#'

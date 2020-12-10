@@ -1,0 +1,25 @@
+{
+  "name": "lipemat/phpstan-wordpress",
+  "type": "phpstan-extension",
+  "config": {
+    "vendor-dir": "vendor",
+    "preferred-install": "dist",
+    "optimize-autoloader": true,
+    "sort-packages": true
+  },
+  "require": {
+    "php-stubs/wp-cli-stubs": "^v2.4.0",
+    "phpstan/extension-installer": "^1.0",
+    "szepeviktor/phpstan-wordpress": "^0.7.1"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  },
+  "extra": {
+    "phpstan": {
+      "includes": [
+        "extension.neon"
+      ]
+    }
+  }
+}

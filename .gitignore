@@ -1,6 +1,28 @@
 composer.phar
 /vendor/
+composer.lock
 
-# Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
-# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
-# composer.lock
+# PHPStorm files
+# https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/php.xml
+.idea/sshConfigs.xml
+# Generated files
+.idea/**/contentModel.xml
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+# JIRA plugin
+atlassian-ide-plugin.xml
+# Editor-based Rest Client
+.idea/httpRequests

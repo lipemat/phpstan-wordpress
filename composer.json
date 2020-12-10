@@ -9,6 +9,7 @@
     "sort-packages": true
   },
   "require": {
+    "php:":  ">=7.1",
     "php-stubs/wp-cli-stubs": "^v2.4.0",
     "phpstan/extension-installer": "^1.0",
     "szepeviktor/phpstan-wordpress": "^0.7.1"

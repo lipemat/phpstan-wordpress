@@ -1,11 +1,7 @@
 <?php
 
 namespace {
-	const SCRIPT_DEBUG = true;
 	const WPCOM_IS_VIP_ENV = false;
-
-	function lipe_project() {
-	}
 
 	function vip_safe_wp_remote_get( string $url, $fallback_value = '', $threshold = 3, $timeout = 1, $retry = 20, $args = [] ) {
 	}
@@ -17,8 +13,5 @@ namespace {
 	}
 
 	function jetpack_is_mobile( string $kind = 'any', bool $return_matched_agent = false ) {
-	}
-
-	function es( string $a ) {
 	}
 }

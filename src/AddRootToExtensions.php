@@ -31,7 +31,8 @@ class AddRootToExtensions {
 		$package->setExtra( $extra );
 		$composer->getRepositoryManager()->getLocalRepository()->addPackage( $package );
 
-		echo 'Adding root package as a phpstan extension';
+		$io = $event->getIO();
+		$io->write( '<comment>Adding lipemat/phpstan-wordpress package as a phpstan extension.</comment>' );
 
 		( new Plugin() )->process( $event );
 	}

@@ -20,10 +20,3 @@ Install via composer
 ```bash
 composer require lipemat/phpstan-wordpress
 ```
-
-Include the `extension.neon` in your `phpstan.neon` or `phpstan.neon.dist`.
-
-```yml
-includes:
-  - vendor/lipemat/phpstan-wordpress/extension.neon
-```

@@ -10,7 +10,8 @@
     "sort-packages": true
   },
   "require": {
-    "php":  ">=7.1",
+    "php": ">=7.1",
+    "php-stubs/woocommerce-stubs": "^4.7",
     "php-stubs/wp-cli-stubs": "^v2.4.0",
     "phpstan/extension-installer": "^1.0",
     "szepeviktor/phpstan-wordpress": "^0.7.1"

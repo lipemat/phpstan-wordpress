@@ -2,9 +2,9 @@
 #
 # Generate CMB2 stubs from the vendor directory.
 #
-# Used via `%rootDir%/../../../stubs/cmb2-2.7.0.php` under `scanFiles`.
+# Used via `%rootDir%/../../../stubs/cmb2/cmb2-2.7.php` under `scanFiles`.
 
-PLUGIN_VERSION="2.7.0"
+PLUGIN_VERSION="2.7"
 
 vendor/bin/generate-stubs \
 --force \
@@ -13,5 +13,5 @@ vendor/bin/generate-stubs \
 --classes \
 --interfaces \
 --traits \
---out=stubs/cmb2-${PLUGIN_VERSION}.php \
+--out=stubs/cmb2/cmb2-${PLUGIN_VERSION}.php \
 ./vendor/lipemat/cmb2/includes/

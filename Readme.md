@@ -24,12 +24,33 @@
 
 These may be selectively added to your `phstan.neon` or `phpstan.neon.dist` like so:
 
+#### When using library as a global install
+
+*@notice: Woocommerce does not work as a `scanFile` and must be a `bootstrapFiles`.*
+
 ```yml
+bootstrapFiles:
+    - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
 scanFiles:
   - %rootDir%/../../../stubs/cmb2/cmb2-2.7.php
   - %rootDir%/../../../stubs/genesis/genesis-3.3.php 
   - %rootDir%/../../../stubs/vip.php
+  - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
+  - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php
+  - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php
+```
+
+#### When using library as dependency
+
+*@notice: Woocommerce does not work as a `scanFile` and must be a `bootstrapFiles`.*
+
+```yml
+bootstrapFiles:
   - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
+scanFiles:
+  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/cmb2/cmb2-2.7.php
+  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/genesis/genesis-3.3.php 
+  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/vip.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php

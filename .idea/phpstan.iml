@@ -28,6 +28,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/lipemat/cmb2" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/giacocorsiglia/stubs-generator" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/genesis/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/genesis/config" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/genesis/images" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

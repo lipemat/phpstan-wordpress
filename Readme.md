@@ -19,6 +19,7 @@
 1. <a href="https://github.com/php-stubs/wp-cli-stubs">WP-CLI stubs</a>.
 2. <a href="https://github.com/php-stubs/woocommerce-stubs">WooCommerce Stubs</a>.
 3. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2-2.7.0.php)
+3. [Genesis stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/genesis/genesis-3.3.php)
 4. [VIP stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/vip.php) some stubs for WP VIP environments. 
 
 These may be selectively added to your `phstan.neon` or `phpstan.neon.dist` like so:
@@ -26,6 +27,7 @@ These may be selectively added to your `phstan.neon` or `phpstan.neon.dist` like
 ```yml
 scanFiles:
   - %rootDir%/../../../stubs/cmb2-2.7.0.php
+  - %rootDir%/../../../stubs/genesis/genesis-3.3.php 
   - %rootDir%/../../../stubs/vip.php
   - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php

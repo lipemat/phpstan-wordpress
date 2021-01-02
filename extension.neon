@@ -2,11 +2,9 @@ parameters:
   dynamicConstantNames:
     - SCRIPT_DEBUG
     - WPCOM_IS_VIP_ENV
-  bootstrapFiles:
-    - %rootDir%/../../php-stubs/wordpress-stubs/wordpress-stubs.php
   scanFiles:
+    - %rootDir%/../../php-stubs/wordpress-stubs/wordpress-stubs.php
     - stubs/lipe.php
-    - stubs/vip.php
     - stubs/wp.php
   checkGenericClassInNonGenericObjectType: false
   ignoreErrors:

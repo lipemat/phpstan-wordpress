@@ -9,20 +9,24 @@
 </p>
 
 ### Included Stubs
-* The semi-official <a href="https://github.com/szepeviktor/phpstan-wordpress">phpstan-wordpress</a> stubs.
-* Some custom stubs for WP VIP and others (in progress)
+1. The semi-official <a href="https://github.com/szepeviktor/phpstan-wordpress">phpstan-wordpress</a> stubs.
+2. Custom stubs
+    1. `lipe.php` stubs specific for `Lipe\Project` projects.
+    2. `wp.php` some additional stubs for WordPress
 
 ### Optional Stubs
 
 1. <a href="https://github.com/php-stubs/wp-cli-stubs">WP-CLI stubs</a>.
 2. <a href="https://github.com/php-stubs/woocommerce-stubs">WooCommerce Stubs</a>.
 3. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2-2.7.0.php)
+4. [VIP stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/vip.php) some stubs for WP VIP environments. 
 
 These may be selectively added to your `phstan.neon` or `phpstan.neon.dist` like so:
 
 ```yml
 scanFiles:
   - %rootDir%/../../../stubs/cmb2-2.7.0.php
+  - %rootDir%/../../../stubs/vip.php
   - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php

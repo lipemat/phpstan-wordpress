@@ -14,15 +14,16 @@
 
 ### Optional Stubs
 
-* <a href="https://github.com/php-stubs/wp-cli-stubs">WP-CLI stubs</a>.
-* <a href="https://github.com/php-stubs/woocommerce-stubs">WooCommerce Stubs</a>.
+1. <a href="https://github.com/php-stubs/wp-cli-stubs">WP-CLI stubs</a>.
+2. <a href="https://github.com/php-stubs/woocommerce-stubs">WooCommerce Stubs</a>.
+3. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2-2.7.0.php)
 
 These may be selectively added to your `phstan.neon` or `phpstan.neon.dist` like so:
 
 ```yml
-bootstrapFiles:
-  - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
 scanFiles:
+  - %rootDir%/../../../stubs/cmb2-2.7.0.php
+  - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php

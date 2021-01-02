@@ -25,6 +25,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-stubs/wp-cli-stubs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/justinrainbow/json-schema" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-stubs/woocommerce-stubs" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/lipemat/cmb2" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/giacocorsiglia/stubs-generator" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

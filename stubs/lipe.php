@@ -1,7 +1,12 @@
 <?php
 
 namespace {
-	function es( string $a ) : string {
+	/**
+	 * @param string|int|float $value
+	 *
+	 * @return string
+	 */
+	function es( $value ) : string {
 	}
 
 	function lipe_project() {

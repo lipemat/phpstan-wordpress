@@ -3,7 +3,6 @@ parameters:
     - SCRIPT_DEBUG
     - WPCOM_IS_VIP_ENV
   scanFiles:
-    - %rootDir%/../../php-stubs/wordpress-stubs/wordpress-stubs.php
     - stubs/lipe.php
     - stubs/wp.php
   checkGenericClassInNonGenericObjectType: false

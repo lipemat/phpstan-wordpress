@@ -9,6 +9,14 @@ namespace {
 	function es( $value ) : string {
 	}
 
+	/**
+	 * @param string|int|float $value
+	 *
+	 * @return string
+	 */
+	function sn( $value ) : string {
+	}
+
 	function lipe_project() {
 	}
 

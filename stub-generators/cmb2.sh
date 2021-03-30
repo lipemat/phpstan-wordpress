@@ -2,9 +2,9 @@
 #
 # Generate CMB2 stubs from the vendor directory.
 #
-# Used via `%rootDir%/../../../stubs/cmb2/cmb2-2.7.php` under `scanFiles`.
+# Used via `%rootDir%/../../../stubs/cmb2/cmb2-2.9.php` under `scanFiles`.
 
-PLUGIN_VERSION="2.7"
+PLUGIN_VERSION="2.9"
 
 vendor/bin/generate-stubs \
 --force \

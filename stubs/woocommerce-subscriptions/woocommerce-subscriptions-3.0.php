@@ -1615,6 +1615,21 @@ class WC_Subscriptions_Admin
     public static function filter_subscriptions_from_list($where)
     {
     }
+    /**
+     * Prevents variations from being deleted if switching from a variable product type to a subscription variable product type (and vice versa).
+     *
+     * @since 3.0.14
+     *
+     * @param bool       $delete_variations A boolean value of true will delete the variations.
+     * @param WC_Product $product           Product data.
+     * @return string    $from              Origin type.
+     * @param string     $to                New type.
+     *
+     * @return bool Whehter the variations should be deleted.
+     */
+    public static function maybe_keep_variations($delete_variations, $product, $from, $to)
+    {
+    }
 }
 /**
  * WC_Admin_Meta_Boxes
@@ -1770,6 +1785,33 @@ class WCS_Admin_Meta_Boxes
      * @param WC_Abstract_Order     $order     The order or subscription the product was added to.
      */
     public static function store_item_base_location_tax($item_id, $line_item, $order)
+    {
+    }
+    /**
+     * Prevents WC core's handling of stock for subscriptions saved via the edit subscription screen.
+     *
+     * Hooked onto 'woocommerce_prevent_adjust_line_item_product_stock' which is triggered in
+     * wc_maybe_adjust_line_item_product_stock() via:
+     *    - WC_AJAX::remove_order_item().
+     *    - wc_save_order_items().
+     *
+     * @since 3.1.0
+     *
+     * @param WC_Order_Item $item The line item being saved/updated via the edit subscription screen.
+     * @return bool Whether to reduce stock for the line item.
+     */
+    public static function prevent_subscription_line_item_stock_handling($prevent_stock_handling, $item)
+    {
+    }
+    /**
+     * Updates the `_subtracted_base_location_tax` meta when admin users update a line item's quantity.
+     *
+     * @since 3.0.14
+     *
+     * @param int   $order_id  The edited order or subscription ID.
+     * @param array $item_data An array of data about all line item changes.
+     */
+    public static function update_subtracted_base_location_tax_meta($order_id, $item_data)
     {
     }
 }
@@ -2309,6 +2351,49 @@ class WCS_Admin_Post_Types
     {
     }
 }
+class WCS_Admin_Product_Import_Export_Manager
+{
+    /**
+     * Attaches callbacks and initializes the class.
+     */
+    public static function init()
+    {
+    }
+    /**
+     * Registers the subscription variation product type with the exporter.
+     *
+     * @param array $types The product type keys and labels.
+     * @return array $types
+     */
+    public static function register_susbcription_variation_type($types)
+    {
+    }
+    /**
+     * Filters the product export query args to separate standard variations and subscription variations.
+     *
+     * In the database subscription variations appear exactly the same as standard product variations. To
+     * enforce this distinction when exporting subscription variations, we exclude products with a standard variable product as a parent and vice versa.
+     *
+     * @param array $args The product export query args.
+     * @return array
+     */
+    public static function filter_export_query($args)
+    {
+    }
+    /**
+     * Filters product import data so subcription variations are imported correctly (as variations).
+     *
+     * Subscription variations are the exact same as standard variations. What sets them apart is the fact they are linked
+     * to a variable subscription parent rather than a standard variable product. With that in mind, we need to import them just
+     * like a variation.
+     *
+     * @param array $data The product's import data.
+     * @return array $data
+     */
+    public static function import_subscription_variations($data)
+    {
+    }
+}
 // Exit if accessed directly
 /**
  * WCS_Admin_Reports Class
@@ -2484,6 +2569,14 @@ class WCS_WC_Admin_Manager
      * Connects existing WooCommerce Subscription admin pages to WooCommerce Admin.
      */
     public static function register_subscription_admin_pages()
+    {
+    }
+    /**
+     * Register the navigation items in the WooCommerce navigation.
+     *
+     * @since 3.0.12
+     */
+    public static function register_navigation_items()
     {
     }
 }
@@ -10953,10 +11046,11 @@ class WC_Subscriptions_Switcher
      * @param WC_Subscription $subscription         The Subscription.
      * @param WC_Order_Item   $subscription_item    The current line item on the subscription to map back through the related orders.
      * @param string          $include_sign_up_fees Optional. Whether to include the sign-up fees paid. Can be 'include_sign_up_fees' or 'exclude_sign_up_fees'. Default 'include_sign_up_fees'.
+     * @param WC_Order[]      $orders_to_include    Optional. The orders to include in the total.
      *
      * @return float The total amount paid for an existing subscription line item.
      */
-    public static function calculate_total_paid_since_last_order($subscription, $subscription_item, $include_sign_up_fees = 'include_sign_up_fees')
+    public static function calculate_total_paid_since_last_order($subscription, $subscription_item, $include_sign_up_fees = 'include_sign_up_fees', $orders_to_include = array())
     {
     }
     /**
@@ -12267,6 +12361,45 @@ class WCS_Switch_Cart_Item
     public function is_switch_during_trial()
     {
     }
+    /**
+     * Retrieves the subscription's last switch order.
+     *
+     * @since 3.0.7
+     * @return WC_Order|Null The last switch order or null if one doesn't exist.
+     */
+    protected function get_last_switch_order()
+    {
+    }
+    /**
+     * Determines if the last order was a switch and the outcome of that was a fully reduced pre-paid term.
+     *
+     * A fully reduced pre-paid term occurs when the amount the customer has paid (in total including switches) doesn't cover the amount of time that has elapsed already at the new price per day.
+     *
+     * For example:
+     * - Original purchase of a $70 / week subscription.
+     * - 5 days into the subscription the customer switches to a $120 / 3 days. The lower freqency triggers the pre-paid term to be reduced.
+     * - The $70 paid at $40 a day only entitles the customer to 1.75 days.
+     * - Because they are already 5 days into the subscription, that $70 is fully absorbed at the new price and no time is 'owed'.
+     * - The subscription starts today and the customer pays full price.
+     *
+     * @see https://docs.woocommerce.com/document/subscriptions/switching-guide/#section-11
+     * @see WCS_Switch_Totals_Calculator::reduce_prepaid_term()
+     *
+     * @since 3.0.7
+     * @return bool Whether the last order was a switch and it fully reduced the prepaid term.
+     */
+    protected function is_switch_after_fully_reduced_prepaid_term()
+    {
+    }
+    /**
+     * Determines whether the customer is switching to a subscription with a length of 1 - one off payment.
+     *
+     * @since 3.0.12
+     * @return bool
+     */
+    public function is_switch_to_one_payment_subscription()
+    {
+    }
 }
 /**
  * WooCommerce Subscriptions Add Cart Item.
@@ -12316,6 +12449,16 @@ class WCS_Add_Cart_Item extends \WCS_Switch_Cart_Item
      * @return float
      */
     public function get_total_paid_for_current_period()
+    {
+    }
+    /**
+     * Determines if the last order was a switch and the outcome of that was a fully reduced pre-paid term.
+     * Since the last order didn't contain this item, we can safely return false here.
+     *
+     * @since 3.0.7
+     * @return bool Whether the last order was a switch and it fully reduced the prepaid term.
+     */
+    protected function is_switch_after_fully_reduced_prepaid_term()
     {
     }
     /** Helper functions */
@@ -13086,7 +13229,7 @@ class WCS_Cart_Renewal
     /**
      * Create coupon objects from coupon line items.
      *
-     * @param array $coupon_line_items The coupon line items to apply to the cart.
+     * @param WC_Order_Item_Coupon[] $coupon_line_items The coupon line items to apply to the cart.
      * @return array $coupons
      */
     protected function get_line_item_coupons($coupon_line_items)
@@ -13741,11 +13884,11 @@ class WCS_Failed_Scheduled_Action_Manager
     /**
      * When a scheduled action failure is triggered, log information about the failed action to a WC logger.
      *
-     * @param int $action_id the action which failed.
-     * @param int $timeout the number of seconds an action can run for before timing out.
+     * @param int                 $action_id The ID of the action which failed.
+     * @param int|Exception|array $error The number of seconds an action timeouts out after or the exception/error that caused the error/shutdown.
      * @since 2.2.19
      */
-    public function log_action_scheduler_failure($action_id, $timeout)
+    public function log_action_scheduler_failure($action_id, $error)
     {
     }
     /**
@@ -15139,10 +15282,10 @@ class WCS_Retry_Manager
      * When a retry hook is triggered, check if the rules for that retry are still valid
      * and if so, retry the payment.
      *
-     * @param WC_Order|int The order on which the payment failed
-     * @since 2.1
+     * @since 2.1.0
+     * @param WC_Order|int The order on which the payment failed.
      */
-    public static function maybe_retry_payment($last_order)
+    public static function maybe_retry_payment($order_id)
     {
     }
     /**
@@ -15286,6 +15429,73 @@ class WCS_Select2
      * @since 2.2
      */
     public function get_html()
+    {
+    }
+}
+class WCS_SQL_Transaction
+{
+    /**
+     * The query to run when a fatal shutdown occurs.
+     *
+     * @var string
+     */
+    public $on_fatal = '';
+    /**
+     * The query to run if the PHP request ends without error.
+     *
+     * @var string
+     */
+    public $on_shutdown = '';
+    /**
+     * Whether there's an active MYSQL transaction.
+     *
+     * @var bool
+     */
+    public $active_transaction = \false;
+    /**
+     * Constructor
+     *
+     * @since 3.1.0
+     *
+     * @param string $on_fatal    Optional. The type of query to run on fatal shutdown if this transaction is still active. Can be 'rollback' or 'commit'. Default is 'rollback'.
+     * @param string $on_shutdown Optional. The type of query to run if a non-error shutdown occurs but there's still an active transaction. Can be 'rollback' or 'commit'. Default is 'commit'.
+     */
+    public function __construct($on_fatal = 'rollback', $on_shutdown = 'commit')
+    {
+    }
+    /**
+     * Starts a MYSQL Transction.
+     *
+     * @since 3.1.0
+     */
+    public function start()
+    {
+    }
+    /**
+     * Commits the MYSQL Transction.
+     *
+     * @since 3.1.0
+     */
+    public function commit()
+    {
+    }
+    /**
+     * Rolls back any changes made during the MYSQL Transction.
+     *
+     * @since 3.1.0
+     */
+    public function rollback()
+    {
+    }
+    /**
+     * Closes out an active transaction depending on the type of shutdown.
+     *
+     * Shutdowns caused by a fatal will be rolledback or commited @see $this->on_fatal.
+     * Shutdowns caused by a natural PHP termination (no error) will be rolledback or commited. @see $this->on_shutdown.
+     *
+     * @since 3.1.0
+     */
+    public function handle_shutdown()
     {
     }
 }
@@ -23096,7 +23306,7 @@ class WC_Subscriptions
     public static $name = 'subscription';
     public static $activation_transient = 'woocommerce_subscriptions_activated';
     public static $plugin_file = __FILE__;
-    public static $version = '3.0.11';
+    public static $version = '3.0.14';
     public static $wc_minimum_supported_version = '3.0';
     private static $total_subscription_count = \null;
     private static $scheduler;
@@ -23874,13 +24084,15 @@ function wcs_disallow_protected_product_add_to_cart_validation()
 /**
  * Display a tooltip in the WordPress administration area.
  *
- * Uses wc_help_tip() when WooCommerce 2.5+ is active, otherwise it manually prints the HTML for a tooltip.
+ * @since 2.1.0
  *
- * @param string $tip The content to display in the tooltip.
- * @since  2.1.0
- * @return string
+ * @param string $tip        The content to display in the tooltip.
+ * @param bool   $allow_html Allow sanitized HTML if true or escape. Optional. False by default.
+ * @param string $class      The help tip's class attribute. Optional. Default is 'woocommerce-help-tip'.
+ *
+ * @return string The helptip HTML.
  */
-function wcs_help_tip($tip, $allow_html = \false)
+function wcs_help_tip($tip, $allow_html = \false, $class = 'woocommerce-help-tip')
 {
 }
 /**

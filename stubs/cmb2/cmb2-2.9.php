@@ -5988,7 +5988,7 @@ abstract class CMB2_Type_Multi_Base extends \CMB2_Type_Base
      * @param  int   $i    Iterator value
      * @return string       Gnerated list item html
      */
-    public function list_input($args = array(), $i)
+    public function list_input($args = array(), $i = 1)
     {
     }
     /**

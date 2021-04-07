@@ -50,7 +50,7 @@ scanFiles:
 bootstrapFiles:
   - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
 scanFiles:
-  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/cmb2/cmb2-2.7.php
+  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/cmb2/cmb2-2.9.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/genesis/genesis-3.3.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/woocommerce-subscriptions/woocommerce-subscriptions-3.0.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/vip.php

@@ -1,6 +1,8 @@
 parameters:
   dynamicConstantNames:
+    - COOKIEPATH
     - SCRIPT_DEBUG
+    - SITECOOKIEPATH
     - WPCOM_IS_VIP_ENV
   scanFiles:
     - stubs/lipe.php

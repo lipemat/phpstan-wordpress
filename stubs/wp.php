@@ -6,6 +6,7 @@ namespace {
 	const AUTH_COOKIE = '';
 	const AUTH_KEY = '';
 	const AUTH_SALT = '';
+	const DB_NAME = '';
 	const COOKIEPATH = '';
 	const COOKIE_DOMAIN = '';
 	const LOGGED_IN_COOKIE = '';

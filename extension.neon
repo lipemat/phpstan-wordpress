@@ -1,6 +1,7 @@
 parameters:
   dynamicConstantNames:
     - COOKIEPATH
+    - DB_NAME
     - SCRIPT_DEBUG
     - SITECOOKIEPATH
     - WPCOM_IS_VIP_ENV

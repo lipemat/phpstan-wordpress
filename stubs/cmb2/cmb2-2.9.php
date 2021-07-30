@@ -39,14 +39,14 @@ abstract class CMB2_Base
      * @var   mixed
      * @since 2.2.3
      */
-    protected $object_id = 0;
+    public $object_id = 0;
     /**
      * Type of object being handled. (e.g., post, user, comment, or term)
      *
      * @var   string
      * @since 2.2.3
      */
-    protected $object_type = '';
+	public $object_type = '';
     /**
      * Array of key => value data for saving. Likely $_POST data.
      *

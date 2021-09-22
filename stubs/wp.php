@@ -22,4 +22,5 @@ namespace {
 	const SITECOOKIEPATH = '';
 	const WP_CONTENT_DIR = '';
 	const WP_PLUGIN_DIR = '';
+	const WP_SITE_ROOT = '';
 }

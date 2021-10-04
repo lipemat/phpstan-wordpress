@@ -2603,6 +2603,29 @@ class WCS_Admin_System_Status
     {
     }
 }
+class WCS_WC_Admin_Manager
+{
+    /**
+     * Initialise the class and attach hook callbacks.
+     */
+    public static function init()
+    {
+    }
+    /**
+     * Connects existing WooCommerce Subscription admin pages to WooCommerce Admin.
+     */
+    public static function register_subscription_admin_pages()
+    {
+    }
+    /**
+     * Register the navigation items in the WooCommerce navigation.
+     *
+     * @since 3.0.12
+     */
+    public static function register_navigation_items()
+    {
+    }
+}
 // Exit if accessed directly
 /**
  * WCS_Debug_Tool_Cache_Background_Updater Class
@@ -7897,6 +7920,125 @@ class WC_Subscriptions_Email
     {
     }
 }
+class WC_Subscriptions_Extend_Store_Endpoint
+{
+    /**
+     * Stores Rest Schema Controller.
+     *
+     * @var ExtendRestApi
+     */
+    private static $schema;
+    /**
+     * Stores Rest Extending instance.
+     *
+     * @var ExtendRestApi
+     */
+    private static $extend;
+    /**
+     * Plugin Identifier, unique to each plugin.
+     *
+     * @var string
+     */
+    const IDENTIFIER = 'subscriptions';
+    /**
+     * Bootstraps the class and hooks required data.
+     *
+     * @since WCBLOCKS-DEV
+     */
+    public static function init()
+    {
+    }
+    /**
+     * Registers the actual data into each endpoint.
+     */
+    public static function extend_store()
+    {
+    }
+    /**
+     * Register subscription product data into cart/items endpoint.
+     *
+     * @param array $cart_item Current cart item data.
+     *
+     * @return array $item_data Registered data or empty array if condition is not satisfied.
+     */
+    public static function extend_cart_item_data($cart_item)
+    {
+    }
+    /**
+     * Register subscription product schema into cart/items endpoint.
+     *
+     * @return array Registered schema.
+     */
+    public static function extend_cart_item_schema()
+    {
+    }
+    /**
+     * Get packages from the recurring carts.
+     *
+     * @param string $cart_key Recurring cart key.
+     * @param array  $cart Recurring cart data.
+     * @return array
+     */
+    private static function get_packages_for_recurring_cart($cart_key, $cart)
+    {
+    }
+    /**
+     * Changes the shipping package name to add more meaningful information about it's content.
+     *
+     * @param array $package All shipping package data.
+     * @param array $cart Recurring cart data.
+     * @return string
+     */
+    private static function get_shipping_package_name($package, $cart)
+    {
+    }
+    /**
+     * Register future subscriptions into cart endpoint.
+     *
+     * @return array $future_subscriptions Registered data or empty array if condition is not satisfied.
+     */
+    public static function extend_cart_data()
+    {
+    }
+    /**
+     * Format sign-up fees.
+     *
+     * @param \WC_Product $product current product.
+     * @return array
+     */
+    private static function format_sign_up_fees($product)
+    {
+    }
+    /**
+     * Format sync data to the correct so it either returns a day integer or an object of day and month.
+     *
+     * @param WC_Product_Subscription $product current cart item product.
+     *
+     * @return object|int|null synchronization_date;
+     */
+    private static function format_sync_data($product)
+    {
+    }
+    /**
+     * Register future subscriptions schema into cart endpoint.
+     *
+     * @return array Registered schema.
+     */
+    public static function extend_cart_schema()
+    {
+    }
+    /**
+     * Get tax lines from the cart and format to match schema.
+     *
+     * TODO: This function is copied from WooCommerce Blocks, remove it once https://github.com/woocommerce/woocommerce-gutenberg-products-block/issues/3264 is closed.
+     *
+     * @param \WC_Cart $cart Cart class instance.
+     * @return array
+     */
+    protected static function get_tax_lines($cart)
+    {
+    }
+}
 class WC_Subscriptions_Frontend_Scripts
 {
     /**
@@ -13105,6 +13247,62 @@ class WCS_Autoloader
      * @return string The subdirectory for a rest API class.
      */
     protected function get_rest_api_directory($class)
+    {
+    }
+}
+/**
+ * Class for integrating with WooCommerce Blocks
+ *
+ * @package WooCommerce Subscriptions
+ * @since   3.1.0
+ */
+class WCS_Blocks_Integration implements \Automattic\WooCommerce\Blocks\Integrations\IntegrationInterface
+{
+    /**
+     * The name of the integration.
+     *
+     * @return string
+     */
+    public function get_name()
+    {
+    }
+    /**
+     * When called invokes any initialization/setup for the integration.
+     */
+    public function initialize()
+    {
+    }
+    /**
+     * Returns an array of script handles to enqueue in the frontend context.
+     *
+     * @return string[]
+     */
+    public function get_script_handles()
+    {
+    }
+    /**
+     * Returns an array of script handles to enqueue in the editor context.
+     *
+     * @return string[]
+     */
+    public function get_editor_script_handles()
+    {
+    }
+    /**
+     * An array of key, value pairs of data made available to the block on the client side.
+     *
+     * @return array
+     */
+    public function get_script_data()
+    {
+    }
+    /**
+     * Get the file modified time as a cache buster if we're in dev mode.
+     *
+     * @param string $file Local path to the file.
+     * @return string The cache buster value to use for the given file.
+     */
+    protected function get_file_version($file)
     {
     }
 }
@@ -23979,6 +24177,505 @@ class WooThemes_Plugin_Updater
     }
 }
 /**
+ * The main subscriptions class.
+ *
+ * @since 1.0
+ */
+class WC_Subscriptions
+{
+    public static $name = 'subscription';
+    public static $activation_transient = 'woocommerce_subscriptions_activated';
+    public static $plugin_file = __FILE__;
+    public static $version = '3.1.5';
+    public static $wc_minimum_supported_version = '3.7';
+    private static $total_subscription_count = \null;
+    private static $scheduler;
+    /** @var WCS_Cache_Manager */
+    public static $cache;
+    /** @var WCS_Autoloader */
+    protected static $autoloader;
+    /**
+     * Set up the class, including it's hooks & filters, when the file is loaded.
+     *
+     * @since 1.0
+     *
+     * @param WCS_Autoloader $autoloader Autoloader instance.
+     */
+    public static function init($autoloader = \null)
+    {
+    }
+    /**
+     * Set up the Blocks integration class
+     */
+    public static function setup_blocks_integration()
+    {
+    }
+    /**
+     * Get customer's order details via ajax.
+     */
+    public static function get_customer_orders()
+    {
+    }
+    /**
+     * Register data stores for WooCommerce 3.0+
+     *
+     * @since 2.2.0
+     */
+    public static function add_data_stores($data_stores)
+    {
+    }
+    /**
+     * Register core post types
+     *
+     * @since 2.0
+     */
+    public static function register_order_types()
+    {
+    }
+    /**
+     * Method that returns the not found text. If the user has created at least one subscription, the standard message
+     * will appear. If that's empty, the long, explanatory one will appear in the table.
+     *
+     * Filters:
+     * - woocommerce_subscriptions_not_empty: gets passed the boolean option value. 'true' means the subscriptions
+     * list is not empty, the user is familiar with how it works, and standard message appears.
+     * - woocommerce_subscriptions_not_found_label: gets the original message for other plugins to modify, in case
+     * they want to add more links, or modify any of the messages.
+     * @since  2.0
+     *
+     * @return string what appears in the list table of the subscriptions
+     */
+    private static function get_not_found_text()
+    {
+    }
+    /**
+     * Register our custom post statuses, used for order/subscription status
+     */
+    public static function register_post_status()
+    {
+    }
+    /**
+     * Loads the my-subscriptions.php template on the My Account page.
+     *
+     * @since 1.0
+     * @param int $current_page
+     */
+    public static function get_my_subscriptions_template($current_page = 1)
+    {
+    }
+    /**
+     * Output a redirect URL when an item is added to the cart when a subscription was already in the cart.
+     *
+     * @since 1.0
+     */
+    public static function redirect_ajax_add_to_cart($fragments)
+    {
+    }
+    /**
+     * Return a url for cart redirect.
+     *
+     * @since 2.3.0
+     */
+    public static function redirect_to_cart($permalink, $product_id)
+    {
+    }
+    /**
+     * When a subscription is added to the cart, remove other products/subscriptions to
+     * work with PayPal Standard, which only accept one subscription per checkout.
+     *
+     * If multiple purchase flag is set, allow them to be added at the same time.
+     *
+     * @deprecated 2.6.0
+     * @since 1.0
+     */
+    public static function maybe_empty_cart($valid, $product_id, $quantity, $variation_id = '', $variations = array())
+    {
+    }
+    /**
+     * Removes all subscription products from the shopping cart.
+     *
+     * @deprecated 2.6.0
+     * @since 1.0
+     */
+    public static function remove_subscriptions_from_cart()
+    {
+    }
+    /**
+     * For a smoother sign up process, tell WooCommerce to redirect the shopper immediately to
+     * the checkout page after she clicks the "Sign up now" button
+     *
+     * Only enabled if multiple checkout is not enabled.
+     *
+     * @param string $url The cart redirect $url WooCommerce determined.
+     * @since 1.0
+     */
+    public static function add_to_cart_redirect($url)
+    {
+    }
+    /**
+     * Overrides the WooCommerce "Place order" text with "Sign up now" when the cart contains initial subscription purchases.
+     *
+     * @since 1.0
+     */
+    public static function order_button_text($button_text)
+    {
+    }
+    /**
+     * Load the subscription add_to_cart template.
+     *
+     * Use the same cart template for subscription as that which is used for simple products. Reduce code duplication
+     * and is made possible by the friendly actions & filters found through WC.
+     *
+     * Not using a custom template both prevents code duplication and helps future proof this extension from core changes.
+     *
+     * @since 1.0
+     */
+    public static function subscription_add_to_cart()
+    {
+    }
+    /**
+     * Load the variable subscription add_to_cart template
+     *
+     * Use a very similar cart template as that of a variable product with added functionality.
+     *
+     * @since 2.0.9
+     */
+    public static function variable_subscription_add_to_cart()
+    {
+    }
+    /**
+     * Compatibility with WooCommerce On One Page Checkout.
+     *
+     * Use OPC's simple add to cart template for simple subscription products (to ensure data attributes required by OPC are added).
+     *
+     * Variable subscription products will be handled automatically because they identify as "variable" in response to is_type() method calls,
+     * which OPC uses.
+     *
+     * @since 1.5.16
+     */
+    public static function wcopc_subscription_add_to_cart()
+    {
+    }
+    /**
+     * Takes a number and returns the number with its relevant suffix appended, eg. for 2, the function returns 2nd
+     *
+     * @since 1.0
+     */
+    public static function append_numeral_suffix($number)
+    {
+    }
+    /*
+     * Plugin House Keeping
+     */
+    /**
+     * Called when WooCommerce is inactive or running and out-of-date version to display an inactive notice.
+     *
+     * @since 1.2
+     */
+    public static function woocommerce_inactive_notice()
+    {
+    }
+    /**
+     * Checks on each admin page load if Subscriptions plugin is activated.
+     *
+     * Apparently the official WP API is "lame" and it's far better to use an upgrade routine fired on admin_init: http://core.trac.wordpress.org/ticket/14170
+     *
+     * @since 1.1
+     */
+    public static function maybe_activate_woocommerce_subscriptions()
+    {
+    }
+    /**
+     * Called when the plugin is deactivated. Deletes the subscription product type and fires an action.
+     *
+     * @since 1.0
+     */
+    public static function deactivate_woocommerce_subscriptions()
+    {
+    }
+    /**
+     * Called on plugins_loaded to load any translation files.
+     *
+     * @since 1.1
+     */
+    public static function load_plugin_textdomain()
+    {
+    }
+    /**
+     * Loads classes that depend on WooCommerce base classes.
+     *
+     * @since 1.2.4
+     */
+    public static function load_dependant_classes()
+    {
+    }
+    /**
+     * Some hooks need to check for the version of WooCommerce, which we can only do after WooCommerce is loaded.
+     *
+     * @since 1.5.17
+     */
+    public static function attach_dependant_hooks()
+    {
+    }
+    /**
+     * Displays a notice when Subscriptions is being run on a different site, like a staging or testing site.
+     *
+     * @since 1.3.8
+     */
+    public static function woocommerce_site_change_notice()
+    {
+    }
+    /**
+     * A general purpose function for grabbing an array of subscriptions in form of 'subscription_key' => 'subscription_details'.
+     *
+     * The $args param is based on the parameter of the same name used by the core WordPress @see get_posts() function.
+     * It can be used to choose which subscriptions should be returned by the function, how many subscriptions should be returned
+     * and in what order those subscriptions should be returned.
+     *
+     * @param array $args A set of name value pairs to determine the return value.
+     *   'subscriptions_per_page' The number of subscriptions to return. Set to -1 for unlimited. Default 10.
+     *   'offset' An optional number of subscription to displace or pass over. Default 0.
+     *   'orderby' The field which the subscriptions should be ordered by. Can be 'start_date', 'expiry_date', 'end_date', 'status', 'name' or 'order_id'. Defaults to 'start_date'.
+     *   'order' The order of the values returned. Can be 'ASC' or 'DESC'. Defaults to 'DESC'
+     *   'customer_id' The user ID of a customer on the site.
+     *   'product_id' The post ID of a WC_Product_Subscription, WC_Product_Variable_Subscription or WC_Product_Subscription_Variation object
+     *   'subscription_status' Any valid subscription status. Can be 'any', 'active', 'cancelled', 'suspended', 'expired', 'pending' or 'trash'. Defaults to 'any'.
+     * @return array Subscription details in 'subscription_key' => 'subscription_details' form.
+     * @since 1.4
+     */
+    public static function get_subscriptions($args = array())
+    {
+    }
+    /**
+     * Returns the longest possible time period
+     *
+     * @since 1.3
+     */
+    public static function get_longest_period($current_period, $new_period)
+    {
+    }
+    /**
+     * Returns the shortest possible time period
+     *
+     * @since 1.3.7
+     */
+    public static function get_shortest_period($current_period, $new_period)
+    {
+    }
+    /**
+     * Returns WordPress/Subscriptions record of the site URL for this site
+     *
+     * @param string $source Takes values 'current_wp_site' or 'subscriptions_install'
+     * @since 2.3.6
+     */
+    public static function get_site_url_from_source($source = 'current_wp_site')
+    {
+    }
+    /**
+     * Returns Subscriptions record of the site URL for this site
+     *
+     * @since 1.3.8
+     */
+    public static function get_site_url($blog_id = \null, $path = '', $scheme = \null)
+    {
+    }
+    /**
+     * Checks if the WordPress site URL is the same as the URL for the site subscriptions normally
+     * runs on. Useful for checking if automatic payments should be processed.
+     *
+     * @since 1.3.8
+     */
+    public static function is_duplicate_site()
+    {
+    }
+    /**
+     * Include Docs & Settings links on the Plugins administration screen
+     *
+     * @param mixed $links
+     * @since 1.4
+     */
+    public static function action_links($links)
+    {
+    }
+    /**
+     * Creates a URL to prevent duplicate payments from staging sites.
+     *
+     * The URL can not simply be the site URL, e.g. http://example.com, because WP Engine replaces all
+     * instances of the site URL in the database when creating a staging site. As a result, we obfuscate
+     * the URL by inserting '_[wc_subscriptions_siteurl]_' into the middle of it.
+     *
+     * We don't use a hash because keeping the URL in the value allows for viewing and editing the URL
+     * directly in the database.
+     *
+     * @since 1.4.2
+     * @return string The duplicate lock URL.
+     */
+    public static function get_current_sites_duplicate_lock()
+    {
+    }
+    /**
+     * Sets a flag in the database to record the site's url. This then checked to determine if we are on a duplicate
+     * site or the original/main site, uses @see self::get_current_sites_duplicate_lock();
+     *
+     * @since 1.4.2
+     */
+    public static function set_duplicate_site_url_lock()
+    {
+    }
+    /**
+     * Check if the installed version of WooCommerce is older than a specified version.
+     *
+     * @since 1.5.29
+     */
+    public static function is_woocommerce_pre($version)
+    {
+    }
+    /**
+     * Renewals use a lot more memory on WordPress multisite (10-15mb instead of 0.1-1mb) so
+     * we need to reduce the number of renewals run in each request.
+     *
+     * @since version 1.5
+     */
+    public static function action_scheduler_multisite_batch_size($batch_size)
+    {
+    }
+    /**
+     * Include the upgrade notice that will fire when 2.0 is released.
+     *
+     * @param array $plugin_data information about the plugin
+     * @param array $r response from the server about the new version
+     */
+    public static function update_notice($plugin_data, $r)
+    {
+    }
+    /**
+     * Send notice to store admins if they have previously updated Subscriptions to 2.0 and back to v1.5.n.
+     *
+     * @since 2.0
+     */
+    public static function show_downgrade_notice()
+    {
+    }
+    /* Deprecated Functions */
+    /**
+     * Gets a WC_Product using the new core WC @see wc_get_product() function if available, otherwise
+     * instantiating an instance of the WC_Product class.
+     *
+     * @since 1.2.4
+     * @deprecated 2.4.0
+     */
+    public static function get_product($product_id)
+    {
+    }
+    /**
+     * Add WooCommerce error or success notice regardless of the version of WooCommerce running.
+     *
+     * @param  string $message The text to display in the notice.
+     * @param  string $notice_type The singular name of the notice type - either error, success or notice. [optional]
+     * @since version 1.4.5
+     * @deprecated 2.2.16
+     */
+    public static function add_notice($message, $notice_type = 'success')
+    {
+    }
+    /**
+     * Print WooCommerce messages regardless of the version of WooCommerce running.
+     *
+     * @since version 1.4.5
+     * @deprecated 2.2.16
+     */
+    public static function print_notices()
+    {
+    }
+    /**
+     * Workaround the last day of month quirk in PHP's strtotime function.
+     *
+     * @since 1.2.5
+     * @deprecated 2.0
+     */
+    public static function add_months($from_timestamp, $months_to_add)
+    {
+    }
+    /**
+     * A flag to indicate whether the current site has roughly more than 3000 subscriptions. Used to disable
+     * features on the Manage Subscriptions list table that do not scale well (yet).
+     *
+     * Deprecated since querying the new subscription post type is a lot more efficient and no longer puts strain on the database
+     *
+     * @since 1.4.4
+     * @deprecated 2.0
+     */
+    public static function is_large_site()
+    {
+    }
+    /**
+     * Returns the total number of Subscriptions on the site.
+     *
+     * @since 1.4
+     * @deprecated 2.0
+     */
+    public static function get_total_subscription_count()
+    {
+    }
+    /**
+     * Returns an associative array with the structure 'status' => 'count' for all subscriptions on the site
+     * and includes an "all" status, representing all subscriptions.
+     *
+     * @since 1.4
+     * @deprecated 2.0
+     */
+    public static function get_subscription_status_counts()
+    {
+    }
+    /**
+     * Takes an array of filter params and returns the number of subscriptions which match those params.
+     *
+     * @since 1.4
+     * @deprecated 2.0
+     */
+    public static function get_subscription_count($args = array())
+    {
+    }
+    /**
+     * which was called @see woocommerce_format_total() prior to WooCommerce 2.1.
+     *
+     * Deprecated since we no longer need to support the workaround required for WC versions < 2.1
+     *
+     * @since version 1.4.6
+     * @deprecated 2.0
+     */
+    public static function format_total($number)
+    {
+    }
+    /**
+     * Displays a notice to upgrade if using less than the ideal version of WooCommerce
+     *
+     * @since 1.3
+     */
+    public static function woocommerce_dependancy_notice()
+    {
+    }
+    /**
+     * Enqueues stylesheet for the My Subscriptions table on the My Account page and the stylesheet for the WooCommerce
+     * checkout and cart blocks if they are present on the page.
+     *
+     * @since 1.5
+     * @deprecated 3.1.3
+     */
+    public static function enqueue_styles($styles)
+    {
+    }
+    /**
+     * Enqueues scripts for frontend
+     *
+     * @since 2.3
+     * @deprecated 3.1.3
+     */
+    public static function enqueue_frontend_scripts()
+    {
+    }
+}
+/**
  * Store a message to display via @see wcs_display_admin_notices().
  *
  * @param string The message to display
@@ -26167,5 +26864,8 @@ function woothemes_updater_install($api, $action, $args)
  * @return void
  */
 function woothemes_updater_notice()
+{
+}
+function add_woocommerce_inbox_variant()
 {
 }

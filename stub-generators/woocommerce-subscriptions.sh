@@ -7,7 +7,7 @@
 #
 # Used via `%rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-3.0.php` under `scanFiles`.
 
-PLUGIN_VERSION="3.0"
+PLUGIN_VERSION="3.1"
 
 Get_legacy_files() {
     # Already in WC

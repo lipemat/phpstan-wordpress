@@ -39,14 +39,14 @@ abstract class CMB2_Base
      * @var   mixed
      * @since 2.2.3
      */
-    public $object_id = 0;
+    protected $object_id = 0;
     /**
      * Type of object being handled. (e.g., post, user, comment, or term)
      *
      * @var   string
      * @since 2.2.3
      */
-	public $object_type = '';
+    protected $object_type = '';
     /**
      * Array of key => value data for saving. Likely $_POST data.
      *
@@ -3265,6 +3265,26 @@ class CMB2_Sanitize
     public static function sanitize_and_secure_url($url, $protocols = \null, $default = \null)
     {
     }
+    /**
+     * Check if the current field's value is empty.
+     *
+     * @since  2.9.1
+     *
+     * @return boolean Wether value is empty.
+     */
+    public function is_empty_value()
+    {
+    }
+    /**
+     * Check if the current field's value is a valid date value.
+     *
+     * @since  2.9.1
+     *
+     * @return boolean Wether value is a valid date value.
+     */
+    public function is_valid_date_value()
+    {
+    }
 }
 /**
  * Show On Filters
@@ -3804,13 +3824,23 @@ class CMB2_Utils
     {
     }
     /**
-     * Returns a timestamp, first checking if value already is a timestamp.
+     * Returns a unix timestamp, first checking if value already is a timestamp.
      *
      * @since  2.0.0
      * @param  string|int $string Possible timestamp string.
      * @return int Time stamp.
      */
     public static function make_valid_time_stamp($string)
+    {
+    }
+    /**
+     * Determine if a value is a valid date.
+     *
+     * @since  2.9.1
+     * @param  mixed $date Value to check.
+     * @return boolean     Whether value is a valid date
+     */
+    public static function is_valid_date($date)
     {
     }
     /**
@@ -4067,10 +4097,10 @@ class CMB2_Utils
  * @license   GPL-2.0+
  * @link      https://cmb2.io
  *
- * @property-read read_fields Array of readable field objects.
- * @property-read edit_fields Array of editable field objects.
- * @property-read rest_read   Whether CMB2 object is readable via the rest api.
- * @property-read rest_edit   Whether CMB2 object is editable via the rest api.
+ * @property-read array $read_fields Array of readable field objects.
+ * @property-read array $edit_fields Array of editable field objects.
+ * @property-read bool rest_read   Whether CMB2 object is readable via the rest api.
+ * @property-read bool rest_edit   Whether CMB2 object is editable via the rest api.
  */
 class CMB2_REST extends \CMB2_Hookup_Base
 {
@@ -4113,7 +4143,7 @@ class CMB2_REST extends \CMB2_Hookup_Base
     /**
      * Array of editable field objects.
      *
-     * @var   CMB2_Field[]
+     * @var   string[]
      * @since 2.2.3
      */
     protected $edit_fields = array();
@@ -4136,7 +4166,7 @@ class CMB2_REST extends \CMB2_Hookup_Base
      *
      * @param  CMB2 $cmb The CMB2 object to hookup
      *
-     * @return CMB2_Hookup_Base $hookup The hookup object.
+     * @return CMB2_Hookup_Base|false $hookup The hookup object.
      */
     public static function maybe_init_and_hookup(\CMB2 $cmb)
     {
@@ -4156,7 +4186,7 @@ class CMB2_REST extends \CMB2_Hookup_Base
      *
      * @since  2.2.3
      *
-     * @return void
+     * @return CMB2_REST
      */
     public function universal_hooks()
     {
@@ -4395,7 +4425,7 @@ class CMB2_REST extends \CMB2_Hookup_Base
      * @param  string          $object_type      The request object type
      * @param  string          $main_object_type The cmb main object type
      *
-     * @return bool|int
+     * @return bool|array
      */
     protected static function update_rest_values($values, $object, $request, $object_type, $main_object_type = 'post')
     {
@@ -4543,7 +4573,7 @@ class CMB2_REST extends \CMB2_Hookup_Base
      * Retrieve all CMB2_REST instances from the registry.
      *
      * @since  2.2.3
-     * @return CMB2[] Array of all registered CMB2_REST instances.
+     * @return CMB2_REST[] Array of all registered CMB2_REST instances.
      */
     public static function get_all()
     {
@@ -6181,7 +6211,7 @@ abstract class CMB2_Type_Taxonomy_Base extends \CMB2_Type_Multi_Base
      * Gets the term objects for the terms stored via options boxes.
      *
      * @since  2.2.4
-     * @return mixed Array of terms on success
+     * @return array Array of terms on success
      */
     public function options_terms()
     {
@@ -6217,7 +6247,7 @@ abstract class CMB2_Type_Taxonomy_Base extends \CMB2_Type_Multi_Base
      * @since  2.2.5
      *
      * @param  array  $all_terms   Array of all terms.
-     * @param  array|string $saved Array of terms set to the object, or single term slug.
+     * @param  array|string $saved Array of terms set to the object, or single term id.
      *
      * @return string              List of terms.
      */
@@ -6228,7 +6258,7 @@ abstract class CMB2_Type_Taxonomy_Base extends \CMB2_Type_Multi_Base
      * Build children hierarchy.
      *
      * @param  object       $parent_term The parent term object.
-     * @param  array|string $saved       Array of terms set to the object, or single term slug.
+     * @param  array|string $saved       Array of terms set to the object, or single term id.
      *
      * @return string                    List of terms.
      */
@@ -6241,7 +6271,7 @@ abstract class CMB2_Type_Taxonomy_Base extends \CMB2_Type_Multi_Base
      * @since  2.6.1
      *
      * @param  array        $terms Array of child terms.
-     * @param  array|string $saved Array of terms set to the object, or single term slug.
+     * @param  array|string $saved Array of terms set to the object, or single term id.
      *
      * @return string              Child option output.
      */

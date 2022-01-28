@@ -5,9 +5,9 @@
 # @note Must copy/paste woocommerce-subscriptions directory under vendor before running.
 #       DO not include in GIT as is a premium plugin!
 #
-# Used via `%rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-3.0.php` under `scanFiles`.
+# Used via `%rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.0.php` under `scanFiles`.
 
-PLUGIN_VERSION="3.1"
+PLUGIN_VERSION="4.0"
 
 Get_legacy_files() {
     # Already in WC

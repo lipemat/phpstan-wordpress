@@ -14,7 +14,7 @@
     "php-stubs/woocommerce-stubs": "^6.0.0",
     "php-stubs/wp-cli-stubs": "^2.6.0",
     "phpstan/extension-installer": "^1.1.0",
-    "szepeviktor/phpstan-wordpress": "^0.7.7"
+    "szepeviktor/phpstan-wordpress": "^1.0.2"
   },
   "require-dev": {
     "composer/composer": "^2.2.5",

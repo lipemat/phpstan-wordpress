@@ -23,6 +23,9 @@ namespace {
 	function lipe_template_part( string $file, $args = [] ) : void {
 	}
 
+	function lipe_block_template_part( string $file ) : void {
+	}
+
 	function template_crumbs_exclude( string $template ) : void {
 
 	}

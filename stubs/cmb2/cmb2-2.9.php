@@ -3080,6 +3080,16 @@ class CMB2_Sanitize
     {
     }
     /**
+     * Sanitize a taxonomy value for a numeric id vs slug.
+     *
+     * @param $value
+     *
+     * @return array<int|string>|int|string
+     */
+    protected function sanitize_taxonomy_value($value)
+    {
+    }
+    /**
      * Sets the object terms to the object (if not options-page) and optionally returns the sanitized term values.
      *
      * @since  2.2.4

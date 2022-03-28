@@ -33,7 +33,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/woocommerce-subscriptions/includes" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/woocommerce-subscriptions/languages" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/woocommerce-subscriptions/templates" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/woocommerce-subscriptions/woo-includes" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

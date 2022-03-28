@@ -5,16 +5,19 @@
 # @note Must copy/paste woocommerce-subscriptions directory under vendor before running.
 #       DO not include in GIT as is a premium plugin!
 #
-# Used via `%rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.0.php` under `scanFiles`.
+# @notice Must be run via PHP 7.4 or will be missing 1/3 of classes.
+#
+# @example bash stub-generators/woocommerce-subscriptions.sh
+#
+# Used via `%rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.1.php` under `scanFiles`.
 
-PLUGIN_VERSION="4.0"
+PLUGIN_VERSION="4.1"
 
 Get_legacy_files() {
     # Already in WC
-    echo "vendor/woocommerce-subscriptions/includes/libraries/"
+    echo "vendor/woocommerce-subscriptions/woo-includes"
     # Legacy
-    echo "vendor/woocommerce-subscriptions/includes/api/legacy"
-    echo "vendor/woocommerce-subscriptions/includes/legacy"
+    echo "vendor/woocommerce-subscriptions/vendor/woocommerce/subscriptions-core/includes/legacy"
 }
 
 # Delete class files

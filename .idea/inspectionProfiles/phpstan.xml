@@ -1,6 +1,6 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
-    <option name="myName" value="Project Default" />
+    <option name="myName" value="phpstan" />
     <inspection_tool class="AccessModifierPresentedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="AdditionOperationOnArraysInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="AliasFunctionsUsageInspection" enabled="false" level="WARNING" enabled_by_default="false" />

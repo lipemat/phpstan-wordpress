@@ -11,10 +11,10 @@
   },
   "require": {
     "php": ">=7.1",
-    "php-stubs/woocommerce-stubs": "^6.0.0",
+    "php-stubs/woocommerce-stubs": "^6.4.1",
     "php-stubs/wp-cli-stubs": "^2.6.0",
     "phpstan/extension-installer": "^1.1.0",
-    "szepeviktor/phpstan-wordpress": "^1.0.3"
+    "szepeviktor/phpstan-wordpress": "^1.1.0"
   },
   "require-dev": {
     "composer/composer": "^2.2.9",

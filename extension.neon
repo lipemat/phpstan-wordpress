@@ -14,5 +14,4 @@ parameters:
   checkGenericClassInNonGenericObjectType: false
   ignoreErrors:
     - '#^Function apply_filters invoked with [3456789] parameters, 2 required\.$#'
-    - '#^Unsafe usage of new static#'
   reportUnmatchedIgnoredErrors: false

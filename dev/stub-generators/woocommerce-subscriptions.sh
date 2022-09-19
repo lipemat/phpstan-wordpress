@@ -7,11 +7,11 @@
 #
 # @notice Must be run via PHP 7.4 or will be missing 1/3 of classes.
 #
-# @example bash stub-generators/woocommerce-subscriptions.sh
+# @example `bash dev/stub-generators/woocommerce-subscriptions.sh`
 #
-# Used via `%rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.1.php` under `scanFiles`.
+# Used via `%rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.5.php` under `scanFiles`.
 
-PLUGIN_VERSION="4.1"
+PLUGIN_VERSION="4.5"
 
 Get_legacy_files() {
     # Already in WC

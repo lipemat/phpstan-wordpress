@@ -29,6 +29,11 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-stubs/wordpress-stubs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/justinrainbow/json-schema" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/giacocorsiglia/stubs-generator" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/woocommerce-subscriptions/includes" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/woocommerce-subscriptions/assets" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/woocommerce-subscriptions/vendor" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/woocommerce-subscriptions/templates" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/woocommerce-subscriptions/languages" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

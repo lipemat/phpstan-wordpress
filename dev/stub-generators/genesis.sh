@@ -7,7 +7,7 @@
 #
 # Used via `%rootDir%/../../../stubs/genesis/genesis-2.10.php` under `scanFiles`.
 
-THEME_VERSION="3.3"
+THEME_VERSION="3.4"
 
 vendor/bin/generate-stubs \
     --force \

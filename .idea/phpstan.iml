@@ -34,6 +34,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/woocommerce-subscriptions/vendor" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/woocommerce-subscriptions/templates" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/woocommerce-subscriptions/languages" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/genesis/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/genesis/config" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/genesis/images" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

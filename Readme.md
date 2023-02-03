@@ -18,9 +18,9 @@
 
 1. <a href="https://github.com/php-stubs/wp-cli-stubs">WP-CLI stubs</a>.
 2. <a href="https://github.com/php-stubs/woocommerce-stubs">WooCommerce Stubs</a>.
-3. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2/cmb2-2.9.php)
-3. [Genesis stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/genesis/genesis-3.3.php)
-3. [WooCommerce Subscription stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/woocommerce-subscriptions/woocommerce-subscriptions-3.0.php)   
+3. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2/cmb2-3.1.php)
+3. [Genesis stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/genesis/genesis-3.4.php)
+3. [WooCommerce Subscription stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php)   
 4. [VIP stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/vip.php) some stubs for WP VIP environments. 
 
 These may be selectively added to your `phstan.neon` or `phpstan.neon.dist` like so:
@@ -33,9 +33,9 @@ These may be selectively added to your `phstan.neon` or `phpstan.neon.dist` like
 bootstrapFiles:
     - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
 scanFiles:
-  - %rootDir%/../../../stubs/cmb2/cmb2-2.9.php
-  - %rootDir%/../../../stubs/genesis/genesis-3.3.php
-  - %rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-3.0.php 
+  - %rootDir%/../../../stubs/cmb2/cmb2-2.10.php
+  - %rootDir%/../../../stubs/genesis/genesis-3.4.php
+  - %rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php 
   - %rootDir%/../../../stubs/vip.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php
@@ -50,9 +50,9 @@ scanFiles:
 bootstrapFiles:
   - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
 scanFiles:
-  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/cmb2/cmb2-2.9.php
-  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/genesis/genesis-3.3.php
-  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/woocommerce-subscriptions/woocommerce-subscriptions-3.0.php
+  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/cmb2/cmb2-2.10.php
+  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/genesis/genesis-3.4.php
+  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/vip.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php

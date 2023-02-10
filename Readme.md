@@ -19,11 +19,11 @@
 1. <a href="https://github.com/php-stubs/wp-cli-stubs">WP-CLI stubs</a>.
 2. <a href="https://github.com/php-stubs/woocommerce-stubs">WooCommerce Stubs</a>.
 3. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2/cmb2-3.1.php)
-3. [Genesis stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/genesis/genesis-3.4.php)
-3. [WooCommerce Subscription stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php)   
-4. [VIP stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/vip.php) some stubs for WP VIP environments. 
+4. [Genesis stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/genesis/genesis-3.4.php)
+5. [WooCommerce Subscription stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php)   
+6. [VIP stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/vip.php) some stubs for WP VIP environments. 
 
-These may be selectively added to your `phstan.neon` or `phpstan.neon.dist` like so:
+These may be selectively added to your `phpstan.neon` or `phpstan.neon.dist` like so:
 
 #### When using library as a global install
 
@@ -42,7 +42,7 @@ scanFiles:
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php
 ```
 
-#### When using library as dependency
+#### When using library as composer dependency
 
 *@notice: Woocommerce does not work as a `scanFile` and must be a `bootstrapFiles`.*
 
@@ -58,6 +58,10 @@ scanFiles:
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php
 ```
+
+Alternatively, you may replace `%rootDir%/../../` with the relative path to your `vendor` directory.
+
+Example `wp-content/plugins/core/vendor/lipemat/phpstan-wordpress/stubs/cmb2/cmb2-3.10.php`
 
 ### Usage
 

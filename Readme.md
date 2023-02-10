@@ -33,7 +33,7 @@ These may be selectively added to your `phstan.neon` or `phpstan.neon.dist` like
 bootstrapFiles:
     - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
 scanFiles:
-  - %rootDir%/../../../stubs/cmb2/cmb2-2.10.php
+  - %rootDir%/../../../stubs/cmb2/cmb2-3.10.php
   - %rootDir%/../../../stubs/genesis/genesis-3.4.php
   - %rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php 
   - %rootDir%/../../../stubs/vip.php
@@ -50,7 +50,7 @@ scanFiles:
 bootstrapFiles:
   - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
 scanFiles:
-  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/cmb2/cmb2-2.10.php
+  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/cmb2/cmb2-3.10.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/genesis/genesis-3.4.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/vip.php

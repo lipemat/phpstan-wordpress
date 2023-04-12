@@ -3086,7 +3086,7 @@ class CMB2_Sanitize
     /**
      * Sanitize a taxonomy value for a numeric id vs slug.
      *
-     * @param $value
+     * @param array<int|string>|int|string|null $value
      *
      * @return array<int|string>|int|string
      */
@@ -3963,9 +3963,9 @@ class CMB2_Utils
      * @param string $value Date value.
      *
      * @since  2.2.0
-     * @return mixed         Unix timestamp representing the date.
+     * @return int        Unix timestamp representing the date.
      */
-    public function get_timestamp_from_value($value)
+    public static function get_timestamp_from_value($value, $date_format, $timezone = \null)
     {
     }
     /**
@@ -4628,266 +4628,6 @@ class CMB2_REST extends \CMB2_Hookup_Base
      * @return mixed
      */
     public function __get($field)
-    {
-    }
-}
-abstract class WP_REST_Controller
-{
-    /**
-     * The namespace of this controller's route.
-     *
-     * @var string
-     */
-    protected $namespace;
-    /**
-     * The base of this controller's route.
-     *
-     * @var string
-     */
-    protected $rest_base;
-    /**
-     * Register the routes for the objects of the controller.
-     */
-    public function register_routes()
-    {
-    }
-    /**
-     * Check if a given request has access to get items.
-     *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|boolean
-     */
-    public function get_items_permissions_check($request)
-    {
-    }
-    /**
-     * Get a collection of items.
-     *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|WP_REST_Response
-     */
-    public function get_items($request)
-    {
-    }
-    /**
-     * Check if a given request has access to get a specific item.
-     *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|boolean
-     */
-    public function get_item_permissions_check($request)
-    {
-    }
-    /**
-     * Get one item from the collection.
-     *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|WP_REST_Response
-     */
-    public function get_item($request)
-    {
-    }
-    /**
-     * Check if a given request has access to create items.
-     *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|boolean
-     */
-    public function create_item_permissions_check($request)
-    {
-    }
-    /**
-     * Create one item from the collection.
-     *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|WP_REST_Response
-     */
-    public function create_item($request)
-    {
-    }
-    /**
-     * Check if a given request has access to update a specific item.
-     *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|boolean
-     */
-    public function update_item_permissions_check($request)
-    {
-    }
-    /**
-     * Update one item from the collection.
-     *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|WP_REST_Response
-     */
-    public function update_item($request)
-    {
-    }
-    /**
-     * Check if a given request has access to delete a specific item.
-     *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|boolean
-     */
-    public function delete_item_permissions_check($request)
-    {
-    }
-    /**
-     * Delete one item from the collection.
-     *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|WP_REST_Response
-     */
-    public function delete_item($request)
-    {
-    }
-    /**
-     * Prepare the item for create or update operation.
-     *
-     * @param WP_REST_Request $request Request object.
-     * @return WP_Error|object $prepared_item
-     */
-    protected function prepare_item_for_database($request)
-    {
-    }
-    /**
-     * Prepare the item for the REST response.
-     *
-     * @param mixed           $item WordPress representation of the item.
-     * @param WP_REST_Request $request Request object.
-     * @return WP_REST_Response $response
-     */
-    public function prepare_item_for_response($item, $request)
-    {
-    }
-    /**
-     * Prepare a response for inserting into a collection.
-     *
-     * @param WP_REST_Response $response Response object.
-     * @return array Response data, ready for insertion into collection data.
-     */
-    public function prepare_response_for_collection($response)
-    {
-    }
-    /**
-     * Filter a response based on the context defined in the schema.
-     *
-     * @param array  $data
-     * @param string $context
-     * @return array
-     */
-    public function filter_response_by_context($data, $context)
-    {
-    }
-    /**
-     * Get the item's schema, conforming to JSON Schema.
-     *
-     * @return array
-     */
-    public function get_item_schema()
-    {
-    }
-    /**
-     * Get the item's schema for display / public consumption purposes.
-     *
-     * @return array
-     */
-    public function get_public_item_schema()
-    {
-    }
-    /**
-     * Get the query params for collections.
-     *
-     * @return array
-     */
-    public function get_collection_params()
-    {
-    }
-    /**
-     * Get the magical context param.
-     *
-     * Ensures consistent description between endpoints, and populates enum from schema.
-     *
-     * @param array $args
-     * @return array
-     */
-    public function get_context_param($args = array())
-    {
-    }
-    /**
-     * Add the values from additional fields to a data object.
-     *
-     * @param array           $object
-     * @param WP_REST_Request $request
-     * @return array modified object with additional fields.
-     */
-    protected function add_additional_fields_to_object($object, $request)
-    {
-    }
-    /**
-     * Update the values of additional fields added to a data object.
-     *
-     * @param array           $object
-     * @param WP_REST_Request $request
-     */
-    protected function update_additional_fields_for_object($object, $request)
-    {
-    }
-    /**
-     * Add the schema from additional fields to an schema array.
-     *
-     * The type of object is inferred from the passed schema.
-     *
-     * @param array $schema Schema array.
-     */
-    protected function add_additional_fields_schema($schema)
-    {
-    }
-    /**
-     * Get all the registered additional fields for a given object-type.
-     *
-     * @param  string $object_type
-     * @return array
-     */
-    protected function get_additional_fields($object_type = \null)
-    {
-    }
-    /**
-     * Get the object type this controller is responsible for managing.
-     *
-     * @return string
-     */
-    protected function get_object_type()
-    {
-    }
-    /**
-     * Get an array of endpoint arguments from the item schema for the controller.
-     *
-     * @param string $method HTTP method of the request. The arguments
-     *                       for `CREATABLE` requests are checked for required
-     *                       values and may fall-back to a given default, this
-     *                       is not done on `EDITABLE` requests. Default is
-     *                       WP_REST_Server::CREATABLE.
-     * @return array $endpoint_args
-     */
-    public function get_endpoint_args_for_item_schema($method = \WP_REST_Server::CREATABLE)
-    {
-    }
-    /**
-     * Retrieves post data given a post ID or post object.
-     *
-     * This is a subset of the functionality of the `get_post()` function, with
-     * the additional functionality of having `the_post` action done on the
-     * resultant post object. This is done so that plugins may manipulate the
-     * post that is used in the REST API.
-     *
-     * @see get_post()
-     * @global WP_Query $wp_query
-     *
-     * @param int|WP_Post $post Post ID or post object. Defaults to global $post.
-     * @return WP_Post|null A `WP_Post` object when successful.
-     */
-    public function get_post($post)
     {
     }
 }
@@ -6189,6 +5929,117 @@ class CMB2_Type_Select extends \CMB2_Type_Multi_Base
 class CMB2_Type_Select_Timezone extends \CMB2_Type_Select
 {
     public function render()
+    {
+    }
+}
+/**
+ * CMB Taxonomy base field type
+ *
+ * @since  2.2.2
+ *
+ * @category  WordPress_Plugin
+ * @package   CMB2
+ * @author    CMB2 team
+ * @license   GPL-2.0+
+ * @link      https://cmb2.io
+ */
+abstract class CMB2_Type_Taxonomy_Base extends \CMB2_Type_Multi_Base
+{
+    /**
+     * Parent term ID when looping hierarchical terms.
+     *
+     * @var integer|null
+     */
+    protected $parent = \null;
+    /**
+     * Is this option checked because it matches the value.
+     *
+     * @param string|int|array $value - Term id or legacy slug.
+     * @param WP_Term|stdClass $term - Representation of a term object.
+     *
+     * @return bool
+     */
+    public function is_checked($value, $term)
+    {
+    }
+    /**
+     * Checks if we can get a post object, and if so, uses `get_the_terms` which utilizes caching.
+     *
+     * @since  1.0.2
+     * @return mixed Array of terms on success
+     */
+    public function get_object_terms()
+    {
+    }
+    /**
+     * Gets the term objects for the terms stored via options boxes.
+     *
+     * @since  2.2.4
+     * @return array Array of terms on success
+     */
+    public function options_terms()
+    {
+    }
+    /**
+     * For non-post objects, wraps the call to wp_get_object_terms with transient caching.
+     *
+     * @since  2.2.4
+     * @return mixed Array of terms on success
+     */
+    public function non_post_object_terms()
+    {
+    }
+    /**
+     * Wrapper for `get_terms` to account for changes in WP 4.6 where taxonomy is expected
+     * as part of the arguments.
+     *
+     * @since  2.2.2
+     * @return mixed Array of terms on success
+     */
+    public function get_terms()
+    {
+    }
+    protected function no_terms_result($error, $tag = 'li')
+    {
+    }
+    public function get_object_term_or_default()
+    {
+    }
+    /**
+     * Takes a list of all tax terms and outputs.
+     *
+     * @since  2.2.5
+     *
+     * @param  array  $all_terms   Array of all terms.
+     * @param  array|string $saved Array of terms set to the object, or single term id.
+     *
+     * @return string              List of terms.
+     */
+    protected function loop_terms($all_terms, $saved_terms)
+    {
+    }
+    /**
+     * Build children hierarchy.
+     *
+     * @param  object       $parent_term The parent term object.
+     * @param  array|string $saved       Array of terms set to the object, or single term id.
+     *
+     * @return string                    List of terms.
+     */
+    protected function build_children($parent_term, $saved)
+    {
+    }
+    /**
+     * Build child terms output.
+     *
+     * @since  2.6.1
+     *
+     * @param  array        $terms Array of child terms.
+     * @param  array|string $saved Array of terms set to the object, or single term id.
+     *
+     * @return string              Child option output.
+     */
+    public function child_option_output($terms, $saved)
     {
     }
 }

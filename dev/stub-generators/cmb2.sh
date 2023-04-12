@@ -2,9 +2,12 @@
 #
 # Generate CMB2 stubs from the vendor directory.
 #
+# @notice Must be run via PHP 7.4 or will be missing 1/3 of classes.
+#
+#
 # Used via `%rootDir%/../../../stubs/cmb2/cmb2-2.9.php` under `scanFiles`.
 
-PLUGIN_VERSION="3.10"
+PLUGIN_VERSION="2.10"
 
 vendor/bin/generate-stubs \
 --force \

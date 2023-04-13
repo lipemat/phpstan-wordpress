@@ -1,3 +1,8 @@
+services:
+  - class: Lipe\Lib\Phpstan\Services\GetPostTypesDynamicFunctionReturnTypeExtension
+    tags:
+      - phpstan.broker.dynamicFunctionReturnTypeExtension
+
 parameters:
   dynamicConstantNames:
     - COOKIEPATH

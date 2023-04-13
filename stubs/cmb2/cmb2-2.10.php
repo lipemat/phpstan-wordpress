@@ -1597,6 +1597,17 @@ class CMB2_Field extends \CMB2_Base
     {
     }
     /**
+     * Get timestamp from text datetime
+     *
+     * @param string $value Date value.
+     *
+     * @since  3.10.1.7
+     * @return mixed         Unix timestamp representing the date.
+     */
+    public function get_timestamp_from_datetime_value($value)
+    {
+    }
+    /**
      * Get field render callback and Render the field row
      *
      * @since 1.0.0
@@ -2628,14 +2639,14 @@ class CMB2_JS
      * @var   array
      * @since 2.0.7
      */
-    protected static $dependencies = array('jquery' => 'jquery');
+    protected static $dependencies = ['jquery' => 'jquery', 'jquery-ui-sortable' => 'jquery-ui-sortable'];
     /**
      * Array of CMB2 fields model data for JS.
      *
      * @var   array
      * @since 2.4.0
      */
-    protected static $fields = array();
+    protected static $fields = [];
     /**
      * Add a dependency to the array of CMB2 JS dependencies
      *

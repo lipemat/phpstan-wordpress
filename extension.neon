@@ -14,8 +14,6 @@ parameters:
   scanFiles:
     - stubs/lipe.php
     - stubs/wp.php
-  stubFiles:
-    - stubs/wordpress-overrides.stub
   checkGenericClassInNonGenericObjectType: false
   ignoreErrors:
     - '#^Function apply_filters invoked with [3456789] parameters, 2 required\.$#'

@@ -18,7 +18,7 @@
 
 1. <a href="https://github.com/php-stubs/wp-cli-stubs">WP-CLI stubs</a>.
 2. <a href="https://github.com/php-stubs/woocommerce-stubs">WooCommerce Stubs</a>.
-3. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2/
+3. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2/)
 4. [Genesis stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/genesis/)
 5. [WooCommerce Subscription stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/woocommerce-subscriptions/)   
 6. [VIP stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/vip.php) some stubs for WP VIP environments. 

@@ -15,6 +15,3 @@ parameters:
     - stubs/lipe.php
     - stubs/wp.php
   checkGenericClassInNonGenericObjectType: false
-  ignoreErrors:
-    - '#^Function apply_filters invoked with [3456789] parameters, 2 required\.$#'
-  reportUnmatchedIgnoredErrors: false

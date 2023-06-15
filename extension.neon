@@ -2,6 +2,12 @@ services:
   - class: Lipe\Lib\Phpstan\Services\GetPostTypesDynamicFunctionReturnTypeExtension
     tags:
       - phpstan.broker.dynamicFunctionReturnTypeExtension
+  - class: Lipe\Lib\Phpstan\Services\GetTermDynamicFunctionReturnTypeExtension
+    tags:
+      - phpstan.broker.dynamicFunctionReturnTypeExtension
+  - class: Lipe\Lib\Phpstan\Services\GetTermByDynamicFunctionReturnTypeExtension
+    tags:
+      - phpstan.broker.dynamicFunctionReturnTypeExtension
 
 parameters:
   dynamicConstantNames:

@@ -8,7 +8,6 @@ parameters:
     - COOKIEPATH
     - DB_NAME
     - DOMAIN_CURRENT_SITE
-    - SCRIPT_DEBUG
     - SITECOOKIEPATH
     - WPCOM_IS_VIP_ENV
   scanFiles:

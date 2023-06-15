@@ -13,4 +13,3 @@ parameters:
   scanFiles:
     - stubs/lipe.php
     - stubs/wp.php
-  checkGenericClassInNonGenericObjectType: false

@@ -19,5 +19,4 @@ parameters:
   scanFiles:
     - stubs/lipe.php
     - stubs/wp.php
-  checkMissingIterableValueType: false
   reportUnmatchedIgnoredErrors: false

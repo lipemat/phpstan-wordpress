@@ -6,9 +6,9 @@ namespace SzepeViktor\PHPStan\WordPress\Tests;
 
 use function PHPStan\Testing\assertType;
 
-assertType( 'WP_Term|WP_Error', get_term( 2, '', OBJECT ) );
-assertType( 'WP_Term|WP_Error', get_term( 2, 'category', OBJECT ) );
-assertType( 'WP_Term|WP_Error', get_term( 2 ) );
+assertType( 'WP_Error|WP_Term', get_term( 2, '', OBJECT ) );
+assertType( 'WP_Error|WP_Term', get_term( 2, 'category', OBJECT ) );
+assertType( 'WP_Error|WP_Term', get_term( 2 ) );
 
 assertType( 'array<string, mixed>|WP_Error', get_term( 2, '', ARRAY_A ) );
 assertType( 'array<string, mixed>|WP_Error', get_term( 2, 'category', ARRAY_A ) );

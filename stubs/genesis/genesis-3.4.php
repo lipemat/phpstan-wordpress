@@ -2174,6 +2174,25 @@ class Genesis_Customizer
      * @param string $control_name Control name.
      * @param array  $control      Control properties.
      * @param array  $panel        Panel properties.
+     *
+     * @phpstan-param array{
+     *   instance_number?: int,
+     *   manager?: \WP_Customize_Manager,
+     *   id?: string,
+     *   settings?: array<mixed>,
+     *   setting?: string,
+     *   capability?: string,
+     *   priority?: int,
+     *   section?: string,
+     *   label?: string,
+     *   description?: string,
+     *   choices?: array<mixed>,
+     *   input_attrs?: array<mixed>,
+     *   allow_addition?: bool,
+     *   json?: array<mixed>,
+     *   type?: string,
+     *   active_callback?: callable,
+     * } $control
      */
     public function register_control($control_name, array $control, $panel)
     {

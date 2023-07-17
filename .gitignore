@@ -1,6 +1,7 @@
 composer.phar
 /vendor/
 composer.lock
+.phpunit.result.cache
 
 # PHPStorm files
 # https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore

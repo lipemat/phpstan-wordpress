@@ -1,6 +1,9 @@
 composer.phar
 /vendor/
 composer.lock
+/source
+!/source/composer.json
+
 .phpunit.result.cache
 
 # PHPStorm files

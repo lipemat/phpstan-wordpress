@@ -18,6 +18,7 @@ if [[ ! $(php -v | grep "PHP 7.4") ]]; then
     exit 1
 fi
 
+## @todo Switch to finder for exclude. See `generate-stubs --finder`.
 Get_legacy_files() {
     # Already in WC
     echo "source/woocommerce-subscriptions/woo-includes"

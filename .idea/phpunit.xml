@@ -4,6 +4,8 @@
     <option name="directories">
       <list>
         <option value="$PROJECT_DIR$/dev/phpunit/tests" />
+        <option value="$PROJECT_DIR$/source/tests" />
+        <option value="$PROJECT_DIR$/source/php-cli-tools/tests" />
       </list>
     </option>
   </component>

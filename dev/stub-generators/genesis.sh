@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Generate Genesis stubs from the vendor directory.
+# Generate Genesis stubs from the source directory.
 #
 # @note Must copy/paste genesis directory under source before running.
 #       DO not include in GIT as is a premium theme!

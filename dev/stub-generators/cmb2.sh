@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Generate CMB2 stubs from the vendor directory.
+# Generate CMB2 stubs from the source directory.
 #
 # @notice Must be run via PHP 7.4 or will be missing 1/3 of classes.
 #

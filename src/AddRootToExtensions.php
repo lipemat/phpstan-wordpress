@@ -29,9 +29,15 @@ class AddRootToExtensions {
 		$extra = $package->getExtra();
 		$extra['phpstan']['includes'] = [ '../../../extension.neon' ];
 		$package->setExtra( $extra );
-		$composer->getRepositoryManager()->getLocalRepository()->addPackage( $package );
-
 		$io = $event->getIO();
+
+		try {
+			$composer->getRepositoryManager()->getLocalRepository()->addPackage( $package );
+		} catch( \LogicException $exception ) {
+			$io->write( '<error>To use `lipemat/phpstan` as standalone, you must either install fresh without a lock file or run `composer update`.</error>' );
+			return;
+		}
+
 		$io->write( '<comment>Adding lipemat/phpstan-wordpress package as a phpstan extension.</comment>' );
 
 		( new Plugin() )->process( $event );

@@ -1,0 +1,16 @@
+{
+  "name": "lipemat/phpstan-wordpress-source",
+  "description": "Source packages to generate stubs from",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "require-dev": {
+    "php": "^7.4",
+    "lipemat/cmb2": "~2.10.1.7",
+    "php-stubs/generator": "^0.5.0",
+    "roave/security-advisories": "dev-latest"
+  }
+}

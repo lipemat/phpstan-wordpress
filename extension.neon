@@ -1,5 +1,8 @@
 services:
-  - class: Lipe\Lib\Phpstan\Services\GetPostTypesDynamicFunctionReturnTypeExtension
+  - class: Lipe\Lib\Phpstan\Services\GetTermDynamicFunctionReturnTypeExtension
+    tags:
+      - phpstan.broker.dynamicFunctionReturnTypeExtension
+  - class: Lipe\Lib\Phpstan\Services\GetTermByDynamicFunctionReturnTypeExtension
     tags:
       - phpstan.broker.dynamicFunctionReturnTypeExtension
 
@@ -8,13 +11,9 @@ parameters:
     - COOKIEPATH
     - DB_NAME
     - DOMAIN_CURRENT_SITE
-    - SCRIPT_DEBUG
     - SITECOOKIEPATH
     - WPCOM_IS_VIP_ENV
   scanFiles:
     - stubs/lipe.php
     - stubs/wp.php
-  checkGenericClassInNonGenericObjectType: false
-  ignoreErrors:
-    - '#^Function apply_filters invoked with [3456789] parameters, 2 required\.$#'
   reportUnmatchedIgnoredErrors: false

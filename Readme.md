@@ -17,11 +17,12 @@
 ### Optional Stubs
 
 1. <a href="https://github.com/php-stubs/wp-cli-stubs">WP-CLI stubs</a>.
-2. <a href="https://github.com/php-stubs/woocommerce-stubs">WooCommerce Stubs</a>.
-3. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2/
-4. [Genesis stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/genesis/)
-5. [WooCommerce Subscription stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/woocommerce-subscriptions/)   
-6. [VIP stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/vip.php) some stubs for WP VIP environments. 
+2. <a href="https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/wp-cli/php-cli-tools-0.11.11.php">WP-CLI Tools Stubs</a>.
+3. <a href="https://github.com/php-stubs/woocommerce-stubs">WooCommerce Stubs</a>.
+4. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2/
+5. [Genesis stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/genesis/)
+6. [WooCommerce Subscription stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/woocommerce-subscriptions/)   
+7. [VIP stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/vip.php) some stubs for WP VIP environments. 
 
 These may be selectively added to your `phpstan.neon` or `phpstan.neon.dist` like so:
 
@@ -35,7 +36,8 @@ bootstrapFiles:
 scanFiles:
   - %rootDir%/../../../stubs/cmb2/cmb2-3.10.php
   - %rootDir%/../../../stubs/genesis/genesis-3.4.php
-  - %rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php 
+  - %rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php
+  - %rootDir%/../../../stubs/wp-cli/php-cli-tools-0.11.11.php
   - %rootDir%/../../../stubs/vip.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php

@@ -22,8 +22,8 @@ use PHPStan\Type\TypeCombinator;
  * @author Mat Lipe
  * @since  2.7.0
  *
- * @todo Consider submitting a pull request to `szepeviktor/phpstan-wordpress`
- *
+ * @todo Remove when pull request is merged and new version is available.
+ * @link https://github.com/php-stubs/wordpress-stubs/pull/104
  */
 class GetTermDynamicFunctionReturnTypeExtension implements DynamicFunctionReturnTypeExtension {
 	protected static $supported = [

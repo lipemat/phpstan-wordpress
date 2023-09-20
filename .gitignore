@@ -1,8 +1,8 @@
 composer.phar
 /vendor/
 composer.lock
-/source
-!/source/composer.json
+/dev/source/*
+!/dev/source/composer.json
 
 .phpunit.result.cache
 

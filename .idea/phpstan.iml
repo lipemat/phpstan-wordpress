@@ -28,6 +28,20 @@
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/polyfill-php73" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/polyfill-php80" />
       <excludeFolder url="file://$MODULE_DIR$/source/vendor/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/lipemat/cmb2" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/php-stubs/generator" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/console" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/deprecation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/filesystem" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/finder" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/polyfill-php73" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/service-contracts" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

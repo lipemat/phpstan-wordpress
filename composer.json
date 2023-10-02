@@ -14,7 +14,7 @@
   },
   "require": {
     "php": ">=7.2",
-    "php-stubs/woocommerce-stubs": "^v7.0.0",
+    "php-stubs/woocommerce-stubs": "^8.1.0",
     "php-stubs/wp-cli-stubs": "^2.6.0",
     "phpstan/extension-installer": "^1.1.0",
     "szepeviktor/phpstan-wordpress": "^1.1.2"

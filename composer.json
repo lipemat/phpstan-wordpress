@@ -20,6 +20,7 @@
     "szepeviktor/phpstan-wordpress": "^1.1.2"
   },
   "require-dev": {
+    "phpstan/phpstan-deprecation-rules": "^1.1",
     "phpstan/phpstan-strict-rules": "^1.5",
     "roave/security-advisories": "dev-latest"
   },

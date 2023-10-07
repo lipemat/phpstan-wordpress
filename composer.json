@@ -42,6 +42,7 @@
     }
   },
   "scripts": {
+    "git-hooks": "dev/bin/git-hooks.sh",
     "post-update-cmd": "Lipe\\Lib\\Phpstan\\AddRootToExtensions::updatePlugins",
     "post-install-cmd": "Lipe\\Lib\\Phpstan\\AddRootToExtensions::updatePlugins"
   }

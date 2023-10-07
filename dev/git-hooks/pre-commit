@@ -1,0 +1,136 @@
+#!/bin/bash
+
+#####################################################################################
+#
+# Test our code against various unit test systems and linters and prevent commit
+# if any of them fail.
+#
+# @uses Global PHP version as different projects have different requirements.
+#
+# @version 4.5.1
+#
+#####################################################################################
+
+GREEN="$(tput setaf 2)"
+WHITE="$(tput setaf 7)"
+YELLOW="$(tput setaf 3)"
+RED="$(tput setaf 1)"
+BLUE="$(tput setaf 6)"
+RESET_COLOR="$(tput sgr0)"
+
+PHP='php 7.2'
+PHPCS='phpcs'
+PHPUNIT='phpunit 7.2'
+PHPSTAN='phpstan'
+
+PROJECT=$(${PHP} -r "echo dirname(realpath('$0'), 3);")
+## Fix windows paths
+PROJECT=${PROJECT//\\//}
+
+PHP_FILES=$(git diff-index --cached --name-only --diff-filter=ACMR HEAD | grep \\.php)
+if [[ ! "$PHP_FILES" ]]; then
+	echo "${YELLOW}[pre-commit]${BLUE} No PHP Files Changed ${RESET_COLOR}"
+	exit 0
+fi
+
+function exit_reset_colors() {
+	echo ${RESET_COLOR}
+	exit 1
+}
+
+function php_unit() {
+    if [[ "$PHP_FILES" ]]; then
+        if [[ ! -f ${PROJECT}/dev/phpunit/phpunit.xml ]] && [[ ! -f ${PROJECT}/dev/phpunit/phpunit.xml.dist ]]; then
+            echo "${YELLOW}[pre-commit]${RED} ${PROJECT}/dev/phpunit/phpunit.xml or ${PROJECT}/dev/phpunit/phpunit.xml.dist not found!"
+            exit_reset_colors
+        fi
+        echo "${YELLOW}[pre-commit]${BLUE} Running PHP Unit... ${WHITE}"
+        cd "${PROJECT}/dev/phpunit" || exit
+        OUTPUT=$(${PHPUNIT})
+        if [[ $? != 0 ]]; then
+            echo
+            echo "${BLUE}PHP Unit Failed! Fix the error before commit!"
+            echo "${RED}$OUTPUT"
+            exit_reset_colors
+        fi
+        echo "${YELLOW}[pre-commit]${GREEN} PHP Unit Tests Passed!${WHITE}"
+    fi
+}
+php_unit &
+
+function php_lint() {
+	if [[ "$PHP_FILES" ]]; then
+		# Run php lint.
+		echo "${YELLOW}[pre-commit]${BLUE} Checking ${1} Lint... ${WHITE}"
+		for FILE in ${PHP_FILES}; do
+			OUTPUT=$(${1} -l -d display_errors=0 ${PROJECT}/${FILE})
+			if [[ $? != 0 ]]; then
+				echo
+				echo "${BLUE}${1} Lint Failed. Fix the error before commit."
+				echo "${RED}$OUTPUT"
+				exit_reset_colors
+			fi
+		done
+		echo "${YELLOW}[pre-commit]${GREEN} ${1} Lint Passed!${WHITE}"
+	fi
+}
+
+php_lint 'php' &
+
+function php_code_sniffer() {
+    if [[ "$PHP_FILES" != "" ]]; then
+        if [[ ! -f ${PROJECT}/phpcs.xml ]] && [[ ! -f ${PROJECT}/phpcs.xml.dist ]]; then
+            echo "${YELLOW}[pre-commit]${RED} ${PROJECT}/phpcs.xml or ${PROJECT}/phpcs.xml.dist not found!"
+            exit_reset_colors
+        fi
+        for FILE in ${PHP_FILES}; do
+            FILES="$FILES ${PROJECT}/${FILE}"
+        done
+        echo "${YELLOW}[pre-commit]${BLUE} Running PHPCS... ${WHITE}"
+        OUTPUT=$(${PHPCS} --encoding=utf-8 -s -p ${FILES})
+        if [[ $? != 0 ]]; then
+            echo
+            echo "${BLUE}PHPCS failed. Fix the error before commit!"
+            echo "${RED}$OUTPUT"
+            echo
+            echo "${YELLOW}For automatic fixes run"
+            echo
+            echo "${WHITE}phpcbf $FILES"
+            echo
+            exit_reset_colors
+        fi
+        echo "${YELLOW}[pre-commit]${GREEN} PHPCS Passed!${WHITE}"
+    fi
+}
+php_code_sniffer &
+
+function php_stan() {
+	if [[ "$PHP_FILES" ]]; then
+		echo "${YELLOW}[pre-commit]${BLUE} Running PHP Stan... ${WHITE}"
+		OUTPUT=$(${PHPSTAN} analyse --no-progress --memory-limit=2G)
+		if [[ $? != 0 ]]; then
+			echo
+			echo "${BLUE}PHP Stan Failed. Fix the error before commit."
+			echo "${RED}$OUTPUT"
+			exit_reset_colors
+		fi
+		echo "${YELLOW}[pre-commit]${GREEN} PHP Stan Passed!${WHITE}"
+	fi
+}
+php_stan &
+
+# Go through each background task
+# If it sent exit code 1, it failed and the result from `wait` will be false.
+FAIL=0
+for job in $(jobs -p); do
+	wait "$job" || ((FAIL += 1))
+done
+
+echo "${RESET_COLOR}"
+
+# If any of the background tasks failed, we exit 1
+if [[ $FAIL -ne 0 ]]; then
+	exit 1
+else
+	exit 0
+fi

@@ -1,12 +1,13 @@
 <?php
 
 namespace {
+
 	/**
 	 * @param string|int|float $value
 	 *
 	 * @return string
 	 */
-	function es( $value ) : string {
+	function es( $value ): string {
 	}
 
 	/**
@@ -14,22 +15,29 @@ namespace {
 	 *
 	 * @return string
 	 */
-	function sn( $value ) : string {
+	function sn( $value ): string {
 	}
 
 	function lipe_project() {
 	}
 
-	function lipe_template_part( string $file, $args = [] ) : void {
+	/**
+	 * @param string       $file
+	 * @param array<mixed> $args
+	 */
+	function lipe_template_part( string $file, array $args = [] ): void {
 	}
 
-	function lipe_template_contents( string $file, $args = [] ) : string {
+	/**
+	 * @param string       $file
+	 * @param array<mixed> $args
+	 */
+	function lipe_template_contents( string $file, array $args = [] ): string {
 	}
 
-	function lipe_block_template_part( string $file ) : void {
+	function lipe_block_template_part( string $file ): void {
 	}
 
-	function template_crumbs_exclude( string $template ) : void {
-
+	function template_crumbs_exclude( string $template ): void {
 	}
 }

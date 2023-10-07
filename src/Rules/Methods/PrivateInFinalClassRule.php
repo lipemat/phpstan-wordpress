@@ -8,8 +8,13 @@ use PhpParser\Node;
 use PHPStan\Analyser;
 use PHPStan\Reflection;
 use PHPStan\Rules;
-use PHPStan\ShouldNotHappenException;
 
+/**
+ * Prevent any methods in a final class from being protected.
+ * They should be private instead.
+ *
+ * @implements Rules\Rule<Node\Stmt\ClassMethod>
+ */
 class PrivateInFinalClassRule implements Rules\Rule {
 	public function getNodeType(): string {
 		return Node\Stmt\ClassMethod::class;
@@ -17,16 +22,6 @@ class PrivateInFinalClassRule implements Rules\Rule {
 
 
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
-		if ( ! $node instanceof Node\Stmt\ClassMethod ) {
-			throw new ShouldNotHappenException(
-				\sprintf(
-					'Expected node to be instance of "%s", but got instance of "%s" instead.',
-					Node\Stmt\ClassMethod::class,
-					''
-				)
-			);
-		}
-
 		/** @var Reflection\ClassReflection $containingClass */
 		$containingClass = $scope->getClassReflection();
 

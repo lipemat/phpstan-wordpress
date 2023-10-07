@@ -8,8 +8,14 @@ use PhpParser\Node;
 use PHPStan\Analyser;
 use PHPStan\Reflection;
 use PHPStan\Rules;
-use PHPStan\ShouldNotHappenException;
 
+/**
+ * Prevent any parameters in a constructor from having a default value.
+ *
+ * If a default value is needed, use a `factory` method instead.
+ *
+ * @implements Rules\Rule<Node\Stmt\ClassMethod>
+ */
 class NoConstructorParameterWithDefaultValueRule implements Rules\Rule {
 	public function getNodeType(): string {
 		return Node\Stmt\ClassMethod::class;
@@ -17,16 +23,6 @@ class NoConstructorParameterWithDefaultValueRule implements Rules\Rule {
 
 
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
-		if ( ! $node instanceof Node\Stmt\ClassMethod ) {
-			throw new ShouldNotHappenException(
-				\sprintf(
-					'Expected node to be instance of "%s", but got instance of "%s" instead.',
-					Node\Stmt\Class_::class,
-					get_class( $node )
-				)
-			);
-		}
-
 		if ( '__construct' !== $node->name->toLowerString() ) {
 			return [];
 		}

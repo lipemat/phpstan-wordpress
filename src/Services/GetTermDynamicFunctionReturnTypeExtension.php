@@ -26,6 +26,9 @@ use PHPStan\Type\TypeCombinator;
  * @link https://github.com/php-stubs/wordpress-stubs/pull/104
  */
 class GetTermDynamicFunctionReturnTypeExtension implements DynamicFunctionReturnTypeExtension {
+	/**
+	 * @var string[]
+	 */
 	protected static $supported = [
 		'get_term',
 	];
@@ -64,6 +67,7 @@ class GetTermDynamicFunctionReturnTypeExtension implements DynamicFunctionReturn
 		);
 		$argumentType = $scope->getType( $args[2]->value );
 		if ( count( $argumentType->getConstantStrings() ) === 1 ) {
+			$returnType = [];
 			switch ( $argumentType->getConstantStrings()[0]->getValue() ) {
 				case 'ARRAY_A':
 					$returnType[] = new ArrayType( new StringType(), $value );

@@ -7,8 +7,17 @@ namespace Lipe\Lib\Phpstan\Rules\Classes;
 use PhpParser\Node;
 use PHPStan\Analyser;
 use PHPStan\Rules;
-use PHPStan\ShouldNotHappenException;
 
+/**
+ * Make sure all classes are final.
+ *
+ * Abstract classes are allowed, but only if:
+ * 1. Abstract classes are not disallowed.
+ * OR
+ * 2. The abstract class is in the list of allowed abstract classes.
+ *
+ * @implements Rules\Rule<Node\Stmt\Class_>
+ */
 class FinalRule implements Rules\Rule {
 	/**
 	 * @var bool
@@ -20,7 +29,14 @@ class FinalRule implements Rules\Rule {
 	 */
 	private $classesAllowedToBeAbstract = [];
 
+	/**
+	 * @var string
+	 */
 	private $errorMessageTemplate = 'Class %s is not final.';
+
+	/**
+	 * @var string
+	 */
 	private $identifier = 'classMustBeFinal';
 
 
@@ -49,16 +65,6 @@ class FinalRule implements Rules\Rule {
 
 
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
-		if ( ! $node instanceof Node\Stmt\Class_ ) {
-			throw new ShouldNotHappenException(
-				\sprintf(
-					'Expected node to be instance of "%s", but got instance of "%s" instead.',
-					$this->getNodeType(),
-					get_class( $node )
-				)
-			);
-		}
-
 		if ( ! isset( $node->namespacedName ) ) {
 			return [];
 		}

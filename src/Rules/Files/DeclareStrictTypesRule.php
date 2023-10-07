@@ -8,8 +8,12 @@ use PhpParser\Node;
 use PHPStan\Analyser;
 use PHPStan\Node\FileNode;
 use PHPStan\Rules;
-use PHPStan\ShouldNotHappenException;
 
+/**
+ * Force all files to have a `declare(strict_types=1)` declaration.
+ *
+ * @implements Rules\Rule<FileNode>
+ */
 class DeclareStrictTypesRule implements Rules\Rule {
 	public function getNodeType(): string {
 		return FileNode::class;
@@ -17,16 +21,6 @@ class DeclareStrictTypesRule implements Rules\Rule {
 
 
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
-		if ( ! $node instanceof FileNode ) {
-			throw new ShouldNotHappenException(
-				\sprintf(
-					'Expected node to be instance of "%s", but got instance of "%s" instead.',
-					Node\Stmt\Class_::class,
-					get_class( $node )
-				)
-			);
-		}
-
 		$nodes = $node->getNodes();
 
 		if ( 0 === \count( $nodes ) ) {

@@ -7,18 +7,22 @@ namespace Lipe\Lib\Phpstan\Rules\Classes;
 use PhpParser\Node;
 use PHPStan\Analyser;
 use PHPStan\Rules;
-use PHPStan\ShouldNotHappenException;
 
+/**
+ * Prevent any classes from extending other classes.
+ *
+ * @implements Rules\Rule<Node\Stmt\Class_>
+ */
 class NoExtendsRule implements Rules\Rule {
 	/**
-	 * @var array<int, class-string>
+	 * @var array<int, string>
 	 */
 	private static $defaultClassesAllowedToBeExtended = [
 		'PHPUnit\\Framework\\TestCase',
 	];
 
 	/**
-	 * @var array<int, class-string>
+	 * @var array<int, string>
 	 */
 	private $classesAllowedToBeExtended;
 
@@ -31,7 +35,7 @@ class NoExtendsRule implements Rules\Rule {
 			\array_merge(
 				self::$defaultClassesAllowedToBeExtended,
 				\array_map(
-					static function ( string $classAllowedToBeExtended ): string {
+					function ( string $classAllowedToBeExtended ): string {
 						return $classAllowedToBeExtended;
 					},
 					$classesAllowedToBeExtended
@@ -47,16 +51,6 @@ class NoExtendsRule implements Rules\Rule {
 
 
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
-		if ( ! $node instanceof Node\Stmt\Class_ ) {
-			throw new ShouldNotHappenException(
-				\sprintf(
-					'Expected node to be instance of "%s", but got instance of "%s" instead.',
-					$this->getNodeType(),
-					get_class( $node )
-				)
-			);
-		}
-
 		if ( ! $node->extends instanceof Node\Name ) {
 			return [];
 		}

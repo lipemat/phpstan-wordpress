@@ -26,6 +26,9 @@ use PHPStan\Type\TypeCombinator;
  * @todo Remove when pull request is merged and new version is available.
  */
 class GetTermByDynamicFunctionReturnTypeExtension implements DynamicFunctionReturnTypeExtension {
+	/**
+	 * @var string[]
+	 */
 	protected static $supported = [
 		'get_term_by',
 	];
@@ -65,6 +68,7 @@ class GetTermByDynamicFunctionReturnTypeExtension implements DynamicFunctionRetu
 		);
 		$argumentType = $scope->getType( $args[3]->value );
 		if ( count( $argumentType->getConstantStrings() ) === 1 ) {
+			$returnType = [];
 			switch ( $argumentType->getConstantStrings()[0]->getValue() ) {
 				case 'ARRAY_A':
 					$returnType[] = new ArrayType( new StringType(), $value );

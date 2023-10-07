@@ -7,8 +7,12 @@ namespace Lipe\Lib\Phpstan\Rules\Expressions;
 use PhpParser\Node;
 use PHPStan\Analyser;
 use PHPStan\Rules;
-use PHPStan\ShouldNotHappenException;
 
+/**
+ * Prevent using the `compact()` function.
+ *
+ * @implements Rules\Rule<Node\Expr\FuncCall>
+ */
 class NoCompactRule implements Rules\Rule {
 	public function getNodeType(): string {
 		return Node\Expr\FuncCall::class;
@@ -16,16 +20,6 @@ class NoCompactRule implements Rules\Rule {
 
 
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
-		if ( ! $node instanceof Node\Expr\FuncCall ) {
-			throw new ShouldNotHappenException(
-				\sprintf(
-					'Expected node to be instance of "%s", but got instance of "%s" instead.',
-					Node\Stmt\Class_::class,
-					get_class( $node )
-				)
-			);
-		}
-
 		if ( ! $node->name instanceof Node\Name ) {
 			return [];
 		}

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Lipe\Lib\Phpstan;
 
@@ -40,6 +41,7 @@ class AddRootToExtensions {
 
 		$io->write( '<comment>Adding lipemat/phpstan-wordpress package as a phpstan extension.</comment>' );
 
+		// @phpstan-ignore-next-line
 		( new Plugin() )->process( $event );
 	}
 }

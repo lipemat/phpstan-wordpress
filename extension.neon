@@ -65,4 +65,3 @@ parameters:
   scanFiles:
     - stubs/lipe.php
     - stubs/wp.php
-  reportUnmatchedIgnoredErrors: false

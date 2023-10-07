@@ -83,8 +83,8 @@ Example `wp-content/plugins/core/vendor/lipemat/phpstan-wordpress/stubs/cmb2/cmb
 
 ### Optional Strict Rules
 
-As we move toward a world were we use composition over inheritance, we need to be more strict about how we write our code. The strict rules by no means get us all the way there, but 
-they are a step in the right direction and viable for a WordPress project.
+As we move toward a world where we use composition over inheritance, we need to be more strict about how we write our code. 
+The strict rules by no means get us all the way there, but they are a step in the right direction and viable for a WordPress project.
 
 The strict rules are not included by default, but may be enabled in your `phpstan.neon` or `phpstan.neon.dist` like so:
 

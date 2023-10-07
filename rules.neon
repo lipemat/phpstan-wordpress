@@ -1,0 +1,41 @@
+services:
+- class: Lipe\Lib\Phpstan\Rules\Expressions\NoCompactRule
+  tags:
+    - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Classes\FinalRule
+  tags:
+    - phpstan.rules.rule
+  arguments:
+    disallowAbstractClasses: %lipematNoExtends.enabled%
+    classesAllowedToBeAbstract: %lipematNoExtends.allowedToBeExtended%
+- class: Lipe\Lib\Phpstan\Rules\Files\DeclareStrictTypesRule
+  tags:
+    - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Methods\NoConstructorParameterWithDefaultValueRule
+  tags:
+    - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Methods\PrivateInFinalClassRule
+  tags:
+    - phpstan.rules.rule
+
+# Conditional rules
+- class: Lipe\Lib\Phpstan\Rules\Classes\NoExtendsRule
+  arguments:
+    classesAllowedToBeExtended: %lipematNoExtends.allowedToBeExtended%
+conditionalTags:
+  Lipe\Lib\Phpstan\Rules\Classes\NoExtendsRule:
+    phpstan.rules.rule: %lipematNoExtends.enabled%
+
+
+## Supported custom parameters.
+parametersSchema:
+  lipematNoExtends: structure([
+    allowedToBeExtended: listOf(string())
+    enabled: bool(),
+])
+
+# Default parameters passed to phpstan by this extension.
+parameters:
+  lipematNoExtends:
+    enabled: false
+    allowedToBeExtended: []

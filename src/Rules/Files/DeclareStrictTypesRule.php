@@ -10,7 +10,7 @@ use PHPStan\Node\FileNode;
 use PHPStan\Rules;
 use PHPStan\ShouldNotHappenException;
 
-final class DeclareStrictTypesRule implements Rules\Rule {
+class DeclareStrictTypesRule implements Rules\Rule {
 	public function getNodeType(): string {
 		return FileNode::class;
 	}
@@ -18,11 +18,13 @@ final class DeclareStrictTypesRule implements Rules\Rule {
 
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
 		if ( ! $node instanceof FileNode ) {
-			throw new ShouldNotHappenException( \sprintf(
-				'Expected node to be instance of "%s", but got instance of "%s" instead.',
-				Node\Stmt\Class_::class,
-				get_class( $node )
-			) );
+			throw new ShouldNotHappenException(
+				\sprintf(
+					'Expected node to be instance of "%s", but got instance of "%s" instead.',
+					Node\Stmt\Class_::class,
+					get_class( $node )
+				)
+			);
 		}
 
 		$nodes = $node->getNodes();

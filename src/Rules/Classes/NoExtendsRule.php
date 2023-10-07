@@ -9,7 +9,7 @@ use PHPStan\Analyser;
 use PHPStan\Rules;
 use PHPStan\ShouldNotHappenException;
 
-final class NoExtendsRule implements Rules\Rule {
+class NoExtendsRule implements Rules\Rule {
 	/**
 	 * @var array<int, class-string>
 	 */
@@ -27,12 +27,17 @@ final class NoExtendsRule implements Rules\Rule {
 	 * @param array<int, class-string> $classesAllowedToBeExtended
 	 */
 	public function __construct( array $classesAllowedToBeExtended ) {
-		$this->classesAllowedToBeExtended = \array_unique( \array_merge(
-			self::$defaultClassesAllowedToBeExtended,
-			\array_map( static function( string $classAllowedToBeExtended ): string {
-				return $classAllowedToBeExtended;
-			}, $classesAllowedToBeExtended )
-        ) );
+		$this->classesAllowedToBeExtended = \array_unique(
+			\array_merge(
+				self::$defaultClassesAllowedToBeExtended,
+				\array_map(
+					static function ( string $classAllowedToBeExtended ): string {
+						return $classAllowedToBeExtended;
+					},
+					$classesAllowedToBeExtended
+				)
+			)
+		);
 	}
 
 
@@ -43,11 +48,13 @@ final class NoExtendsRule implements Rules\Rule {
 
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
 		if ( ! $node instanceof Node\Stmt\Class_ ) {
-			throw new ShouldNotHappenException( \sprintf(
-				'Expected node to be instance of "%s", but got instance of "%s" instead.',
-				$this->getNodeType(),
-				get_class( $node )
-            ) );
+			throw new ShouldNotHappenException(
+				\sprintf(
+					'Expected node to be instance of "%s", but got instance of "%s" instead.',
+					$this->getNodeType(),
+					get_class( $node )
+				)
+			);
 		}
 
 		if ( ! $node->extends instanceof Node\Name ) {
@@ -61,20 +68,24 @@ final class NoExtendsRule implements Rules\Rule {
 		}
 
 		if ( ! isset( $node->namespacedName ) ) {
-			$ruleErrorBuilder = Rules\RuleErrorBuilder::message( \sprintf(
-				'Anonymous class is not allowed to extend "%s".',
-				$extendedClassName
-            ) );
+			$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
+				\sprintf(
+					'Anonymous class is not allowed to extend "%s".',
+					$extendedClassName
+				)
+			);
 			$ruleErrorBuilder->identifier( 'anonymousClassExtendsNotAllowed' );
 
-			return [ $ruleErrorBuilder->build(), ];
+			return [ $ruleErrorBuilder->build() ];
 		}
 
-		$ruleErrorBuilder = Rules\RuleErrorBuilder::message( \sprintf(
-			'Class "%s" is not allowed to extend "%s".',
-			$node->namespacedName->toString(),
-			$extendedClassName
-        ) );
+		$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
+			\sprintf(
+				'Class "%s" is not allowed to extend "%s".',
+				$node->namespacedName->toString(),
+				$extendedClassName
+			)
+		);
 		$ruleErrorBuilder->identifier( 'classExtendsNotAllowed' );
 
 		return [ $ruleErrorBuilder->build() ];

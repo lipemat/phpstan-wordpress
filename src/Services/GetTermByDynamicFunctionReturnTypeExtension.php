@@ -41,7 +41,7 @@ class GetTermByDynamicFunctionReturnTypeExtension implements DynamicFunctionRetu
 
 
 	public function isFunctionSupported( FunctionReflection $functionReflection ): bool {
-		return \in_array( $functionReflection->getName(), static::$supported );
+		return \in_array( $functionReflection->getName(), static::$supported, true );
 	}
 
 

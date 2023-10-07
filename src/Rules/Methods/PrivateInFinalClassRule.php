@@ -10,7 +10,7 @@ use PHPStan\Reflection;
 use PHPStan\Rules;
 use PHPStan\ShouldNotHappenException;
 
-final class PrivateInFinalClassRule implements Rules\Rule {
+class PrivateInFinalClassRule implements Rules\Rule {
 	public function getNodeType(): string {
 		return Node\Stmt\ClassMethod::class;
 	}
@@ -18,11 +18,13 @@ final class PrivateInFinalClassRule implements Rules\Rule {
 
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
 		if ( ! $node instanceof Node\Stmt\ClassMethod ) {
-			throw new ShouldNotHappenException( \sprintf(
-				'Expected node to be instance of "%s", but got instance of "%s" instead.',
-				Node\Stmt\ClassMethod::class,
-				''
-            ) );
+			throw new ShouldNotHappenException(
+				\sprintf(
+					'Expected node to be instance of "%s", but got instance of "%s" instead.',
+					Node\Stmt\ClassMethod::class,
+					''
+				)
+			);
 		}
 
 		/** @var Reflection\ClassReflection $containingClass */
@@ -52,11 +54,13 @@ final class PrivateInFinalClassRule implements Rules\Rule {
 			}
 		}
 
-		$ruleErrorBuilder = Rules\RuleErrorBuilder::message( \sprintf(
-			'Method %s::%s() is protected, but since the containing class is final, it can be private.',
-			$containingClass->getName(),
-			$methodName
-        ) );
+		$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
+			\sprintf(
+				'Method %s::%s() is protected, but since the containing class is final, it can be private.',
+				$containingClass->getName(),
+				$methodName
+			)
+		);
 		$ruleErrorBuilder->identifier( 'privateInFinalClass' );
 
 		return [

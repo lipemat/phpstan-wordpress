@@ -9,7 +9,7 @@ use PHPStan\Analyser;
 use PHPStan\Rules;
 use PHPStan\ShouldNotHappenException;
 
-final class FinalRule implements Rules\Rule {
+class FinalRule implements Rules\Rule {
 	/**
 	 * @var bool
 	 */
@@ -50,11 +50,13 @@ final class FinalRule implements Rules\Rule {
 
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
 		if ( ! $node instanceof Node\Stmt\Class_ ) {
-			throw new ShouldNotHappenException( \sprintf(
-				'Expected node to be instance of "%s", but got instance of "%s" instead.',
-				$this->getNodeType(),
-				get_class( $node )
-            ) );
+			throw new ShouldNotHappenException(
+				\sprintf(
+					'Expected node to be instance of "%s", but got instance of "%s" instead.',
+					$this->getNodeType(),
+					get_class( $node )
+				)
+			);
 		}
 
 		if ( ! isset( $node->namespacedName ) ) {
@@ -71,20 +73,19 @@ final class FinalRule implements Rules\Rule {
 			}
 			$this->errorMessageTemplate = 'Class %s is not an allowed abstract.';
 			$this->identifier = 'classMustBeAllowedAbstract';
-		} else {
-			if ( $node->isFinal() ) {
+		} elseif ( $node->isFinal() ) {
 				return [];
-			}
 		}
 
-		$ruleErrorBuilder = Rules\RuleErrorBuilder::message( \sprintf(
-			$this->errorMessageTemplate,
-			$node->namespacedName->toString()
-		) );
+		$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
+			\sprintf(
+				$this->errorMessageTemplate,
+				$node->namespacedName->toString()
+			)
+		);
 
 		$ruleErrorBuilder->identifier( $this->identifier );
 
 		return [ $ruleErrorBuilder->build() ];
 	}
-
 }

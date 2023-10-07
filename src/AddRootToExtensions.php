@@ -23,7 +23,7 @@ use PHPStan\ExtensionInstaller\Plugin;
  *
  */
 class AddRootToExtensions {
-	public static function updatePlugins( Event $event ) : void {
+	public static function updatePlugins( Event $event ): void {
 		$composer = $event->getComposer();
 		$package = $composer->getPackage();
 		$extra = $package->getExtra();
@@ -33,7 +33,7 @@ class AddRootToExtensions {
 
 		try {
 			$composer->getRepositoryManager()->getLocalRepository()->addPackage( $package );
-		} catch( \LogicException $exception ) {
+		} catch ( \LogicException $exception ) {
 			$io->write( '<error>To use `lipemat/phpstan` as standalone, you must either install fresh without a lock file or run `composer update`.</error>' );
 			return;
 		}

@@ -30,7 +30,7 @@ class GetTermDynamicFunctionReturnTypeExtension implements DynamicFunctionReturn
 		'get_term',
 	];
 
-	protected static function termsType() : Type {
+	protected static function termsType(): Type {
 		return TypeCombinator::union(
 			new ObjectType( 'WP_Term' ),
 			new ObjectType( 'WP_Error' ),
@@ -39,8 +39,8 @@ class GetTermDynamicFunctionReturnTypeExtension implements DynamicFunctionReturn
 	}
 
 
-	public function isFunctionSupported( FunctionReflection $functionReflection ) : bool {
-		return \in_array( $functionReflection->getName(), static::$supported );
+	public function isFunctionSupported( FunctionReflection $functionReflection ): bool {
+		return \in_array( $functionReflection->getName(), static::$supported, true );
 	}
 
 
@@ -51,7 +51,7 @@ class GetTermDynamicFunctionReturnTypeExtension implements DynamicFunctionReturn
 	 *
 	 * @link https://developer.wordpress.org/reference/functions/get_term/#parameters
 	 */
-	public function getTypeFromFunctionCall( FunctionReflection $functionReflection, FuncCall $functionCall, Scope $scope ) : ?Type {
+	public function getTypeFromFunctionCall( FunctionReflection $functionReflection, FuncCall $functionCall, Scope $scope ): ?Type {
 		$args = $functionCall->getArgs();
 
 		if ( count( $args ) < 3 ) {

@@ -7,6 +7,7 @@
 # @link https://git-scm.com/docs/gitattributes#_export_subst
 #
 ######################################################################
+/.editorconfig export-ignore
 /.gitattributes export-ignore
 /.gitignore export-ignore
 /.github export-ignore

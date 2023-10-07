@@ -6,7 +6,56 @@ services:
     tags:
       - phpstan.broker.dynamicFunctionReturnTypeExtension
 
+# Rules
+  - class: Lipe\Lib\Phpstan\Rules\Expressions\NoCompactRule
+    tags:
+        - phpstan.rules.rule
+  - class: Lipe\Lib\Phpstan\Rules\Expressions\NoErrorSuppressionRule
+    tags:
+        - phpstan.rules.rule
+  - class: Lipe\Lib\Phpstan\Rules\Expressions\NoEvalRule
+    tags:
+        - phpstan.rules.rule
+
+# Conditional rules enabled by adding custom properties to your phpstan.neon.dist.
+  - class: Lipe\Lib\Phpstan\Rules\Classes\FinalRule
+    arguments:
+      disallowAbstractClasses: %lipematNoExtends.enabled%
+      classesAllowedToBeAbstract: %lipematNoExtends.allowedToBeExtended%
+  - class: Lipe\Lib\Phpstan\Rules\Classes\NoExtendsRule
+    arguments:
+      classesAllowedToBeExtended: %lipematNoExtends.allowedToBeExtended%
+  - class: Lipe\Lib\Phpstan\Rules\Files\DeclareStrictTypesRule
+  - class: Lipe\Lib\Phpstan\Rules\Methods\NoConstructorParameterWithDefaultValueRule
+  - class: Lipe\Lib\Phpstan\Rules\Methods\PrivateInFinalClassRule
+conditionalTags:
+  Lipe\Lib\Phpstan\Rules\Classes\FinalRule:
+    phpstan.rules.rule: %lipematStrict%
+  Lipe\Lib\Phpstan\Rules\Classes\NoExtendsRule:
+    phpstan.rules.rule: %lipematNoExtends.enabled%
+  Lipe\Lib\Phpstan\Rules\Files\DeclareStrictTypesRule:
+    phpstan.rules.rule: %lipematStrict%
+  Lipe\Lib\Phpstan\Rules\Methods\NoConstructorParameterWithDefaultValueRule:
+    phpstan.rules.rule: %lipematStrict%
+  Lipe\Lib\Phpstan\Rules\Methods\PrivateInFinalClassRule:
+    phpstan.rules.rule: %lipematStrict%
+
+
+## Supported custom parameters.
+parametersSchema:
+  lipematStrict: boolean()
+  lipematNoExtends: structure([
+    allowedToBeExtended: listOf(string())
+    enabled: bool(),
+])
+
+
+# Default parameters passed to phpstan by this extension.
 parameters:
+  lipematStrict: false
+  lipematNoExtends:
+    enabled: false
+    allowedToBeExtended: []
   dynamicConstantNames:
     - COOKIEPATH
     - DB_NAME

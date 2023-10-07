@@ -14,9 +14,9 @@ class DynamicReturnTypeExtensionTest extends TypeInferenceTestCase {
 	 */
 	public function dataFileAsserts() : iterable {
 		// Path to a file with actual asserts of expected types:
-		yield from $this->gatherAssertTypes( dirname( __DIR__ ) . '/data/get_post_types.php' );
-		yield from $this->gatherAssertTypes( dirname( __DIR__ ) . '/data/get_term.php' );
-		yield from $this->gatherAssertTypes( dirname( __DIR__ ) . '/data/get_term_by.php' );
+		yield from $this->gatherAssertTypes( dirname( __DIR__, 2 ) . '/data/get_post_types.php' );
+		yield from $this->gatherAssertTypes( dirname( __DIR__, 2 ) . '/data/get_term.php' );
+		yield from $this->gatherAssertTypes( dirname( __DIR__, 2 ) . '/data/get_term_by.php' );
 	}
 
 

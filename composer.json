@@ -36,6 +36,11 @@
       "Lipe\\Lib\\Phpstan\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Lipe\\Lib\\Phpstan\\Rules\\Test\\Fixture\\": "dev/phpunit/fixtures/"
+    }
+  },
   "scripts": {
     "post-update-cmd": "Lipe\\Lib\\Phpstan\\AddRootToExtensions::updatePlugins",
     "post-install-cmd": "Lipe\\Lib\\Phpstan\\AddRootToExtensions::updatePlugins"

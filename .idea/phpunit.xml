@@ -3,9 +3,9 @@
   <component name="PHPUnit">
     <option name="directories">
       <list>
-        <option value="$PROJECT_DIR$/dev/phpunit/tests" />
         <option value="$PROJECT_DIR$/source/tests" />
         <option value="$PROJECT_DIR$/source/php-cli-tools/tests" />
+        <option value="$PROJECT_DIR$/dev/phpunit/tests" />
       </list>
     </option>
   </component>

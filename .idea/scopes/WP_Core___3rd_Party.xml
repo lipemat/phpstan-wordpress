@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="WP Core / 3rd Party" pattern="file[phpstan]:vendor//*||file[phpstan]:stubs//*" />
+</component>

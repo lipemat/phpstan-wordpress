@@ -21,6 +21,7 @@ final class FinalRule implements Rules\Rule {
 	private $classesAllowedToBeAbstract = [];
 
 	private $errorMessageTemplate = 'Class %s is not final.';
+	private $identifier = 'classMustBeFinal';
 
 
 	/**
@@ -69,6 +70,7 @@ final class FinalRule implements Rules\Rule {
 				return [];
 			}
 			$this->errorMessageTemplate = 'Class %s is not an allowed abstract.';
+			$this->identifier = 'classMustBeAllowedAbstract';
 		} else {
 			if ( $node->isFinal() ) {
 				return [];
@@ -80,9 +82,9 @@ final class FinalRule implements Rules\Rule {
 			$node->namespacedName->toString()
 		) );
 
-		return [
-			$ruleErrorBuilder->build(),
-		];
+		$ruleErrorBuilder->identifier( $this->identifier );
+
+		return [ $ruleErrorBuilder->build() ];
 	}
 
 }

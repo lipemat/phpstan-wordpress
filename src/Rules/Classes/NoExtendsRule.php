@@ -30,7 +30,6 @@ final class NoExtendsRule implements Rules\Rule {
 		$this->classesAllowedToBeExtended = \array_unique( \array_merge(
 			self::$defaultClassesAllowedToBeExtended,
 			\array_map( static function( string $classAllowedToBeExtended ): string {
-				/** @var class-string $classAllowedToBeExtended */
 				return $classAllowedToBeExtended;
 			}, $classesAllowedToBeExtended )
         ) );
@@ -66,6 +65,7 @@ final class NoExtendsRule implements Rules\Rule {
 				'Anonymous class is not allowed to extend "%s".',
 				$extendedClassName
             ) );
+			$ruleErrorBuilder->identifier( 'anonymousClassExtendsNotAllowed' );
 
 			return [ $ruleErrorBuilder->build(), ];
 		}
@@ -75,6 +75,7 @@ final class NoExtendsRule implements Rules\Rule {
 			$node->namespacedName->toString(),
 			$extendedClassName
         ) );
+		$ruleErrorBuilder->identifier( 'classExtendsNotAllowed' );
 
 		return [ $ruleErrorBuilder->build() ];
 	}

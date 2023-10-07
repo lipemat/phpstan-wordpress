@@ -57,6 +57,7 @@ final class PrivateInFinalClassRule implements Rules\Rule {
 			$containingClass->getName(),
 			$methodName
         ) );
+		$ruleErrorBuilder->identifier( 'privateInFinalClass' );
 
 		return [
 			$ruleErrorBuilder->build(),

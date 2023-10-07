@@ -24,6 +24,7 @@ final class NoEvalRule implements Rules\Rule {
 			) );
 		}
 		$ruleErrorBuilder = Rules\RuleErrorBuilder::message( 'Language construct eval() should not be used.' );
+		$ruleErrorBuilder->identifier( 'noEval' );
 
 		return [ $ruleErrorBuilder->build() ];
 	}

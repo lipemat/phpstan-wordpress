@@ -66,7 +66,7 @@ class GetTermDynamicFunctionReturnTypeExtension implements DynamicFunctionReturn
 			new IntegerType()
 		);
 		$argumentType = $scope->getType( $args[2]->value );
-		if ( count( $argumentType->getConstantStrings() ) === 1 ) {
+		if ( 1 === count( $argumentType->getConstantStrings() ) ) {
 			$returnType = [];
 			switch ( $argumentType->getConstantStrings()[0]->getValue() ) {
 				case 'ARRAY_A':

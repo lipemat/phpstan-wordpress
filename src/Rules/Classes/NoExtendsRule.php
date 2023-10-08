@@ -28,6 +28,9 @@ class NoExtendsRule implements Rules\Rule {
 
 
 	/**
+	* Receives the arguments from these parameter in the `rules.neon` file.
+	 * - lipemat.allowedToBeExtended
+	 *
 	 * @param array<int, class-string> $classesAllowedToBeExtended
 	 */
 	public function __construct( array $classesAllowedToBeExtended ) {
@@ -68,7 +71,7 @@ class NoExtendsRule implements Rules\Rule {
 					$extendedClassName
 				)
 			);
-			$ruleErrorBuilder->identifier( 'anonymousClassExtendsNotAllowed' );
+			$ruleErrorBuilder->identifier( 'lipemat.anonymousClassExtendsNotAllowed' );
 
 			return [ $ruleErrorBuilder->build() ];
 		}
@@ -80,7 +83,7 @@ class NoExtendsRule implements Rules\Rule {
 				$extendedClassName
 			)
 		);
-		$ruleErrorBuilder->identifier( 'classExtendsNotAllowed' );
+		$ruleErrorBuilder->identifier( 'lipemat.classExtendsNotAllowed' );
 
 		return [ $ruleErrorBuilder->build() ];
 	}

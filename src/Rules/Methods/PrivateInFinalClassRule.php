@@ -56,7 +56,7 @@ class PrivateInFinalClassRule implements Rules\Rule {
 				$methodName
 			)
 		);
-		$ruleErrorBuilder->identifier( 'privateInFinalClass' );
+		$ruleErrorBuilder->identifier( 'lipemat.privateInFinalClass' );
 
 		return [
 			$ruleErrorBuilder->build(),

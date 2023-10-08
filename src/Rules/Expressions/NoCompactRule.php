@@ -29,7 +29,7 @@ class NoCompactRule implements Rules\Rule {
 		}
 
 		$ruleErrorBuilder = Rules\RuleErrorBuilder::message( 'Function compact() should not be used.' );
-		$ruleErrorBuilder->identifier( 'noCompact' );
+		$ruleErrorBuilder->identifier( 'lipemat.noCompact' );
 		$ruleErrorBuilder->addTip( 'Using the `compact` function prevents static analysis. Consider declaring an associative array instead.' );
 
 		return [ $ruleErrorBuilder->build() ];

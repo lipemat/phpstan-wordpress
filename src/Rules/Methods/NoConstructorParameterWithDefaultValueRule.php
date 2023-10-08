@@ -60,7 +60,7 @@ class NoConstructorParameterWithDefaultValueRule implements Rules\Rule {
 							$parameterName
 						)
 					);
-					$ruleErrorBuilder->identifier( 'noAnonConstructorParameterDefaultValue' );
+					$ruleErrorBuilder->identifier( 'lipemat.noAnonConstructorParameterDefaultValue' );
 
 					return $ruleErrorBuilder->build();
 				},
@@ -85,7 +85,7 @@ class NoConstructorParameterWithDefaultValueRule implements Rules\Rule {
 						$parameterName
 					)
 				);
-				$ruleErrorBuilder->identifier( 'noConstructorParameterDefaultValue' );
+				$ruleErrorBuilder->identifier( 'lipemat.noConstructorParameterDefaultValue' );
 
 				return $ruleErrorBuilder->build();
 			},

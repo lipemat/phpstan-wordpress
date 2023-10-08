@@ -37,11 +37,13 @@ class FinalRule implements Rules\Rule {
 	/**
 	 * @var string
 	 */
-	private $identifier = 'classMustBeFinal';
+	private $identifier = 'lipemat.classMustBeFinal';
 
 
 	/**
-	 * Receives the arguments from the `lipematNoExtends` parameter in the `rules.neon` file.
+	 * Receives the arguments from these parameter in the `rules.neon` file.
+	 * - lipemat.noExtends
+	 * - lipemat.allowedToBeExtended
 	 *
 	 * @param bool  $disallowAbstractClasses
 	 * @param list<class-string> $classesAllowedToBeAbstract
@@ -78,7 +80,7 @@ class FinalRule implements Rules\Rule {
 				return [];
 			}
 			$this->errorMessageTemplate = 'Class %s is not an allowed abstract.';
-			$this->identifier = 'classMustBeAllowedAbstract';
+			$this->identifier = 'lipemat.classMustBeAllowedAbstract';
 		} elseif ( $node->isFinal() ) {
 				return [];
 		}

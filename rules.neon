@@ -2,15 +2,6 @@ services:
 - class: Lipe\Lib\Phpstan\Rules\Expressions\NoCompactRule
   tags:
     - phpstan.rules.rule
-- class: Lipe\Lib\Phpstan\Rules\Classes\FinalRule
-  tags:
-    - phpstan.rules.rule
-  arguments:
-    disallowAbstractClasses: %lipematNoExtends.enabled%
-    classesAllowedToBeAbstract: %lipematNoExtends.allowedToBeExtended%
-- class: Lipe\Lib\Phpstan\Rules\Files\DeclareStrictTypesRule
-  tags:
-    - phpstan.rules.rule
 - class: Lipe\Lib\Phpstan\Rules\Methods\NoConstructorParameterWithDefaultValueRule
   tags:
     - phpstan.rules.rule
@@ -19,23 +10,33 @@ services:
     - phpstan.rules.rule
 
 # Conditional rules
+- class: Lipe\Lib\Phpstan\Rules\Classes\FinalRule
+  arguments:
+      disallowAbstractClasses: %lipemat.noExtends%
+      classesAllowedToBeAbstract: %lipemat.allowedToBeExtended%
 - class: Lipe\Lib\Phpstan\Rules\Classes\NoExtendsRule
   arguments:
-    classesAllowedToBeExtended: %lipematNoExtends.allowedToBeExtended%
+    classesAllowedToBeExtended: %lipemat.allowedToBeExtended%
+- class: Lipe\Lib\Phpstan\Rules\Files\DeclareStrictTypesRule
 conditionalTags:
   Lipe\Lib\Phpstan\Rules\Classes\NoExtendsRule:
-    phpstan.rules.rule: %lipematNoExtends.enabled%
-
+    phpstan.rules.rule: %lipemat.noExtends%
+  Lipe\Lib\Phpstan\Rules\Classes\FinalRule:
+    phpstan.rules.rule: %lipemat.nonDistributed%
+  Lipe\Lib\Phpstan\Rules\Files\DeclareStrictTypesRule:
+    phpstan.rules.rule: %lipemat.nonDistributed%
 
 ## Supported custom parameters.
 parametersSchema:
-  lipematNoExtends: structure([
-    allowedToBeExtended: listOf(string())
-    enabled: bool(),
-])
+  lipemat: structure([
+    allowedToBeExtended: listOf(string()),
+    noExtends: bool(),
+    nonDistributed: bool()
+  ])
 
 # Default parameters passed to phpstan by this extension.
 parameters:
-  lipematNoExtends:
-    enabled: false
+  lipemat:
     allowedToBeExtended: []
+    noExtends: false
+    nonDistributed: true

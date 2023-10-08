@@ -102,16 +102,29 @@ includes:
 4. Prevent using default values in class constructors.
 5. Prevent declaring a method `protected` in a final class in favor of `private`.
 
-### To take things even further
-This rule will prevent having or extending any unlisted abstract classes. 
-
-You may omit the `allowedToBeExtended` parameter to prevent extending any abstract classes.
+### Prevent any inheritance
+Adding the `noExtends` parameter to the `lipemat` parameter will prevent having or extending any unlisted abstract classes. 
 
 ```yml
 parameters:
-    lipematNoExtends:
-        enabled: true
-        allowedToBeExtended: 
-          - AbstractClass1
-          - AbstractClass2
+    lipemat:
+      allowedToBeExtended: 
+        - Lipe\Project\SomeAbstractClass
+        - Lipe\Project\SomeOtherAbstractClass
+      noExtends: true
 ```
+
+You may omit the `allowedToBeExtended` parameter to prevent extending any abstract classes.
+
+### Distributed plugins or themes
+Some rules assume you are working on a private project which will not be distributed to the community. 
+If your project will be distributed, you may add the `nonDistributed` parameter to the `lipemat` parameter.
+
+```yml
+parameters:
+    lipemat:
+      nonDistributed: false
+```
+The `nonDistributed` set to `false` parameter will disable the following rules:
+1 Require all classes to be either abstract or final.
+2 Require a `declare(strict_types=1)` statement in every non-empty file.

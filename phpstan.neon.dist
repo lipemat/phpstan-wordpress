@@ -3,6 +3,8 @@ includes:
 
 parameters:
     level: 9
+    lipemat:
+        noExtends: true
     paths:
         - src
     bootstrapFiles:
@@ -11,4 +13,4 @@ parameters:
         - dev/stubs/composer.php
     ignoreErrors:
         - # We don't want to use final classes as this is a distributed package.
-            message: '#^Class [a-zA-Z0-9\\_]+ is neither abstract nor final\.$#'
+            message: '#^Class [a-zA-Z0-9\\_]+ is not final\.$#'

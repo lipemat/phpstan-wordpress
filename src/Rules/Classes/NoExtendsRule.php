@@ -20,6 +20,7 @@ class NoExtendsRule implements Rules\Rule {
 	private static $defaultClassesAllowedToBeExtended = [
 		'PHPUnit\\Framework\\TestCase',
 		'WP_REST_Controller',
+		'WP_Widget',
 	];
 
 	/**

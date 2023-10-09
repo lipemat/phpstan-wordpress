@@ -12,9 +12,11 @@ use PHPStan\Type\ArrayType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\FloatType;
 use PHPStan\Type\IntegerType;
+use PHPStan\Type\NullType;
 use PHPStan\Type\ObjectShapeType;
 use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
+use PHPStan\Type\TypeCombinator;
 
 /**
  * Compile the return type for the `Db::get` method based on the
@@ -91,9 +93,15 @@ class DbGetDynamicFunctionReturnTypeExtension implements DynamicMethodReturnType
 		$countType = $scope->getType( $args[2]->value );
 		if ( $countType->isInteger()->yes() && 1 === $countType->getConstantScalarValues()[0] ) {
 			if ( $this->isMulitipleColumns( $columnsArg ) ) {
-				return new ObjectShapeType( $this->getClassColumns( $methodCall, $columnsArg ), [] );
+				return TypeCombinator::union(
+					new NullType(),
+					new ObjectShapeType( $this->getClassColumns( $methodCall, $columnsArg ), [] )
+				);
 			} else {
-				return new StringType();
+				return TypeCombinator::union(
+					new NullType(),
+					new StringType()
+				);
 			}
 		}
 
@@ -111,7 +119,10 @@ class DbGetDynamicFunctionReturnTypeExtension implements DynamicMethodReturnType
 	 */
 	protected function defaultType( Type $columns, MethodCall $methodCall ): Type {
 		if ( $this->isMulitipleColumns( $columns ) ) {
-			return new ArrayType( new IntegerType(), new ObjectShapeType( $this->getClassColumns( $methodCall, $columns ), [] ) );
+			return TypeCombinator::union(
+				new NullType(),
+				new ArrayType( new IntegerType(), new ObjectShapeType( $this->getClassColumns( $methodCall, $columns ), [] ) )
+			);
 		}
 
 		return new ArrayType( new IntegerType(), new StringType() );

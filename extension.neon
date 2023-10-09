@@ -5,6 +5,9 @@ services:
   - class: Lipe\Lib\Phpstan\Services\GetTermByDynamicFunctionReturnTypeExtension
     tags:
       - phpstan.broker.dynamicFunctionReturnTypeExtension
+  - class: Lipe\Lib\Phpstan\Services\DbGetDynamicFunctionReturnTypeExtension
+    tags:
+        - phpstan.broker.dynamicMethodReturnTypeExtension
 
 
 # Default parameters passed to phpstan by this extension.

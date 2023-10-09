@@ -1,0 +1,9 @@
+# Loaded during testing by the `DynamicReturnTypeExtensionTest` class.
+
+includes:
+    - ../../vendor/szepeviktor/phpstan-wordpress/extension.neon
+    - ../../extension.neon
+
+parameters:
+    bootstrapFiles:
+        - ../stubs/wp-libs-scheme.php

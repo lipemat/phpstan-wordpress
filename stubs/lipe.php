@@ -3,7 +3,7 @@
 namespace {
 
 	/**
-	 * @param string|int|float $value
+	 * @param string|int|float|Stringable $value
 	 *
 	 * @return string
 	 */

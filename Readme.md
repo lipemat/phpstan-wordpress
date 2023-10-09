@@ -80,10 +80,10 @@ Alternatively, you may replace `%rootDir%/../../` with the relative path to your
 Example `wp-content/plugins/core/vendor/lipemat/phpstan-wordpress/stubs/cmb2/cmb2-3.10.php`
 
 
-## Included Custom Rules
+## Optional Included Rules
 
 As we move toward a world where we use composition over inheritance, we need to be more strict about how we write our code.
-The strict rules by no means get us all the way there, but they are a step in the right direction and viable for a WordPress project.
+These optional rules don not get us all the way there, but they are a step in the right direction while still being viable for a WordPress project.
 
 Enable in your `phpstan.neon` or `phpstan.neon.dist` like so:
 
@@ -102,6 +102,19 @@ includes:
 4. Prevent using default values in class constructors.
 5. Prevent declaring a method `protected` in a final class in favor of `private`.
 
+### Distributed plugins or themes
+Some rules assume you are working on a private project which will not be distributed to the community. 
+If your project will be distributed, you may add the `nonDistributed` parameter to the `lipemat` parameter.
+
+```yml
+parameters:
+    lipemat:
+      nonDistributed: false
+```
+The `nonDistributed` set to `false` parameter will disable the following rules:
+1. Require all classes to be either abstract or final.
+2. Require a `declare(strict_types=1)` statement in every non-empty file.
+
 ### Prevent any inheritance
 Adding the `noExtends` parameter to the `lipemat` parameter will prevent having or extending any unlisted abstract classes. 
 
@@ -115,16 +128,3 @@ parameters:
 ```
 
 You may omit the `allowedToBeExtended` parameter to prevent extending any abstract classes.
-
-### Distributed plugins or themes
-Some rules assume you are working on a private project which will not be distributed to the community. 
-If your project will be distributed, you may add the `nonDistributed` parameter to the `lipemat` parameter.
-
-```yml
-parameters:
-    lipemat:
-      nonDistributed: false
-```
-The `nonDistributed` set to `false` parameter will disable the following rules:
-1 Require all classes to be either abstract or final.
-2 Require a `declare(strict_types=1)` statement in every non-empty file.

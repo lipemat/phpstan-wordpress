@@ -19,6 +19,7 @@ class NoExtendsRule implements Rules\Rule {
 	 */
 	private static $defaultClassesAllowedToBeExtended = [
 		'PHPUnit\\Framework\\TestCase',
+		'Lipe\\Lib\\Schema\\Db',
 		'WP_REST_Controller',
 		'WP_Widget',
 	];

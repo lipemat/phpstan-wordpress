@@ -18,9 +18,15 @@ RED="$(tput setaf 1)"
 BLUE="$(tput setaf 6)"
 RESET_COLOR="$(tput sgr0)"
 
-PHP='php 7.2'
+# Point to specific version of PHP if supported via environmental variables.
+if [[ "true" == "$PHP_MULTI_VERSION_SUPPORT" ]]; then
+	PHP='php 7.2'
+	PHPUNIT='phpunit 7.2'
+else
+	PHP='php'
+	PHPUNIT='phpunit'
+fi
 PHPCS='phpcs'
-PHPUNIT='phpunit 7.2'
 PHPSTAN='phpstan'
 
 PROJECT=$(${PHP} -r "echo dirname(realpath('$0'), 3);")

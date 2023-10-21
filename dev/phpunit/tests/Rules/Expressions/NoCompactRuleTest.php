@@ -9,6 +9,8 @@ use Lipe\Lib\Phpstan\Rules\AbstractTestCase;
 use PHPStan\Rules;
 
 final class NoCompactRuleTest extends AbstractTestCase {
+	use \StaticRule;
+
 	private static $message = "Function compact() should not be used.\n    💡 Using the `compact` function prevents static analysis. Consider declaring an associative array instead.";
 
 	public static function provideCasesWhereAnalysisShouldSucceed(): iterable {
@@ -59,6 +61,6 @@ final class NoCompactRuleTest extends AbstractTestCase {
 
 
 	protected function getRule(): Rules\Rule {
-		return new NoCompactRule();
+		return self::staticRule( new NoCompactRule() );
 	}
 }

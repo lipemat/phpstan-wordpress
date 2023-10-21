@@ -9,6 +9,7 @@ use Lipe\Lib\Phpstan\Rules\Test\Fixture\Classes\FinalRuleWithAbstractClassesAllo
 use PHPStan\Rules;
 
 final class FinalRuleWithAbstractClassesAllowedTest extends AbstractTestCase {
+	use \StaticRule;
 	public static function provideCasesWhereAnalysisShouldSucceed(): iterable {
 		$paths = [
 			'abstract-class'                   => __DIR__ . '/../../../fixtures/Classes/FinalRuleWithAbstractClassesAllowed/Failure/AbstractClass.php',
@@ -52,6 +53,6 @@ final class FinalRuleWithAbstractClassesAllowedTest extends AbstractTestCase {
 
 
 	protected function getRule(): Rules\Rule {
-		return new FinalRule( false, [] );
+		return self::staticRule( new FinalRule( false, [] ) );
 	}
 }

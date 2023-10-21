@@ -11,6 +11,8 @@ use Lipe\Lib\Phpstan\Rules\Test\Fixture\Classes\NoExtendsRuleWithClassesAllowedT
 use PHPStan\Rules;
 
 final class NoExtendsRuleWithClassesAllowedToBeExtendedTest extends AbstractTestCase {
+	use \StaticRule;
+
 	public static function provideCasesWhereAnalysisShouldSucceed(): iterable {
 		$path = __DIR__ . '/../../../fixtures/Classes/NoExtendsRuleWithClassesAllowedToBeExtended/Success/';
 		$paths = [
@@ -67,8 +69,8 @@ final class NoExtendsRuleWithClassesAllowedToBeExtendedTest extends AbstractTest
 
 
 	protected function getRule(): Rules\Rule {
-		return new NoExtendsRule( [
+		return self::staticRule( new NoExtendsRule( [
 			ClassAllowedToBeExtended::class,
-		] );
+		] ) );
 	}
 }

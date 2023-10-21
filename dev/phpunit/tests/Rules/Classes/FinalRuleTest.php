@@ -14,6 +14,8 @@ use Lipe\Lib\Phpstan\Rules\Test\Fixture\Classes\FinalRule\Failure\NonFinalClassW
 use PHPStan\Rules;
 
 final class FinalRuleTest extends AbstractTestCase {
+	use \StaticRule;
+
 	public static function provideCasesWhereAnalysisShouldSucceed(): iterable {
 		$paths = [
 			'final-class'                                                                => __DIR__ . '/../../../fixtures/Classes/FinalRule/Success/FinalClass.php',
@@ -106,6 +108,6 @@ final class FinalRuleTest extends AbstractTestCase {
 
 
 	protected function getRule(): Rules\Rule {
-		return new FinalRule( true, [] );
+		return self::staticRule( new FinalRule( true, [] ) );
 	}
 }

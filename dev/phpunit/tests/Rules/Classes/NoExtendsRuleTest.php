@@ -9,8 +9,8 @@ use Lipe\Lib\Phpstan\Rules\Test\Fixture\Classes\NoExtendsRule\Failure\ClassExten
 use Lipe\Lib\Phpstan\Rules\Test\Fixture\Classes\NoExtendsRule\Failure\OtherClass;
 use PHPStan\Rules;
 
-final class NoExtendsRuleTest extends AbstractTestCase
-{
+final class NoExtendsRuleTest extends AbstractTestCase {
+	use \StaticRule;
     public static function provideCasesWhereAnalysisShouldSucceed(): iterable
     {
         $paths = [
@@ -62,8 +62,8 @@ final class NoExtendsRuleTest extends AbstractTestCase
         }
     }
 
-    protected function getRule(): Rules\Rule
-    {
-        return new NoExtendsRule([]);
+
+	protected function getRule(): Rules\Rule {
+		return self::staticRule( new NoExtendsRule( [] ) );
     }
 }

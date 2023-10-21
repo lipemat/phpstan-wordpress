@@ -8,8 +8,9 @@ use Lipe\Lib\Phpstan\Rules\AbstractTestCase;
 use Lipe\Lib\Phpstan\Rules\Test;
 use PHPStan\Rules;
 
-final class DeclareStrictTypesRuleTest extends AbstractTestCase
-{
+final class DeclareStrictTypesRuleTest extends AbstractTestCase {
+	use \StaticRule;
+
     public static function provideCasesWhereAnalysisShouldSucceed(): iterable
     {
         $paths = [
@@ -154,8 +155,8 @@ final class DeclareStrictTypesRuleTest extends AbstractTestCase
         }
     }
 
-    protected function getRule(): Rules\Rule
-    {
-        return new DeclareStrictTypesRule();
+
+	protected function getRule(): Rules\Rule {
+		return self::staticRule( new DeclareStrictTypesRule() );
     }
 }

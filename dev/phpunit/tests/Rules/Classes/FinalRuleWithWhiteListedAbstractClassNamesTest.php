@@ -11,6 +11,8 @@ use Lipe\Lib\Phpstan\Rules\Test\Fixture\Classes\FinalRuleWithWhiteListedAbstract
 use PHPStan\Rules;
 
 final class FinalRuleWithWhiteListedAbstractClassNamesTest extends AbstractTestCase {
+	use \StaticRule;
+
 	public static function provideCasesWhereAnalysisShouldSucceed(): iterable {
 		$path = __DIR__ . '/../../../fixtures/Classes/FinalRuleWithWhiteListedAbstractClassNames/Success/';
 		$paths = [
@@ -55,6 +57,16 @@ final class FinalRuleWithWhiteListedAbstractClassNamesTest extends AbstractTestC
 					7,
 				],
 			],
+			'final-class-checking-for-message' => [
+				__DIR__ . '/../../../fixtures/Classes/FinalRule/Failure/NeitherAbstractNorFinalClass.php',
+				[
+					\sprintf(
+						'Class %s is not final.',
+						\Lipe\Lib\Phpstan\Rules\Test\Fixture\Classes\FinalRule\Failure\NeitherAbstractNorFinalClass::class
+					),
+					7,
+				],
+			],
 		];
 
 		foreach ( $paths as $description => [$path, $error] ) {
@@ -67,9 +79,9 @@ final class FinalRuleWithWhiteListedAbstractClassNamesTest extends AbstractTestC
 
 
 	protected function getRule(): Rules\Rule {
-		return new FinalRule( true, [
+		return self::staticRule( new FinalRule( true, [
 				AbstractAndWhitelisted::class,
 			]
-		);
+		) );
 	}
 }

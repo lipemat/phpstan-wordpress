@@ -70,7 +70,12 @@ class FinalRule implements Rules\Rule {
 		if ( ! isset( $node->namespacedName ) ) {
 			return [];
 		}
+		$error = $this->errorMessageTemplate;
+		$id = $this->identifier;
 
+		if ( $node->isFinal() ) {
+			return [];
+		}
 		if ( $node->isAbstract() ) {
 			if ( $this->allowAbstractClasses ) {
 				return [];
@@ -79,20 +84,18 @@ class FinalRule implements Rules\Rule {
 			if ( \in_array( $node->namespacedName->toString(), $this->classesAllowedToBeAbstract, true ) ) {
 				return [];
 			}
-			$this->errorMessageTemplate = 'Class %s is not an allowed abstract.';
-			$this->identifier = 'lipemat.classMustBeAllowedAbstract';
-		} elseif ( $node->isFinal() ) {
-				return [];
+			$error = 'Class %s is not an allowed abstract.';
+			$id = 'lipemat.classMustBeAllowedAbstract';
 		}
 
 		$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
 			\sprintf(
-				$this->errorMessageTemplate,
+				$error,
 				$node->namespacedName->toString()
 			)
 		);
 
-		$ruleErrorBuilder->identifier( $this->identifier );
+		$ruleErrorBuilder->identifier( $id );
 
 		return [ $ruleErrorBuilder->build() ];
 	}

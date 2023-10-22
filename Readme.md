@@ -101,6 +101,7 @@ includes:
 3. Require a `declare(strict_types=1)` statement in every non-empty file.
 4. Prevent using default values in class constructors.
 5. Prevent declaring a method `protected` in a final class in favor of `private`.
+6. Prevent using the `switch` statement in favor of `match`.
 
 ### Distributed plugins or themes
 Some rules assume you are working on a private project which will not be distributed to the community. 

@@ -8,6 +8,9 @@ services:
 - class: Lipe\Lib\Phpstan\Rules\Methods\PrivateInFinalClassRule
   tags:
     - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Statements\NoSwitchRule
+  tags:
+    - phpstan.rules.rule
 
 # Conditional rules
 - class: Lipe\Lib\Phpstan\Rules\Classes\FinalRule

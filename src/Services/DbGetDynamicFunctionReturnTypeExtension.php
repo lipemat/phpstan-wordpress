@@ -92,17 +92,17 @@ class DbGetDynamicFunctionReturnTypeExtension implements DynamicMethodReturnType
 
 		$countType = $scope->getType( $args[2]->value );
 		if ( $countType->isInteger()->yes() && 1 === $countType->getConstantScalarValues()[0] ) {
-			if ( $this->isMulitipleColumns( $columnsArg ) ) {
+			if ( $this->isMultipleColumns( $columnsArg ) ) {
 				return TypeCombinator::union(
 					new NullType(),
 					new ObjectShapeType( $this->getClassColumns( $methodCall, $columnsArg ), [] )
 				);
-			} else {
-				return TypeCombinator::union(
-					new NullType(),
-					new StringType()
-				);
 			}
+
+			return TypeCombinator::union(
+				new NullType(),
+				new StringType()
+			);
 		}
 
 		return $this->defaultType( $columnsArg, $methodCall );
@@ -118,7 +118,7 @@ class DbGetDynamicFunctionReturnTypeExtension implements DynamicMethodReturnType
 	 * @return Type
 	 */
 	protected function defaultType( Type $columns, MethodCall $methodCall ): Type {
-		if ( $this->isMulitipleColumns( $columns ) ) {
+		if ( $this->isMultipleColumns( $columns ) ) {
 			return TypeCombinator::union(
 				new NullType(),
 				new ArrayType( new IntegerType(), new ObjectShapeType( $this->getClassColumns( $methodCall, $columns ), [] ) )
@@ -152,7 +152,7 @@ class DbGetDynamicFunctionReturnTypeExtension implements DynamicMethodReturnType
 	 *
 	 * @return bool
 	 */
-	protected function isMulitipleColumns( Type $columnsArg ): bool {
+	protected function isMultipleColumns( Type $columnsArg ): bool {
 		$columns = $columnsArg->getConstantScalarValues()[0];
 		if ( false !== \strpos( (string) $columns, '*' ) || false !== \strpos( (string) $columns, ',' ) ) {
 			return true;
@@ -200,7 +200,7 @@ class DbGetDynamicFunctionReturnTypeExtension implements DynamicMethodReturnType
 
 	/**
 	 * For future use if we ever add validation to the `where` column argument.
-	 * Probaly not part of this class because it is not a return, but rather
+	 * Probably not part of this class because it is not a return, but rather
 	 * what is passed to the `where` argument.
 	 *
 	 * @todo Look into validating the `where` argument.
@@ -210,13 +210,12 @@ class DbGetDynamicFunctionReturnTypeExtension implements DynamicMethodReturnType
 	 * @return Type
 	 */
 	protected function mapColumnToType( string $valueType ): Type {
-		switch ( $valueType ) {
-			case '%d':
-				return new IntegerType();
-			case '%f':
-				return new FloatType();
-			default:
-				return new StringType();
+		if ( '%d' === $valueType ) {
+			return new IntegerType();
 		}
+		if ( '%f' === $valueType ) {
+			return new FloatType();
+		}
+		return new StringType();
 	}
 }

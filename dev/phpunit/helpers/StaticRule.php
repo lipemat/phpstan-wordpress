@@ -15,7 +15,7 @@ trait StaticRule {
 	 *
 	 * @return Rule
 	 */
-	final protected function staticRule( Rule $rule ) {
+	final protected static function staticRule( Rule $rule ) {
 		if ( ! isset( self::$rule ) ) {
 			self::$rule = $rule;
 		}

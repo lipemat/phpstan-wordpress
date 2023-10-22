@@ -2,9 +2,9 @@
 
 <p>
 <a href="https://github.com/lipemat/phpstan-wordpress/releases">
-<img src="https://img.shields.io/packagist/v/lipemat/phpstan-wordpress.svg?label=version" />
+<img alt="package version" src="https://img.shields.io/packagist/v/lipemat/phpstan-wordpress.svg?label=version" />
 </a>
-    <img src="https://img.shields.io/packagist/php-v/lipemat/phpstan-wordpress.svg?color=brown" />
+    <img alt="php version" src="https://img.shields.io/packagist/php-v/lipemat/phpstan-wordpress.svg?color=brown" />
     <img alt="Packagist" src="https://img.shields.io/packagist/l/lipemat/wp-phpcs.svg">
 </p>
 
@@ -102,6 +102,7 @@ includes:
 4. Prevent using default values in class constructors.
 5. Prevent declaring a method `protected` in a final class in favor of `private`.
 6. Prevent using the `switch` statement in favor of `match`.
+7. Require any concrete methods in abstract classes to be `private` or `final`.
 
 ### Distributed plugins or themes
 Some rules assume you are working on a private project which will not be distributed to the community. 

@@ -5,6 +5,9 @@ services:
 - class: Lipe\Lib\Phpstan\Rules\Methods\NoConstructorParameterWithDefaultValueRule
   tags:
     - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Methods\FinalInAbstractClassRule
+  tags:
+    - phpstan.rules.rule
 - class: Lipe\Lib\Phpstan\Rules\Methods\PrivateInFinalClassRule
   tags:
     - phpstan.rules.rule

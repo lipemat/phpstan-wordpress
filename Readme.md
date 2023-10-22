@@ -116,6 +116,7 @@ parameters:
 The `nonDistributed` set to `false` parameter will disable the following rules:
 1. Require all classes to be either abstract or final.
 2. Require a `declare(strict_types=1)` statement in every non-empty file.
+3. Require any concrete methods in abstract classes to be `private` or `final`.
 
 ### Prevent any inheritance
 Adding the `noExtends` parameter to the `lipemat` parameter will prevent having or extending any unlisted abstract classes. 

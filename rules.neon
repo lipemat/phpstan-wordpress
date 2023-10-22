@@ -5,9 +5,6 @@ services:
 - class: Lipe\Lib\Phpstan\Rules\Methods\NoConstructorParameterWithDefaultValueRule
   tags:
     - phpstan.rules.rule
-- class: Lipe\Lib\Phpstan\Rules\Methods\FinalInAbstractClassRule
-  tags:
-    - phpstan.rules.rule
 - class: Lipe\Lib\Phpstan\Rules\Methods\PrivateInFinalClassRule
   tags:
     - phpstan.rules.rule
@@ -24,12 +21,15 @@ services:
   arguments:
     classesAllowedToBeExtended: %lipemat.allowedToBeExtended%
 - class: Lipe\Lib\Phpstan\Rules\Files\DeclareStrictTypesRule
+- class: Lipe\Lib\Phpstan\Rules\Methods\FinalInAbstractClassRule
 conditionalTags:
   Lipe\Lib\Phpstan\Rules\Classes\NoExtendsRule:
     phpstan.rules.rule: %lipemat.noExtends%
   Lipe\Lib\Phpstan\Rules\Classes\FinalRule:
     phpstan.rules.rule: %lipemat.nonDistributed%
   Lipe\Lib\Phpstan\Rules\Files\DeclareStrictTypesRule:
+    phpstan.rules.rule: %lipemat.nonDistributed%
+  Lipe\Lib\Phpstan\Rules\Methods\FinalInAbstractClassRule:
     phpstan.rules.rule: %lipemat.nonDistributed%
 
 ## Supported custom parameters.

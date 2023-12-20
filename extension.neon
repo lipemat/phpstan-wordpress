@@ -9,6 +9,9 @@ services:
 
 # Default parameters passed to phpstan by this extension.
 parameters:
+  fileExtensions:
+    - php
+    - inc
   dynamicConstantNames:
     - COOKIEPATH
     - DB_NAME

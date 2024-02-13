@@ -18,3 +18,4 @@ parameters:
   scanFiles:
     - stubs/lipe.php
     - stubs/wp.php
+    - stubs/WP_Widget.php

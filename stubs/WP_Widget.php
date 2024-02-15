@@ -65,8 +65,10 @@ namespace {
 		/**
 		 * Unique ID number of the current instance.
 		 *
+		 * @notice Could be '__i__' if a legacy widget block.
+		 *
 		 * @since 2.8.0
-		 * @var bool|int
+		 * @var bool|int|string
 		 */
 		public $number = \false;
 

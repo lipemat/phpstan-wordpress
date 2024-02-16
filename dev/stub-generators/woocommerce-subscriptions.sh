@@ -11,7 +11,7 @@
 #
 # Used via `%rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php` under `scanFiles`.
 
-PLUGIN_VERSION="5.7"
+PLUGIN_VERSION="5.9"
 
 if [[ ! $(php -v | grep "PHP 7.4") ]]; then
     echo "Must be run via PHP 7.4 or will be missing 1/3 of classes."

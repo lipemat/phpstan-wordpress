@@ -7,3 +7,4 @@ includes:
 parameters:
     bootstrapFiles:
         - ../stubs/wp-libs-scheme.php
+        - ../stubs/union-example.php

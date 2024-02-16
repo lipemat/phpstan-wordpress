@@ -4,7 +4,10 @@ services:
       - phpstan.broker.dynamicFunctionReturnTypeExtension
   - class: Lipe\Lib\Phpstan\Services\DbGetDynamicFunctionReturnTypeExtension
     tags:
-        - phpstan.broker.dynamicMethodReturnTypeExtension
+      - phpstan.broker.dynamicMethodReturnTypeExtension
+  - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\Union
+    tags:
+      - phpstan.phpDoc.typeNodeResolverExtension
 
 
 # Default parameters passed to phpstan by this extension.

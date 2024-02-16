@@ -5,6 +5,8 @@ parameters:
     level: 9
     lipemat:
         noExtends: true
+        allowedToBeExtended:
+            - PHPStan\Testing\TypeInferenceTestCase
     paths:
         - src
     bootstrapFiles:

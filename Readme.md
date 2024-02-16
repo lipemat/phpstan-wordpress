@@ -78,6 +78,18 @@ Alternatively, you may replace `%rootDir%/../../` with the relative path to your
 
 Example `wp-content/plugins/core/vendor/lipemat/phpstan-wordpress/stubs/cmb2/cmb2-3.10.php`
 
+## Utility Types
+
+### `Union<T, U, ...X>`
+
+Combine two or more array shapes as if you were using `array_merge` with the second array overwriting the first.
+
+```php
+/**
+ * @phpstan-var Union<array{a: string}, array{b: string}> $array
+ *   // results: array{a: string, b: string}
+ */
+```
 
 ## Optional Included Rules
 

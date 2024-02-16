@@ -30,6 +30,8 @@
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
         <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing.SpaceAfterIncrement" />
 
+		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
+
         <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
 
         <exclude name="WordPress.Files.FileName" />

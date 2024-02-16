@@ -10,7 +10,7 @@ class DynamicReturnTypeExtensionTest extends TypeInferenceTestCase {
 	/**
 	 * @link https://github.com/szepeviktor/phpstan-wordpress/blob/master/tests/DynamicReturnTypeExtensionTest.php
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 */
 	public function dataFileAsserts() : iterable {
 		// Path to a file with actual asserts of expected types:

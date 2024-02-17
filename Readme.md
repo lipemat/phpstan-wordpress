@@ -91,6 +91,17 @@ Combine two or more array shapes as if you were using `array_merge` with the sec
  */
 ```
 
+### `AtLeast<T, U>`
+
+Mark a set of array shape keys as required while leaving the rest as is.
+
+```php
+/**
+ * @phpstan-var AtLeast<array{a?: string, b?: string}, 'a'> $array
+ *   // results: array{a: string, b?: string}
+ */
+```
+
 ## Optional Included Rules
 
 As we move toward a world where we use composition over inheritance, we need to be more strict about how we write our code.

@@ -6,5 +6,6 @@ includes:
 
 parameters:
     bootstrapFiles:
-        - ../stubs/wp-libs-scheme.php
+        - ../stubs/at-least-example.php
         - ../stubs/union-example.php
+        - ../stubs/wp-libs-scheme.php

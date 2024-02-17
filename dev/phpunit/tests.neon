@@ -5,6 +5,8 @@ includes:
     - ../../extension.neon
 
 parameters:
+    stubFiles:
+       - ../../stubs/WP_Widget.php
     bootstrapFiles:
         - ../stubs/at-least-example.php
         - ../stubs/partial-example.php

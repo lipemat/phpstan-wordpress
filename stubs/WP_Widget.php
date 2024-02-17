@@ -152,11 +152,13 @@ namespace {
 		 *                                WP_Widget::form().
 		 * @param array     $old_instance Old settings for this instance.
 		 *
-		 * @return array Settings to save or bool false to cancel saving.
+		 * @return array|false Settings to save or bool false to cancel saving.
 		 * @phpstan-param T $new_instance
 		 * @phpstan-param T $old_instance
+		 * @phpstan-return T|false
 		 */
 		public function update( $new_instance, $old_instance ) {
+			return $new_instance;
 		}
 		// Functions you'll need to call.
 

@@ -6,7 +6,7 @@ namespace SzepeViktor\PHPStan\WordPress\Tests;
 
 use function PHPStan\Testing\assertType;
 
-assertType( 'array<int, string>', get_post_types() );
-assertType( 'array<int, string>', get_post_types( [] ) );
-assertType( 'array<int, string>', get_post_types( [], 'names' ) );
-assertType( 'array<int, WP_Post_Type>', get_post_types( [], 'objects' ) );
+assertType( 'array<string, string>', get_post_types() );
+assertType( 'array<string, string>', get_post_types( [] ) );
+assertType( 'array<string, string>', get_post_types( [], 'names' ) );
+assertType( 'array<string, WP_Post_Type>', get_post_types( [], 'objects' ) );

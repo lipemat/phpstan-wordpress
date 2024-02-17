@@ -9,5 +9,6 @@ parameters:
         - ../stubs/at-least-example.php
         - ../stubs/optional-example.php
         - ../stubs/required-example.php
+        - ../stubs/pick-example.php
         - ../stubs/union-example.php
         - ../stubs/wp-libs-scheme.php

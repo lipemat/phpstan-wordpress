@@ -120,6 +120,16 @@ Mark all keys in an array shape as required.
  *   // results: array{a: string, b: string}
  */
 ```
+### `Pick<T, K>`
+
+Pick only the specified keys from an array shape.
+
+```php
+/**
+ * @phpstan-var Pick<array{a: string, b: string}, 'a'> $array
+ *   // results: array{a: string}
+ */
+```
 
 ## Optional Included Rules
 

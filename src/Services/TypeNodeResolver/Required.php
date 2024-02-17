@@ -26,7 +26,7 @@ use PHPStan\Type\Type;
  *
  * @example Required<array{a?: int, b?: string}> becomes array{a: int, b: string}
  * @template T of array<string, mixed>
- * @template U of key-of<T>
+ * @template K of key-of<T>
  */
 class Required implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension {
 	/**

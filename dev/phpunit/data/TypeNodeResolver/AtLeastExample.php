@@ -24,7 +24,7 @@ class AtLeastExample {
 	 * @return mixed
 	 */
 	public function invalidType( $atLeast ) {
-		return assertType( 'Lipe\Lib\Phpstan\Services\TypeNodeResolver\AtLeast<int, string>', $atLeast );
+		return assertType( 'mixed', $atLeast );
 	}
 
 

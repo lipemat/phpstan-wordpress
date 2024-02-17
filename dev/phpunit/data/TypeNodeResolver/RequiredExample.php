@@ -18,7 +18,7 @@ class RequiredExample {
 	 * @return mixed
 	 */
 	public function invalidType( $required ) {
-		return assertType( 'Lipe\Lib\Phpstan\Services\TypeNodeResolver\Required<int>', $required );
+		return assertType( 'mixed', $required );
 	}
 
 
@@ -49,5 +49,25 @@ class RequiredExample {
 	 */
 	public function exported( array $required ) {
 		return assertType( "array{exclude: string, order_by: string, title: string, display_all: ''|'checked', include_childless_parent: ''|'checked', include_parent: ''|'checked', levels: int|numeric-string, post_type: string}", $required );
+	}
+
+
+	/**
+	 * @phpstan-param Required<array{first?: bool, second?: string}, 'second'> $required
+	 *
+	 * @return mixed
+	 */
+	public function withKey( array $required ) {
+		return assertType( 'array{first?: bool, second: string}', $required );
+	}
+
+
+	/**
+	 * @phpstan-param Required<DATA, 'include_parent'|'levels'> $required
+	 *
+	 * @return mixed
+	 */
+	public function withKeys( array $required ) {
+		return assertType( "array{exclude: string, order_by: string, title?: string, display_all?: ''|'checked', include_childless_parent?: ''|'checked', include_parent: ''|'checked', levels: int|numeric-string, post_type?: string}", $required );
 	}
 }

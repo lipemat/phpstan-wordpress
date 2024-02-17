@@ -18,7 +18,7 @@ class OptionalExample {
 	 * @return mixed
 	 */
 	public function invalidType( $Optional ) {
-		return assertType( 'Lipe\Lib\Phpstan\Services\TypeNodeResolver\Optional<int>', $Optional );
+		return assertType( 'mixed', $Optional );
 	}
 
 

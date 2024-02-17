@@ -10,6 +10,8 @@ use PHPStan\PhpDoc\TypeNodeResolverExtension;
 use PHPStan\PhpDocParser\Ast\Type\GenericTypeNode;
 use PHPStan\PhpDocParser\Ast\Type\TypeNode;
 use PHPStan\Type\Constant\ConstantArrayTypeBuilder;
+use PHPStan\Type\Constant\ConstantStringType;
+use PHPStan\Type\ErrorType;
 use PHPStan\Type\Type;
 
 /**
@@ -24,6 +26,7 @@ use PHPStan\Type\Type;
  *
  * @example Required<array{a?: int, b?: string}> becomes array{a: int, b: string}
  * @template T of array<string, mixed>
+ * @template U of key-of<T>
  */
 class Required implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension {
 	/**
@@ -53,23 +56,42 @@ class Required implements TypeNodeResolverExtension, TypeNodeResolverAwareExtens
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;
-		if ( 1 !== \count( $arguments ) ) {
-			return null;
+		if ( 1 !== \count( $arguments ) && 2 !== \count( $arguments ) ) {
+			return new ErrorType();
 		}
 		$constantArrays = $this->typeNodeResolver->resolve( $arguments[0], $nameScope )->getConstantArrays();
+		$required = [];
+		if ( 2 === \count( $arguments ) ) {
+			$required = $this->typeNodeResolver->resolve( $arguments[1], $nameScope )->getConstantStrings();
+		}
 		if ( 0 === \count( $constantArrays ) ) {
-			return null;
+			return new ErrorType();
 		}
 
 		$constantArray = $constantArrays[0];
+		$requiredKeys = \array_map(
+			function( ConstantStringType $type ) {
+				return $type->getValue();
+			},
+			$required
+		);
+
 		$newTypeBuilder = ConstantArrayTypeBuilder::createEmpty();
 		foreach ( $constantArray->getKeyTypes() as $i => $keyType ) {
 			$valueType = $constantArray->getValueTypes()[ $i ];
-			$newTypeBuilder->setOffsetValueType(
-				$keyType,
-				$valueType,
-				$this->optional
-			);
+			if ( 0 === \count( $requiredKeys ) || \in_array( $keyType->getValue(), $requiredKeys, true ) ) {
+				$newTypeBuilder->setOffsetValueType(
+					$keyType,
+					$valueType,
+					$this->optional
+				);
+			} else {
+				$newTypeBuilder->setOffsetValueType(
+					$keyType,
+					$valueType,
+					$constantArray->isOptionalKey( $i )
+				);
+			}
 		}
 
 		return $newTypeBuilder->getArray();

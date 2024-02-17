@@ -11,6 +11,7 @@ use PHPStan\PhpDocParser\Ast\Type\GenericTypeNode;
 use PHPStan\PhpDocParser\Ast\Type\TypeNode;
 use PHPStan\Type\Constant\ConstantArrayType;
 use PHPStan\Type\Constant\ConstantArrayTypeBuilder;
+use PHPStan\Type\ErrorType;
 use PHPStan\Type\Type;
 
 /**
@@ -65,6 +66,10 @@ class Union implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension
 				$arguments
 			)
 		);
+
+		if ( 0 === \count( $passedTypes ) ) {
+			return new ErrorType();
+		}
 
 		$newTypeBuilder = ConstantArrayTypeBuilder::createEmpty();
 		foreach ( $passedTypes as $constantArray ) {

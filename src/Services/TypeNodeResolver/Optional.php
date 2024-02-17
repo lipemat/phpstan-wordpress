@@ -10,6 +10,7 @@ use PHPStan\PhpDoc\TypeNodeResolverExtension;
 use PHPStan\PhpDocParser\Ast\Type\GenericTypeNode;
 use PHPStan\PhpDocParser\Ast\Type\TypeNode;
 use PHPStan\Type\Constant\ConstantArrayTypeBuilder;
+use PHPStan\Type\ErrorType;
 use PHPStan\Type\Type;
 
 /**
@@ -46,11 +47,11 @@ class Optional implements TypeNodeResolverExtension, TypeNodeResolverAwareExtens
 		}
 		$arguments = $typeNode->genericTypes;
 		if ( 1 !== \count( $arguments ) ) {
-			return null;
+			return new ErrorType();
 		}
 		$constantArrays = $this->typeNodeResolver->resolve( $arguments[0], $nameScope )->getConstantArrays();
 		if ( 0 === \count( $constantArrays ) ) {
-			return null;
+			return new ErrorType();
 		}
 
 		$constantArray = $constantArrays[0];

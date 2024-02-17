@@ -11,6 +11,7 @@ use PHPStan\PhpDocParser\Ast\Type\GenericTypeNode;
 use PHPStan\PhpDocParser\Ast\Type\TypeNode;
 use PHPStan\Type\Constant\ConstantArrayTypeBuilder;
 use PHPStan\Type\Constant\ConstantStringType;
+use PHPStan\Type\ErrorType;
 use PHPStan\Type\Type;
 
 /**
@@ -52,13 +53,13 @@ class AtLeast implements TypeNodeResolverExtension, TypeNodeResolverAwareExtensi
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;
-		if ( 2 !== count( $arguments ) ) {
-			return null;
+		if ( 2 !== \count( $arguments ) ) {
+			return new ErrorType();
 		}
 		$constantArrays = $this->typeNodeResolver->resolve( $arguments[0], $nameScope )->getConstantArrays();
 		$required = $this->typeNodeResolver->resolve( $arguments[1], $nameScope )->getConstantStrings();
 		if ( 0 === \count( $constantArrays ) || 0 === \count( $required ) ) {
-			return null;
+			return new ErrorType();
 		}
 
 		$constantArray = $constantArrays[0];

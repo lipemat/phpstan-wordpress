@@ -28,7 +28,7 @@ class UnionExample {
 	 * @return mixed
 	 */
 	public function invalidTypes( $union ) {
-		return assertType( 'array{}', $union );
+		return assertType( 'mixed', $union );
 	}
 
 

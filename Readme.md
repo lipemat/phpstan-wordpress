@@ -90,7 +90,6 @@ Combine two or more array shapes as if you were using `array_merge` with the sec
  *   // results: array{a: string, b: string}
  */
 ```
-
 ### `AtLeast<T, U>`
 
 Mark a set of array shape keys as required while leaving the rest as is.
@@ -99,6 +98,26 @@ Mark a set of array shape keys as required while leaving the rest as is.
 /**
  * @phpstan-var AtLeast<array{a?: string, b?: string}, 'a'> $array
  *   // results: array{a: string, b?: string}
+ */
+```
+### `Optional<T>`
+
+Mark all keys in an array shape as optional.
+
+```php
+/**
+ * @phpstan-var Optional<array{a: string, b: string}> $array
+ *   // results: array{a?: string, b?: string}
+ */
+```
+### `Required<T>`
+
+Mark all keys in an array shape as required.
+
+```php
+/**
+ * @phpstan-var Required<array{a?: string, b?: string}> $array
+ *   // results: array{a: string, b: string}
  */
 ```
 

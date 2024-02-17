@@ -67,19 +67,4 @@ class AtLeastExample {
 		return assertType( "array{exclude: string, order_by: string, title: string, display_all?: ''|'checked', include_childless_parent?: ''|'checked', include_parent?: ''|'checked', levels?: int|numeric-string, post_type: string}", $atLeast );
 	}
 
-
-	/**
-	 * @phpstan-template T of array<key-of<AT_LEAST_DATA>, string|int|numeric-string>
-	 * @phpstan-param AT_LEAST_DATA $atLeast
-	 * @phpstan-param T             $defaults
-	 *
-	 * @param array                 $defaults
-	 *
-	 * @phpstan-return AtLeast<AT_LEAST_DATA, key-of<T>>
-	 */
-	public function defaults( array $atLeast, array $defaults ) {
-		assertType( "array{exclude: string, order_by: string, title?: string, display_all?: ''|'checked', include_childless_parent?: ''|'checked', include_parent?: ''|'checked', levels?: int|numeric-string, post_type?: string}", $atLeast );
-
-		return array_merge( $defaults, $atLeast );
-	}
 }

@@ -100,24 +100,36 @@ Mark a set of array shape keys as required while leaving the rest as is.
  *   // results: array{a: string, b?: string}
  */
 ```
-### `Optional<T>`
+### `Partail<T>`
 
-Mark all keys in an array shape as optional.
+Mark either all or specified keys in an array shape as optional.
+
+- `Partial<T>`: Mark all keys as optional.
+- `Partial<T, K>`: Mark only the specified keys as optional.
 
 ```php
 /**
  * @phpstan-var Optional<array{a: string, b: string}> $array
  *   // results: array{a?: string, b?: string}
+ * 
+ * @phpstan-var Optional<array{a: string, b: string}, 'b'> $array
+ *   // results: array{a: string, b?: string}
  */
 ```
 ### `Required<T>`
 
-Mark all keys in an array shape as required.
+Mark either all or specified keys in an array shape as required.
+
+- `Required<T>`: Mark all keys as required.
+- `Required<T, K>`: Mark only the specified keys as required.
 
 ```php
 /**
  * @phpstan-var Required<array{a?: string, b?: string}> $array
  *   // results: array{a: string, b: string}
+ *                                                            
+ * @phpstan-var Required<array{a?: string, b?: string}, 'b'> $array
+ *   // results: array{a?: string, b: string}                                                  
  */
 ```
 ### `Pick<T, K>`

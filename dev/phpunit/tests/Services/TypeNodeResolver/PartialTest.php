@@ -10,14 +10,14 @@ use PHPStan\Testing\TypeInferenceTestCase;
  * @since  February 2024
  *
  */
-class OptionalTest extends TypeInferenceTestCase {
+class PartialTest extends TypeInferenceTestCase {
 	/**
 	 * @link https://github.com/szepeviktor/phpstan-wordpress/blob/master/tests/AssertMethodTypeSpecifyingExtensionTest.php
 	 *
 	 * @return array<mixed>
 	 */
 	public function dataFileAsserts(): iterable {
-		yield from self::gatherAssertTypes( dirname( __DIR__, 3 ) . '/data/TypeNodeResolver/OptionalExample.php' );
+		yield from self::gatherAssertTypes( dirname( __DIR__, 3 ) . '/data/TypeNodeResolver/PartialExample.php' );
 	}
 
 

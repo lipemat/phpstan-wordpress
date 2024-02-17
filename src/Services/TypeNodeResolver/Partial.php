@@ -10,6 +10,7 @@ use PHPStan\PhpDoc\TypeNodeResolverExtension;
 use PHPStan\PhpDocParser\Ast\Type\GenericTypeNode;
 use PHPStan\PhpDocParser\Ast\Type\TypeNode;
 use PHPStan\Type\Constant\ConstantArrayTypeBuilder;
+use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\Type;
 
@@ -18,7 +19,7 @@ use PHPStan\Type\Type;
  * @since  February 2024
  *
  */
-class Optional implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension {
+class Partial implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension {
 	/**
 	 * @var TypeNodeResolver
 	 */
@@ -37,32 +38,49 @@ class Optional implements TypeNodeResolverExtension, TypeNodeResolverAwareExtens
 
 	public function resolve( TypeNode $typeNode, NameScope $nameScope ): ?Type {
 		if ( ! $typeNode instanceof GenericTypeNode ) {
-			// returning null means this extension is not interested in this node
 			return null;
 		}
 
 		$typeName = $typeNode->type;
-		if ( 'Optional' !== $typeName->name && '\Optional' !== $typeName->name ) {
+		if ( 'Partial' !== $typeName->name && '\Partial' !== $typeName->name ) {
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;
-		if ( 1 !== \count( $arguments ) ) {
+		if ( 1 !== \count( $arguments ) && 2 !== \count( $arguments ) ) {
 			return new ErrorType();
 		}
 		$constantArrays = $this->typeNodeResolver->resolve( $arguments[0], $nameScope )->getConstantArrays();
+		$required = [];
+		if ( 2 === \count( $arguments ) ) {
+			$required = $this->typeNodeResolver->resolve( $arguments[1], $nameScope )->getConstantStrings();
+		}
 		if ( 0 === \count( $constantArrays ) ) {
 			return new ErrorType();
 		}
 
 		$constantArray = $constantArrays[0];
+		$requiredKeys = \array_map(
+			function( ConstantStringType $type ) {
+				return $type->getValue();
+			},
+			$required
+		);
 		$newTypeBuilder = ConstantArrayTypeBuilder::createEmpty();
 		foreach ( $constantArray->getKeyTypes() as $i => $keyType ) {
 			$valueType = $constantArray->getValueTypes()[ $i ];
-			$newTypeBuilder->setOffsetValueType(
-				$keyType,
-				$valueType,
-				$this->optional
-			);
+			if ( 0 === \count( $requiredKeys ) || \in_array( $keyType->getValue(), $requiredKeys, true ) ) {
+				$newTypeBuilder->setOffsetValueType(
+					$keyType,
+					$valueType,
+					$this->optional
+				);
+			} else {
+				$newTypeBuilder->setOffsetValueType(
+					$keyType,
+					$valueType,
+					$constantArray->isOptionalKey( $i )
+				);
+			}
 		}
 
 		return $newTypeBuilder->getArray();

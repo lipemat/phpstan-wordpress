@@ -2,12 +2,12 @@
 declare( strict_types=1 );
 
 /**
- * Optional to be loaded before the OptionalExample class
+ * Required to be loaded before the PartialExample class
  * so PHPStan can resolve type aliases.
  *
  * A special requirement because the class is using @phpstan-type
  *
- * @see OptionalTest
+ * @see PartialTest
  */
 
 namespace Lipe\Lib\Phpstan\Services\TypeNodeResolver {
@@ -24,14 +24,14 @@ namespace Lipe\Lib\Phpstan\Services\TypeNodeResolver {
 	 *      post_type?: string,
 	 * }
 	 */
-	class OptionalDataHolder {
+	class PartialDataHolder {
 
 	}
 
 	/**
-	 * @phpstan-import-type DATA from OptionalDataHolder
+	 * @phpstan-import-type DATA from PartialDataHolder
 	 *
 	 */
-	class OptionalExample {
+	class PartialExample {
 	}
 }

@@ -49,7 +49,7 @@ class AtLeastExample {
 
 
 	/**
-	 * @phpstan-param AtLeast<array{first?: bool, second?: string}, 'first'> $atLeast
+	 * @phpstan-param AtLeast<array{first?: bool, second: string}, 'first'> $atLeast
 	 *
 	 * @return mixed
 	 */
@@ -64,7 +64,7 @@ class AtLeastExample {
 	 * @return mixed
 	 */
 	public function exported( array $atLeast ) {
-		return assertType( "array{exclude: string, order_by: string, title: string, display_all?: ''|'checked', include_childless_parent?: ''|'checked', include_parent?: ''|'checked', levels?: int|numeric-string, post_type: string}", $atLeast );
+		return assertType( "array{exclude?: string, order_by?: string, title: string, display_all?: ''|'checked', include_childless_parent?: ''|'checked', include_parent?: ''|'checked', levels?: int|numeric-string, post_type: string}", $atLeast );
 	}
 
 }

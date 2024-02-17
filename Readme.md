@@ -92,7 +92,7 @@ Combine two or more array shapes as if you were using `array_merge` with the sec
 ```
 ### `AtLeast<T, U>`
 
-Mark a set of array shape keys as required while leaving the rest as is.
+Mark a set of array shape keys as required while making the rest optional.
 
 ```php
 /**
@@ -100,7 +100,7 @@ Mark a set of array shape keys as required while leaving the rest as is.
  *   // results: array{a: string, b?: string}
  */
 ```
-### `Partail<T>`
+### `Partial<T>`
 
 Mark either all or specified keys in an array shape as optional.
 

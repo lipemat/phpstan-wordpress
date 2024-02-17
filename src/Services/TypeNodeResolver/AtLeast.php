@@ -76,7 +76,7 @@ class AtLeast implements TypeNodeResolverExtension, TypeNodeResolverAwareExtensi
 			$newTypeBuilder->setOffsetValueType(
 				$keyType,
 				$valueType,
-				$constantArray->isOptionalKey( $i ) && ! \in_array( $keyType->getValue(), $requiredKeys, true )
+				! \in_array( $keyType->getValue(), $requiredKeys, true )
 			);
 		}
 

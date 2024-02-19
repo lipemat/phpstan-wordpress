@@ -7,7 +7,7 @@
 #
 # Used via `%rootDir%/../../../stubs/genesis/genesis-2.10.php` under `scanFiles`.
 
-THEME_VERSION="3.4"
+THEME_VERSION="3.5"
 
 if [[ ! $(php -v | grep "PHP 7.4") ]]; then
     echo "Must be run via PHP 7.4 or will be missing 1/3 of classes."

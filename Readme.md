@@ -45,7 +45,7 @@ scanFiles:
   - %rootDir%/../../../stubs/cmb2/cmb2-3.10.php
   - %rootDir%/../../../stubs/genesis/genesis-3.4.php
   - %rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php
-  - %rootDir%/../../../stubs/wp-cli/php-cli-tools-0.11.11.php
+  - %rootDir%/../../../stubs/wp-cli/php-cli-tools-0.11.php
   - %rootDir%/../../../stubs/vip.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php
@@ -65,7 +65,7 @@ scanFiles:
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/cmb2/cmb2-3.10.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/genesis/genesis-3.4.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php
-  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/wp-cli/php-cli-tools-0.11.11.php
+  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/wp-cli/php-cli-tools-0.11.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/vip.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php

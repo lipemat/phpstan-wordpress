@@ -32,20 +32,20 @@ class Pick implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension 
 			return null;
 		}
 
-		if ( 'Pick' !== $typeNode->type->name && '\Pick' !== $typeNode->type->name ) {
+		if ( '\Pick' !== $typeNode->type->name ) {
 			return null;
 		}
 
 		$arguments = $typeNode->genericTypes;
-		if ( 2 !== count( $arguments ) ) {
-			return new ErrorType();
+		if ( 2 !== \count( $arguments ) ) {
+			return null;
 		}
 
 		$arrayType = $this->typeNodeResolver->resolve( $arguments[0], $nameScope );
 		$keysType = $this->typeNodeResolver->resolve( $arguments[1], $nameScope );
 
 		$constantArrays = $arrayType->getConstantArrays();
-		if ( 0 === count( $constantArrays ) ) {
+		if ( 0 === \count( $constantArrays ) ) {
 			return new ErrorType();
 		}
 

@@ -13,7 +13,7 @@ use function PHPStan\Testing\assertType;
  */
 class RequiredExample {
 	/**
-	 * @phpstan-param Required<int> $required
+	 * @phpstan-param \Required<int> $required
 	 *
 	 * @return mixed
 	 */
@@ -33,7 +33,7 @@ class RequiredExample {
 
 
 	/**
-	 * @phpstan-param Required<array{first?: bool, second?: string}> $required
+	 * @phpstan-param \Required<array{first?: bool, second?: string}> $required
 	 *
 	 * @return mixed
 	 */
@@ -43,7 +43,7 @@ class RequiredExample {
 
 
 	/**
-	 * @phpstan-param Required<DATA> $required
+	 * @phpstan-param \Required<DATA> $required
 	 *
 	 * @return mixed
 	 */
@@ -53,7 +53,7 @@ class RequiredExample {
 
 
 	/**
-	 * @phpstan-param Required<array{first?: bool, second?: string}, 'second'> $required
+	 * @phpstan-param \Required<array{first?: bool, second?: string}, 'second'> $required
 	 *
 	 * @return mixed
 	 */
@@ -63,7 +63,7 @@ class RequiredExample {
 
 
 	/**
-	 * @phpstan-param Required<DATA, 'include_parent'|'levels'> $required
+	 * @phpstan-param \Required<DATA, 'include_parent'|'levels'> $required
 	 *
 	 * @return mixed
 	 */

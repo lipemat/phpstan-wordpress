@@ -49,7 +49,7 @@ class Union implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension
 		}
 
 		$typeName = $typeNode->type;
-		if ( 'Union' !== $typeName->name && '\Union' !== $typeName->name ) {
+		if ( '\Union' !== $typeName->name ) {
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;

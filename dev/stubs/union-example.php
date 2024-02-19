@@ -32,7 +32,7 @@ namespace Lipe\Lib\Phpstan\Services\TypeNodeResolver {
 	/**
 	 * @phpstan-import-type EXPORTED from DataHolder
 	 *
-	 * @phpstan-type IMPORTED Union<EXPORTED, array{
+	 * @phpstan-type IMPORTED \Union<EXPORTED, array{
 	 *     display_everywhere?: string,
 	 *     parent_page?: numeric-string|int
 	 * }>

@@ -80,65 +80,65 @@ Example `wp-content/plugins/core/vendor/lipemat/phpstan-wordpress/stubs/cmb2/cmb
 
 ## Utility Types
 
-### `Union<T, U, ...X>`
+### `\Union<T, U, ...X>`
 
 Combine two or more array shapes as if you were using `array_merge` with the second array overwriting the first.
 
 ```php
 /**
- * @phpstan-var Union<array{a: string}, array{b: string}> $array
+ * @phpstan-var \Union<array{a: string}, array{b: string}> $array
  *   // results: array{a: string, b: string}
  */
 ```
-### `AtLeast<T, U>`
+### `\AtLeast<T, U>`
 
 Mark a set of array shape keys as required while making the rest optional.
 
 ```php
 /**
- * @phpstan-var AtLeast<array{a?: string, b?: string}, 'a'> $array
+ * @phpstan-var \AtLeast<array{a?: string, b?: string}, 'a'> $array
  *   // results: array{a: string, b?: string}
  */
 ```
-### `Partial<T>`
+### `\Partial<T>`
 
 Mark either all or specified keys in an array shape as optional.
 
-- `Partial<T>`: Mark all keys as optional.
-- `Partial<T, K>`: Mark only the specified keys as optional.
+- `\Partial<T>`: Mark all keys as optional.
+- `\Partial<T, K>`: Mark only the specified keys as optional.
 
 ```php
 /**
- * @phpstan-var Optional<array{a: string, b: string}> $array
+ * @phpstan-var \Optional<array{a: string, b: string}> $array
  *   // results: array{a?: string, b?: string}
  * 
- * @phpstan-var Optional<array{a: string, b: string}, 'b'> $array
+ * @phpstan-var \Optional<array{a: string, b: string}, 'b'> $array
  *   // results: array{a: string, b?: string}
  */
 ```
-### `Required<T>`
+### `\Required<T>`
 
 Mark either all or specified keys in an array shape as required.
 
-- `Required<T>`: Mark all keys as required.
-- `Required<T, K>`: Mark only the specified keys as required.
+- `\Required<T>`: Mark all keys as required.
+- `\Required<T, K>`: Mark only the specified keys as required.
 
 ```php
 /**
- * @phpstan-var Required<array{a?: string, b?: string}> $array
+ * @phpstan-var \Required<array{a?: string, b?: string}> $array
  *   // results: array{a: string, b: string}
  *                                                            
- * @phpstan-var Required<array{a?: string, b?: string}, 'b'> $array
+ * @phpstan-var \Required<array{a?: string, b?: string}, 'b'> $array
  *   // results: array{a?: string, b: string}                                                  
  */
 ```
-### `Pick<T, K>`
+### `\Pick<T, K>`
 
 Pick only the specified keys from an array shape.
 
 ```php
 /**
- * @phpstan-var Pick<array{a: string, b: string}, 'a'> $array
+ * @phpstan-var \Pick<array{a: string, b: string}, 'a'> $array
  *   // results: array{a: string}
  */
 ```

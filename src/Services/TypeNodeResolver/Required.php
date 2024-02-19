@@ -52,12 +52,12 @@ class Required implements TypeNodeResolverExtension, TypeNodeResolverAwareExtens
 		}
 
 		$typeName = $typeNode->type;
-		if ( 'Required' !== $typeName->name && '\Required' !== $typeName->name ) {
+		if ( '\Required' !== $typeName->name ) {
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;
 		if ( 1 !== \count( $arguments ) && 2 !== \count( $arguments ) ) {
-			return new ErrorType();
+			return null;
 		}
 		$constantArrays = $this->typeNodeResolver->resolve( $arguments[0], $nameScope )->getConstantArrays();
 		$required = [];

@@ -18,17 +18,17 @@ use function PHPStan\Testing\assertType;
  */
 class PickExample {
 	/**
-	 * @phpstan-param Pick<array{first?: bool}> $pick
+	 * @phpstan-param \Pick<array{first?: bool}> $pick
 	 *
 	 * @return mixed
 	 */
 	public function invalidType( $pick ) {
-		return assertType( 'mixed', $pick );
+		return assertType( 'Pick<array{first?: bool}>', $pick );
 	}
 
 
 	/**
-	 * @phpstan-param Pick<int, 'first'> $pick
+	 * @phpstan-param \Pick<int, 'first'> $pick
 	 *
 	 * @return mixed
 	 */
@@ -38,7 +38,7 @@ class PickExample {
 
 
 	/**
-	 * @phpstan-param Pick<array{first?: bool, second: bool}, 'first'> $pick
+	 * @phpstan-param \Pick<array{first?: bool, second: bool}, 'first'> $pick
 	 *
 	 * @return mixed
 	 */
@@ -58,7 +58,7 @@ class PickExample {
 
 
 	/**
-	 * @phpstan-param Pick<DATA, 'title'|'post_type'> $pick
+	 * @phpstan-param \Pick<DATA, 'title'|'post_type'> $pick
 	 *
 	 * @return mixed
 	 */
@@ -68,7 +68,7 @@ class PickExample {
 
 
 	/**
-	 * @phpstan-param \AtLeast<\Union<Pick<DATA, 'title'>,Pick<DATA,'post_type'|'levels'>>, 'title'> $pick
+	 * @phpstan-param \AtLeast<\Union<\Pick<DATA, 'title'>,\Pick<DATA,'post_type'|'levels'>>, 'title'> $pick
 	 *
 	 * @return mixed
 	 */

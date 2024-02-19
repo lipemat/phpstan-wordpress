@@ -13,7 +13,7 @@ use function PHPStan\Testing\assertType;
  */
 class PartialExample {
 	/**
-	 * @phpstan-param Partial<int> $Partial
+	 * @phpstan-param \Partial<int> $Partial
 	 *
 	 * @return mixed
 	 */
@@ -33,7 +33,7 @@ class PartialExample {
 
 
 	/**
-	 * @phpstan-param Partial<array{first: bool, second: string}> $Partial
+	 * @phpstan-param \Partial<array{first: bool, second: string}> $Partial
 	 *
 	 * @return mixed
 	 */
@@ -43,7 +43,7 @@ class PartialExample {
 
 
 	/**
-	 * @phpstan-param Partial<array{first: bool, second: string}, 'second'> $Partial
+	 * @phpstan-param \Partial<array{first: bool, second: string}, 'second'> $Partial
 	 *
 	 * @return mixed
 	 */
@@ -53,7 +53,7 @@ class PartialExample {
 
 
 	/**
-	 * @phpstan-param Partial<DATA> $Partial
+	 * @phpstan-param \Partial<DATA> $Partial
 	 *
 	 * @return mixed
 	 */
@@ -73,7 +73,7 @@ class PartialExample {
 
 
 	/**
-	 * @phpstan-param Required<Partial<Required<DATA>, 'exclude'|'title'|'order_by'>, 'title'> $Partial
+	 * @phpstan-param \Required<\Partial<\Required<DATA>, 'exclude'|'title'|'order_by'>, 'title'> $Partial
 	 *
 	 * @return mixed
 	 */

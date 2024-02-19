@@ -38,16 +38,17 @@ class Partial implements TypeNodeResolverExtension, TypeNodeResolverAwareExtensi
 
 	public function resolve( TypeNode $typeNode, NameScope $nameScope ): ?Type {
 		if ( ! $typeNode instanceof GenericTypeNode ) {
+			// returning null means this extension is not interested in this node
 			return null;
 		}
 
 		$typeName = $typeNode->type;
-		if ( 'Partial' !== $typeName->name && '\Partial' !== $typeName->name ) {
+		if ( '\Partial' !== $typeName->name ) {
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;
 		if ( 1 !== \count( $arguments ) && 2 !== \count( $arguments ) ) {
-			return new ErrorType();
+			return null;
 		}
 		$constantArrays = $this->typeNodeResolver->resolve( $arguments[0], $nameScope )->getConstantArrays();
 		$required = [];

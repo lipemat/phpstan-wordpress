@@ -19,7 +19,7 @@ use function PHPStan\Testing\assertType;
 class AtLeastExample {
 
 	/**
-	 * @phpstan-param AtLeast<int, string> $atLeast
+	 * @phpstan-param \AtLeast<int, string> $atLeast
 	 *
 	 * @return mixed
 	 */
@@ -39,7 +39,7 @@ class AtLeastExample {
 
 
 	/**
-	 * @phpstan-param AtLeast<array{first?: bool, second?: string}, 'first'|'second'> $atLeast
+	 * @phpstan-param \AtLeast<array{first?: bool, second?: string}, 'first'|'second'> $atLeast
 	 *
 	 * @return mixed
 	 */
@@ -49,7 +49,7 @@ class AtLeastExample {
 
 
 	/**
-	 * @phpstan-param AtLeast<array{first?: bool, second: string}, 'first'> $atLeast
+	 * @phpstan-param \AtLeast<array{first?: bool, second: string}, 'first'> $atLeast
 	 *
 	 * @return mixed
 	 */
@@ -59,7 +59,7 @@ class AtLeastExample {
 
 
 	/**
-	 * @phpstan-param AtLeast<AT_LEAST_DATA, 'title'|'post_type'> $atLeast
+	 * @phpstan-param \AtLeast<AT_LEAST_DATA, 'title'|'post_type'> $atLeast
 	 *
 	 * @return mixed
 	 */

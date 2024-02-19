@@ -49,12 +49,12 @@ class AtLeast implements TypeNodeResolverExtension, TypeNodeResolverAwareExtensi
 		}
 
 		$typeName = $typeNode->type;
-		if ( 'AtLeast' !== $typeName->name && '\AtLeast' !== $typeName->name ) {
+		if ( '\AtLeast' !== $typeName->name ) {
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;
 		if ( 2 !== \count( $arguments ) ) {
-			return new ErrorType();
+			return null;
 		}
 		$constantArrays = $this->typeNodeResolver->resolve( $arguments[0], $nameScope )->getConstantArrays();
 		$required = $this->typeNodeResolver->resolve( $arguments[1], $nameScope )->getConstantStrings();

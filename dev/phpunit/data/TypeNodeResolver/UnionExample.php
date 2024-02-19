@@ -23,7 +23,7 @@ use function PHPStan\Testing\assertType;
  */
 class UnionExample {
 	/**
-	 * @phpstan-param Union<int, string> $union
+	 * @phpstan-param \Union<int, string> $union
 	 *
 	 * @return mixed
 	 */
@@ -43,7 +43,7 @@ class UnionExample {
 
 
 	/**
-	 * @phpstan-param Union<array{first: bool}, array{second: bool}> $union
+	 * @phpstan-param \Union<array{first: bool}, array{second: bool}> $union
 	 *
 	 * @return mixed
 	 */
@@ -53,7 +53,7 @@ class UnionExample {
 
 
 	/**
-	 * @phpstan-param Union<array{first: bool, changed: numeric-string}, array{second: bool, changed: true}> $union
+	 * @phpstan-param \Union<array{first: bool, changed: numeric-string}, array{second: bool, changed: true}> $union
 	 *
 	 * @return mixed
 	 */
@@ -93,7 +93,7 @@ class UnionExample {
 
 
 	/**
-	 * @phpstan-param Union<IMPORTED, LOCAL> $union
+	 * @phpstan-param \Union<IMPORTED, LOCAL> $union
 	 *
 	 * @return mixed
 	 */

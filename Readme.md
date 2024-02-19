@@ -26,25 +26,19 @@ composer require lipemat/phpstan-wordpress
 
 1. <a href="https://github.com/php-stubs/wp-cli-stubs">WP-CLI stubs</a>.
 2. <a href="https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/wp-cli/php-cli-tools-0.11.11.php">WP-CLI Tools Stubs</a>.
-3. <a href="https://github.com/php-stubs/woocommerce-stubs">WooCommerce Stubs</a>.
-4. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2/)
-5. [Genesis stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/genesis/)
-6. [WooCommerce Subscription stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/woocommerce-subscriptions/)
-7. [VIP stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/vip.php) some stubs for WP VIP environments.
+3. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2/)
+4. [Genesis stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/genesis/)
+5. [VIP stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/vip.php) some stubs for WP VIP environments.
 
 These may be selectively added to your `phpstan.neon` or `phpstan.neon.dist` like so:
 
 ### When using library as a global install
 
-*@notice: Woocommerce does not work as a `scanFile` and must be a `bootstrapFiles`.*
 
 ```yml
-bootstrapFiles:
-    - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
 scanFiles:
   - %rootDir%/../../../stubs/cmb2/cmb2-3.10.php
   - %rootDir%/../../../stubs/genesis/genesis-3.4.php
-  - %rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php
   - %rootDir%/../../../stubs/wp-cli/php-cli-tools-0.11.php
   - %rootDir%/../../../stubs/vip.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
@@ -56,15 +50,10 @@ stubFiles:
 
 ### When using library as composer dependency
 
-*@notice: Woocommerce does not work as a `scanFile` and must be a `bootstrapFiles`.*
-
 ```yml
-bootstrapFiles:
-  - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
 scanFiles:
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/cmb2/cmb2-3.10.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/genesis/genesis-3.4.php
-  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/wp-cli/php-cli-tools-0.11.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/vip.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php

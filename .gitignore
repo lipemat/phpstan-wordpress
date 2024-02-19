@@ -3,6 +3,7 @@ composer.phar
 composer.lock
 /dev/source/*
 !/dev/source/composer.json
+stubs/woocommerce-subscriptions
 
 .phpunit.result.cache
 

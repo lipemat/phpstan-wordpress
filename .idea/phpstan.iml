@@ -8,7 +8,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/szepeviktor/phpstan-wordpress" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/extension-installer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-stubs/wp-cli-stubs" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/php-stubs/woocommerce-stubs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-stubs/wordpress-stubs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan-strict-rules" />
@@ -41,7 +40,6 @@
       <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/polyfill-php80" />
       <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/service-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan-deprecation-rules" />
-      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/lipemat/wordpress-libs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan" />
     </content>
     <orderEntry type="inheritedJdk" />

@@ -18,8 +18,9 @@ use PHPStan\Type\TypeCombinator;
  * @author Mat Lipe
  * @since  2.8.0
  *
- * @todo   Convert to a comparison type for an upstream pull request.
+ * @link   https://github.com/szepeviktor/phpstan-wordpress/pull/211
  *
+ * @todo   Remove this extension when the pull request is merged and published.
  */
 class GetApprovedComments implements DynamicFunctionReturnTypeExtension {
 	/**

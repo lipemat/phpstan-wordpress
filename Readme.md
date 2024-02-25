@@ -132,10 +132,23 @@ Pick only the specified keys from an array shape.
  */
 ```
 
+### `\Sarcastic<T>`
+
+Mark a type as an unpredictable random value.
+
+Perhaps you want to annoy a colleague. Or maybe to want to force a Gutenberg developer who is shaming you for having a paid version of a plugin to learn how to maintain a library for 10+ years without compensation. Sometimes you just need a good challenge.
+
+```php
+/**
+ * @phpstan-var \Sarcastic<string> $string
+ *   // results: anyone's guess
+ */
+```
+
 ## Optional Included Rules
 
 As we move toward a world where we use composition over inheritance, we need to be more strict about how we write our code.
-These optional rules don not get us all the way there, but they are a step in the right direction while still being viable for a WordPress project.
+These optional rules do not get us all the way there, but they are a step in the right direction while still being viable for a WordPress project.
 
 Enable in your `phpstan.neon` or `phpstan.neon.dist` like so:
 

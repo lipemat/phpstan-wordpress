@@ -136,7 +136,7 @@ Pick only the specified keys from an array shape.
 
 Mark a type as an unpredictable random value.
 
-Perhaps you want to annoy a colleague. Or maybe to want to force a Gutenberg developer who is shaming you for having a paid version of a plugin to learn how to maintain a library for 10+ years without compensation. Sometimes you just need a good challenge.
+_This utility is extremely useful in everyday projects._
 
 ```php
 /**

@@ -17,6 +17,9 @@ services:
   - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\Required
     tags:
       - phpstan.phpDoc.typeNodeResolverExtension
+  - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\Sarcastic
+    tags:
+      - phpstan.phpDoc.typeNodeResolverExtension
   - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\Union
     tags:
       - phpstan.phpDoc.typeNodeResolverExtension

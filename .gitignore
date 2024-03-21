@@ -15,6 +15,8 @@ stubs/woocommerce-subscriptions
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/csv-editor.xml
+.idea/csv-plugin.xml
 .idea/php.xml
 .idea/sshConfigs.xml
 # Generated files
@@ -31,3 +33,5 @@ stubs/woocommerce-subscriptions
 atlassian-ide-plugin.xml
 # Editor-based Rest Client
 .idea/httpRequests
+# Copilot
+.idea/copilot

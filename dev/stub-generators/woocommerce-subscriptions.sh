@@ -1,22 +1,15 @@
 #!/bin/bash
 #
-# Generate WooCommerce Subscriptions stubs from the vendor directory.
+# Generate WooCommerce Subscriptions stubs from the source directory.
 #
 # @note Must copy/paste woocommerce-subscriptions directory under source before running.
 #       DO not include in GIT as is a premium plugin!
-#
-# @notice Must be run via PHP 7.4 or will be missing 1/3 of classes.
 #
 # @example `bash dev/stub-generators/woocommerce-subscriptions.sh`
 #
 # Used via `%rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php` under `scanFiles`.
 
-PLUGIN_VERSION="5.9"
-
-if [[ ! $(php -v | grep "PHP 7.4") ]]; then
-    echo "Must be run via PHP 7.4 or will be missing 1/3 of classes."
-    exit 1
-fi
+PLUGIN_VERSION="6.0"
 
 ## @todo Switch to finder for exclude. See `generate-stubs --finder`.
 Get_legacy_files() {

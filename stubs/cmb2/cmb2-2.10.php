@@ -2639,7 +2639,7 @@ class CMB2_JS
      * @var   array
      * @since 2.0.7
      */
-    protected static $dependencies = ['jquery' => 'jquery', 'jquery-ui-sortable' => 'jquery-ui-sortable'];
+    protected static $dependencies = ['jquery' => 'jquery'];
     /**
      * Array of CMB2 fields model data for JS.
      *
@@ -2802,7 +2802,7 @@ class CMB2_Option
      * @since  1.0.1
      * @param string $field_id Option array field key.
      * @param mixed  $default  Fallback value for the option.
-     * @return array             Requested field or default
+     * @return mixed            Requested field or default
      */
     public function get($field_id, $default = \false)
     {
@@ -3329,30 +3329,6 @@ class CMB2_Sanitize
  */
 class CMB2_Show_Filters
 {
-    /**
-     * Get Show_on key. backwards compatible w/ 'key' indexes
-     *
-     * @since  2.0.0
-     *
-     * @param  array $meta_box_args Metabox config array.
-     *
-     * @return mixed                show_on key or false
-     */
-    private static function get_show_on_key($meta_box_args)
-    {
-    }
-    /**
-     * Get Show_on value. backwards compatible w/ 'value' indexes
-     *
-     * @since  2.0.0
-     *
-     * @param  array $meta_box_args Metabox config array.
-     *
-     * @return mixed                show_on value or false
-     */
-    private static function get_show_on_value($meta_box_args)
-    {
-    }
     /**
      * Add metaboxes for an specific ID
      *
@@ -6592,7 +6568,7 @@ function new_cmb2_box(array $meta_box_config)
  * @param  string     $object_type Type of object being saved.
  *                                 (e.g., post, user, term, comment, or options-page).
  *                                 Defaults to metabox object type.
- * @return CMB2 object
+ * @return CMB2|false object
  */
 function cmb2_get_metabox($meta_box, $object_id = 0, $object_type = '')
 {

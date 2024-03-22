@@ -1,7 +1,4 @@
 services:
-  - class: Lipe\Lib\Phpstan\Services\DynamicFunctionReturnType\GetApprovedComments
-    tags:
-      - phpstan.broker.dynamicFunctionReturnTypeExtension
   - class: Lipe\Lib\Phpstan\Services\DbGetDynamicFunctionReturnTypeExtension
     tags:
       - phpstan.broker.dynamicMethodReturnTypeExtension

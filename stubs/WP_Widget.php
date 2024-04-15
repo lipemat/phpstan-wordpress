@@ -5,6 +5,8 @@
  * Temporary ovveride while we wait for the PR to be merged
  *
  * @link https://github.com/php-stubs/wordpress-stubs/pull/160
+ *
+ * @todo Delete once version 6.5.3+ is released of wordpress-stubs.
  */
 
 namespace {

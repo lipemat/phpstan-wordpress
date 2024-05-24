@@ -31,5 +31,4 @@ parameters:
     - SITECOOKIEPATH
     - WPCOM_IS_VIP_ENV
   scanFiles:
-    - stubs/lipe.php
     - stubs/wp.php

@@ -18,7 +18,7 @@ namespace {
 	function sn( $value ): string {
 	}
 
-	function lipe_project() {
+	function lipe_project(): \Lipe\Project\Core {
 	}
 
 	/**

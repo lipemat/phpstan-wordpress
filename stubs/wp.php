@@ -37,4 +37,20 @@ namespace {
 	 */
 	function block_template_part( string $part ): void {
 	}
+
+	/**
+	 * Override the wordpress stubs to support dynamic return type.
+	 *
+	 * @link https://github.com/php-stubs/wordpress-stubs/pull/180
+	 *
+	 * @param string $ignore_class
+	 *
+	 * @param int    $skip_frames 0.
+	 * @param bool   $pretty
+	 *
+	 * @return string|array Either a string containing a reversed comma separated trace or an array of individual calls.
+	 * @phpstan-return ($pretty is true ? string : list<string>)
+	 */
+	function wp_debug_backtrace_summary( $ignore_class = \null, $skip_frames = 0, $pretty = \true ) {
+	}
 }

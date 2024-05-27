@@ -25,4 +25,16 @@ namespace {
 	const WP_CONTENT_URL = '';
 	const WP_PLUGIN_DIR = '';
 	const WP_SITE_ROOT = '';
+
+	/**
+	 * Override the wordpress stubs which limit to 'header' and 'footer' parts.
+	 *
+	 * @link https://github.com/php-stubs/wordpress-stubs/issues/179
+	 *
+	 * @param string $part The block template part to print.
+	 *
+	 * @phpstan-return void
+	 */
+	function block_template_part( string $part ): void {
+	}
 }

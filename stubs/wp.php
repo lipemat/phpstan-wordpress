@@ -53,4 +53,20 @@ namespace {
 	 */
 	function wp_debug_backtrace_summary( $ignore_class = \null, $skip_frames = 0, $pretty = \true ) {
 	}
+
+	/**
+	 * Override for wordpress core phpdocs to fix return type.
+	 *
+	 * @link https://github.com/WordPress/wordpress-develop/pull/6654
+	 *
+	 * @todo If the pull request become stale consider submitting a change to `wordpress-stubs` repository.
+	 *
+	 * @param string $date      RFC3339 timestamp.
+	 * @param bool   $force_utc Optional. Whether to force UTC timezone instead of using
+	 *                          the timestamp's timezone. Default false.
+	 *
+	 * @return int|false Unix timestamp.
+	 */
+	function rest_parse_date( $date, $force_utc = false ) {
+	}
 }

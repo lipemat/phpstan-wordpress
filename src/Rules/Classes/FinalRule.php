@@ -20,14 +20,22 @@ use PHPStan\Rules;
  */
 class FinalRule implements Rules\Rule {
 	/**
+	 * @var array<int, string>
+	 */
+	private static $defaultAllowedToBeAbstract = [
+		'Lipe\\Lib\\Schema\\Db',
+		'Lipe_Project_WP_Object_Cache',
+	];
+
+	/**
 	 * @var bool
 	 */
 	protected $allowAbstractClasses;
 
 	/**
-	 * @var array<int, class-string>
+	 * @var array<int, string>
 	 */
-	private $classesAllowedToBeAbstract = [];
+	private $classesAllowedToBeAbstract;
 
 	/**
 	 * @var string
@@ -50,12 +58,13 @@ class FinalRule implements Rules\Rule {
 	 */
 	public function __construct( bool $disallowAbstractClasses, array $classesAllowedToBeAbstract ) {
 		$this->allowAbstractClasses = ! $disallowAbstractClasses;
-		$this->classesAllowedToBeAbstract = \array_values( $classesAllowedToBeAbstract );
+
+		$this->classesAllowedToBeAbstract = \array_merge( self::$defaultAllowedToBeAbstract, \array_values( $classesAllowedToBeAbstract ) );
 
 		if ( $this->allowAbstractClasses ) {
 			$this->errorMessageTemplate = 'Class %s is neither abstract nor final.';
 		}
-		if ( count( $this->classesAllowedToBeAbstract ) > 0 ) {
+		if ( \count( $this->classesAllowedToBeAbstract ) > \count( self::$defaultAllowedToBeAbstract ) ) {
 			$this->errorMessageTemplate = 'Class %s is not final.';
 		}
 	}

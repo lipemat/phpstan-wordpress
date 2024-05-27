@@ -28,7 +28,6 @@ composer require lipemat/phpstan-wordpress
 3. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2/)
 4. [Genesis stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/genesis/)
 5. [VIP stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/vip.php) some stubs for WP VIP environments.
-6. [Lipe stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/lipe.php) stubs specific for `Lipe\Project` projects.
 
 These may be selectively added to your `phpstan.neon` or `phpstan.neon.dist` like so:
 
@@ -41,7 +40,6 @@ scanFiles:
   - %rootDir%/../../../stubs/genesis/genesis-3.4.php
   - %rootDir%/../../../stubs/wp-cli/php-cli-tools-0.11.php
   - %rootDir%/../../../stubs/vip.php
-  - %rootDir%/../../../stubs/lipe.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php
@@ -55,7 +53,6 @@ scanFiles:
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/genesis/genesis-3.4.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/wp-cli/php-cli-tools-0.11.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/vip.php
-  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/lipe.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php

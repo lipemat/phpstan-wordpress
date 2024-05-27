@@ -20,6 +20,7 @@ class NoExtendsRule implements Rules\Rule {
 	private static $defaultClassesAllowedToBeExtended = [
 		'PHPUnit\\Framework\\TestCase',
 		'Lipe\\Lib\\Schema\\Db',
+		'Lipe_Project_WP_Object_Cache',
 		'WP_REST_Controller',
 		'WP_Widget',
 	];

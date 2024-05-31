@@ -30,6 +30,9 @@ namespace {
 	 * Override the wordpress stubs which limit to 'header' and 'footer' parts.
 	 *
 	 * @link https://github.com/php-stubs/wordpress-stubs/issues/179
+	 * @link https://core.trac.wordpress.org/ticket/60699
+	 *
+	 * @todo Remove once trac ticket 60699 is merged.
 	 *
 	 * @param string $part The block template part to print.
 	 *
@@ -42,6 +45,8 @@ namespace {
 	 * Override the wordpress stubs to support dynamic return type.
 	 *
 	 * @link https://github.com/php-stubs/wordpress-stubs/pull/180
+	 *
+	 * @todo Remove once pull request is released.
 	 *
 	 * @param string $ignore_class
 	 *
@@ -58,14 +63,15 @@ namespace {
 	 * Override for wordpress core phpdocs to fix return type.
 	 *
 	 * @link https://github.com/WordPress/wordpress-develop/pull/6654
+	 * @link https://core.trac.wordpress.org/ticket/60699
 	 *
-	 * @todo If the pull request become stale consider submitting a change to `wordpress-stubs` repository.
+	 * @todo Remove once trac ticket 60699 is merged.
 	 *
 	 * @param string $date      RFC3339 timestamp.
 	 * @param bool   $force_utc Optional. Whether to force UTC timezone instead of using
 	 *                          the timestamp's timezone. Default false.
 	 *
-	 * @return int|false Unix timestamp.
+	 * @return int|false Unix timestamp or false on failure.
 	 */
 	function rest_parse_date( $date, $force_utc = false ) {
 	}

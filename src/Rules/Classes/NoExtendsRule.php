@@ -18,9 +18,10 @@ class NoExtendsRule implements Rules\Rule {
 	 * @var array<int, string>
 	 */
 	private static $defaultClassesAllowedToBeExtended = [
-		'PHPUnit\\Framework\\TestCase',
 		'Lipe\\Lib\\Schema\\Db',
 		'Lipe_Project_WP_Object_Cache',
+		'PHPUnit\\Framework\\TestCase',
+		'WP_List_Table',
 		'WP_REST_Controller',
 		'WP_Widget',
 	];

@@ -5,6 +5,9 @@ services:
   - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\AtLeast
     tags:
       - phpstan.phpDoc.typeNodeResolverExtension
+  - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\Exclude
+    tags:
+      - phpstan.phpDoc.typeNodeResolverExtension
   - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\Partial
     tags:
       - phpstan.phpDoc.typeNodeResolverExtension

@@ -64,16 +64,7 @@ Example `wp-content/plugins/core/vendor/lipemat/phpstan-wordpress/stubs/cmb2/cmb
 
 ## Utility Types
 
-### `\Union<T, U, ...X>`
 
-Combine two or more array shapes as if you were using `array_merge` with the second array overwriting the first.
-
-```php
-/**
- * @phpstan-var \Union<array{a: string}, array{b: string}> $array
- *   // results: array{a: string, b: string}
- */
-```
 ### `\AtLeast<T, U>`
 
 Mark a set of array shape keys as required while making the rest optional.
@@ -84,6 +75,18 @@ Mark a set of array shape keys as required while making the rest optional.
  *   // results: array{a: string, b?: string}
  */
 ```
+
+### `\Exclude<T, K>`
+
+Exclude the specified keys from an array shape.
+
+```php
+/**
+ * @phpstan-var \Exclude<array{a: string, b: string}, 'a'> $array
+ *   // results: array{b: string}
+ */
+```
+
 ### `\Partial<T>`
 
 Mark either all or specified keys in an array shape as optional.
@@ -100,6 +103,18 @@ Mark either all or specified keys in an array shape as optional.
  *   // results: array{a: string, b?: string}
  */
 ```
+
+### `\Pick<T, K>`
+
+Pick only the specified keys from an array shape.
+
+```php
+/**
+ * @phpstan-var \Pick<array{a: string, b: string}, 'a'> $array
+ *   // results: array{a: string}
+ */
+```
+
 ### `\Required<T>`
 
 Mark either all or specified keys in an array shape as required.
@@ -116,16 +131,6 @@ Mark either all or specified keys in an array shape as required.
  *   // results: array{a?: string, b: string}                                                  
  */
 ```
-### `\Pick<T, K>`
-
-Pick only the specified keys from an array shape.
-
-```php
-/**
- * @phpstan-var \Pick<array{a: string, b: string}, 'a'> $array
- *   // results: array{a: string}
- */
-```
 
 ### `\Sarcastic<T>`
 
@@ -137,6 +142,17 @@ _This utility is extremely useful in everyday projects._
 /**
  * @phpstan-var \Sarcastic<string> $string
  *   // results: anyone's guess
+ */
+```
+
+### `\Union<T, U, ...X>`
+
+Combine two or more array shapes as if you were using `array_merge` with the second array overwriting the first.
+
+```php
+/**
+ * @phpstan-var \Union<array{a: string}, array{b: string}> $array
+ *   // results: array{a: string, b: string}
  */
 ```
 

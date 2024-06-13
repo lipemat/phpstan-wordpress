@@ -31,9 +31,6 @@
       <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/php-stubs/generator" />
       <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/console" />
-      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/deprecation-contracts" />
-      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/filesystem" />
-      <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/finder" />
       <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/polyfill-ctype" />
       <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/polyfill-php73" />

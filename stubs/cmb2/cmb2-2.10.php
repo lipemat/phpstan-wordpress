@@ -82,8 +82,10 @@ abstract class CMB2_Base
      * Returns the object ID
      *
      * @since  2.2.3
-     * @param  integer $object_id Object ID.
-     * @return integer Object ID
+     *
+     * @param string|int $object_id Object ID.
+     *
+     * @return string|int Object ID
      */
     public function object_id($object_id = 0)
     {
@@ -1510,7 +1512,7 @@ class CMB2_Field extends \CMB2_Base
      * @param  string $type Field type to check.
      * @return bool         True if type cannot be repeatable
      */
-    public function repeatable_exception($type)
+    public function repeatable_exception(string $type)
     {
     }
     /**
@@ -2648,6 +2650,24 @@ class CMB2_JS
      */
     protected static $fields = [];
     /**
+     * We need to register colorpicker on the front-end
+     *
+     * @since  2.0.7
+     */
+    protected static function colorpicker_frontend()
+    {
+    }
+    /**
+     * Localize the php variables for CMB2 JS
+     *
+     * @since  2.0.7
+     *
+     * @param mixed $debug Whether or not we are debugging.
+     */
+    protected static function localize($debug)
+    {
+    }
+    /**
      * Add a dependency to the array of CMB2 JS dependencies
      *
      * @since 2.0.7
@@ -2696,24 +2716,6 @@ class CMB2_JS
      * @return void
      */
     public static function register_datetimepicker($enqueue = \false)
-    {
-    }
-    /**
-     * We need to register colorpicker on the front-end
-     *
-     * @since  2.0.7
-     */
-    protected static function colorpicker_frontend()
-    {
-    }
-    /**
-     * Localize the php variables for CMB2 JS
-     *
-     * @since  2.0.7
-     *
-     * @param mixed $debug Whether or not we are debugging.
-     */
-    protected static function localize($debug)
     {
     }
 }
@@ -2824,24 +2826,26 @@ class CMB2_Option
      * Saves the option array
      * Needs to be run after finished using remove/update_option
      *
-     * @uses apply_filters() Calls 'cmb2_override_option_save_{$this->key}' hook
+     * @since  1.0.1
+     * @uses   apply_filters() Calls 'cmb2_override_option_save_{$this->key}' hook
      * to allow overwriting the option value to be stored.
      *
-     * @since  1.0.1
-     * @param  array $options Optional options to override.
+     * @param array $options Optional options to override.
+     *
      * @return bool           Success/Failure
      */
-    public function set($options = array())
+    public function set($options = [])
     {
     }
     /**
      * Retrieve option value based on name of option.
      *
-     * @uses apply_filters() Calls 'cmb2_override_option_get_{$this->key}' hook to allow
+     * @since  1.0.1
+     * @uses   apply_filters() Calls 'cmb2_override_option_get_{$this->key}' hook to allow
      * overwriting the option value to be retrieved.
      *
-     * @since  1.0.1
-     * @param  mixed $default Optional. Default value to return if the option does not exist.
+     * @param mixed $default Optional. Default value to return if the option does not exist.
+     *
      * @return mixed          Value set for the option.
      */
     public function get_options($default = \null)
@@ -4046,6 +4050,18 @@ class CMB2_Utils
      * @return boolean
      */
     public static function is_data_attribute($att)
+    {
+    }
+    /**
+     * Determine if current type cannot be repeatable
+     *
+     * @since  2.10.1.10
+     *
+     * @param string $type Field type to check.
+     *
+     * @return bool         True if type cannot be repeatable
+     */
+    public static function does_not_support_repeating(string $type)
     {
     }
     /**

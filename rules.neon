@@ -5,12 +5,28 @@ services:
 - class: Lipe\Lib\Phpstan\Rules\Methods\NoConstructorParameterWithDefaultValueRule
   tags:
     - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Methods\NoMixedMethodCallerRule
+  tags:
+    - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Methods\NoParamTypeRemovalRule
+  tags:
+    - phpstan.rules.rule
 - class: Lipe\Lib\Phpstan\Rules\Methods\PrivateInFinalClassRule
+  tags:
+    - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Methods\ReturnNullOverFalseRule
+  tags:
+    - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Statements\NoArrayAccessOnObjectRule
+  tags:
+    - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Statements\NoIssetOnObjectRule
   tags:
     - phpstan.rules.rule
 - class: Lipe\Lib\Phpstan\Rules\Statements\NoSwitchRule
   tags:
     - phpstan.rules.rule
+
 
 # Conditional rules
 - class: Lipe\Lib\Phpstan\Rules\Classes\FinalRule

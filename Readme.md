@@ -179,6 +179,11 @@ includes:
 5. Prevent declaring a method `protected` in a final class in favor of `private`.
 6. Prevent using the `switch` statement in favor of `match`.
 7. Require any concrete methods in abstract classes to be `private` or `final`.
+8. Prevent child classes from skipping parent parameter types.
+9. Prevent calls to methods on unknown classes.
+10. Prefer returning null over false unless boolean is expected.
+11. Prohibit using `ArrayAccess` to access class data.
+12. Require `instance of` instead of `isset` for object verification.
 
 ### Distributed plugins or themes
 Some rules assume you are working on a private project which will not be distributed to the community. 

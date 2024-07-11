@@ -24,7 +24,16 @@ class NoArrayAccessOnObjectRule implements Rule {
 	/**
 	 * @var string[]
 	 */
-	private const ALLOWED_CLASSES = [ 'SplFixedArray', 'SimpleXMLElement', 'Iterator', 'Aws\ResultInterface', 'Symfony\Component\Form\FormInterface', 'Symfony\Component\OptionsResolver\Options', 'Pimple\Container' ];
+	private const ALLOWED_CLASSES = [
+		'Aws\ResultInterface',
+		'Iterator',
+		'Pimple\Container',
+		'SimpleXMLElement',
+		'SplFixedArray',
+		'Symfony\Component\Form\FormInterface',
+		'Symfony\Component\OptionsResolver\Options',
+		'WP_REST_Request',
+	];
 
 
 	public function getNodeType(): string {

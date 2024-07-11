@@ -9,6 +9,7 @@ use PHPStan\Rules\Rule;
 class NoArrayAccessOnObjectRuleTest extends AbstractTestCase {
 	public static function provideCasesWhereAnalysisShouldSucceed(): iterable {
 		$paths = [
+			'reading-allowed'           => __DIR__ . '/../../../fixtures/Statements/NoArrayAccessOnObjectRule/Success/ReadingAllowed.php',
 			'skip-iterator'             => __DIR__ . '/../../../fixtures/Statements/NoArrayAccessOnObjectRule/Success/SkipIterator.php',
 			'skip-on-array'             => __DIR__ . '/../../../fixtures/Statements/NoArrayAccessOnObjectRule/Success/SkipOnArray.php',
 			'skip-spl-fixed-array'      => __DIR__ . '/../../../fixtures/Statements/NoArrayAccessOnObjectRule/Success/SkipSplFixedArray.php',
@@ -35,7 +36,6 @@ class NoArrayAccessOnObjectRuleTest extends AbstractTestCase {
 				__DIR__ . '/../../../fixtures/Statements/NoArrayAccessOnObjectRule/Failure/ArrayAccessOnNestedObject.php',
 
 				[ NoArrayAccessOnObjectRule::ERROR_MESSAGE, 12 ],
-
 			],
 		];
 

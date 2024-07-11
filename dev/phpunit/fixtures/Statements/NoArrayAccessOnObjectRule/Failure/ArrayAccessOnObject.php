@@ -8,7 +8,7 @@ use Rector\TypePerfect\Tests\Rules\NoArrayAccessOnObjectRule\Source\SomeClassWit
 
 final class ArrayAccessOnObject {
 	public function run() {
-		$someClassWithArrayAcces = new SomeClassWithArrayAccess();
-		return $someClassWithArrayAcces['key'];
+		$someClassWithArrayAccess = new SomeClassWithArrayAccess();
+		return $someClassWithArrayAccess['key'];
 	}
 }

@@ -25,7 +25,7 @@ class NoUnknownPropertyRule implements Rule {
 	/**
 	 * @var string
 	 */
-	public const ERROR_MESSAGE = 'Mixed property fetch in "%s->..." can skip important errors. Make sure the type is known.';
+	public const ERROR_MESSAGE = 'Accessing `%s` property on unknown `%s` can skip important errors. Make sure the type is known.';
 
 
 	public function getNodeType(): string {
@@ -43,9 +43,13 @@ class NoUnknownPropertyRule implements Rule {
 			$this->printerStandard = new Standard();
 		}
 
-		$printedVar = $this->printerStandard->prettyPrintExpr( $node->var );
-
-		$ruleErrorBuilder = Rules\RuleErrorBuilder::message( \sprintf( self::ERROR_MESSAGE, $printedVar ) );
+		$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
+			\sprintf(
+				self::ERROR_MESSAGE,
+				$node->name->name ?? 'unknown',
+				$this->printerStandard->prettyPrintExpr( $node->var )
+			)
+		);
 
 		$ruleErrorBuilder->addTip( 'Try checking `instanceof` first.' );
 		$ruleErrorBuilder->identifier( 'lipemat.noUnknownProperty' );

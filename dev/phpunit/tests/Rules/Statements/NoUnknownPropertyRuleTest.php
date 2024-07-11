@@ -27,7 +27,8 @@ class NoUnknownPropertyRuleTest extends AbstractTestCase {
 
 
 	public static function provideCasesWhereAnalysisShouldFail(): iterable {
-		$message = 'Mixed property fetch in "$unknownType->..." can skip important errors. Make sure the type is known.
+		$message = sprintf( NoUnknownPropertyRule::ERROR_MESSAGE, 'name', '$unknownType' );
+		$message .= '
     💡 Try checking `instanceof` first.';
 		$paths = [
 			'dynamic-name'             => [ __DIR__ . '/../../../fixtures/Statements/NoUnknownPropertyRule/Failure/DynamicName.php', [ $message, 11 ] ],

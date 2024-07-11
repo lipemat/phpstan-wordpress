@@ -5,9 +5,6 @@ services:
 - class: Lipe\Lib\Phpstan\Rules\Methods\NoConstructorParameterWithDefaultValueRule
   tags:
     - phpstan.rules.rule
-- class: Lipe\Lib\Phpstan\Rules\Methods\NoMixedMethodCallerRule
-  tags:
-    - phpstan.rules.rule
 - class: Lipe\Lib\Phpstan\Rules\Methods\NoParamTypeRemovalRule
   tags:
     - phpstan.rules.rule
@@ -15,6 +12,9 @@ services:
   tags:
     - phpstan.rules.rule
 - class: Lipe\Lib\Phpstan\Rules\Methods\ReturnNullOverFalseRule
+  tags:
+    - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Methods\NoUnknownMethodCallerRule
   tags:
     - phpstan.rules.rule
 - class: Lipe\Lib\Phpstan\Rules\Statements\NoArrayAccessOnObjectRule

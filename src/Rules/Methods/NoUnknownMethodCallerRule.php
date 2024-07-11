@@ -8,6 +8,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\PrettyPrinter\Standard;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\MixedType;
@@ -15,7 +16,7 @@ use PHPStan\Type\MixedType;
 /**
  * @implements Rule<MethodCall>
  */
-class NoMixedMethodCallerRule implements Rule {
+class NoUnknownMethodCallerRule implements Rule {
 	/**
 	 * @var ?Standard
 	 */
@@ -24,7 +25,7 @@ class NoMixedMethodCallerRule implements Rule {
 	/**
 	 * @var string
 	 */
-	public const ERROR_MESSAGE = 'Mixed variable in a `%s->...()` can skip important errors. Make sure the type is known.';
+	public const ERROR_MESSAGE = 'Calling `%s` method on unknown `%s` can skip important errors. Make sure the type is known.';
 
 
 	public function getNodeType(): string {
@@ -52,10 +53,19 @@ class NoMixedMethodCallerRule implements Rule {
 			$this->printerStandard = new Standard();
 		}
 
-		$printedMethodCall = $this->printerStandard->prettyPrintExpr( $node->var );
+		$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
+			\sprintf(
+				self::ERROR_MESSAGE,
+				$node->name->name ?? 'unknown',
+				$this->printerStandard->prettyPrintExpr( $node->var )
+			)
+		);
+
+		$ruleErrorBuilder->addTip( 'Try checking `instanceof` first.' );
+		$ruleErrorBuilder->identifier( 'lipemat.noUnknownMethodCaller' );
 
 		return [
-			sprintf( self::ERROR_MESSAGE, $printedMethodCall ),
+			$ruleErrorBuilder->build(),
 		];
 	}
 

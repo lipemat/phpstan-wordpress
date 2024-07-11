@@ -19,12 +19,12 @@ class NoMixedMethodCallerRule implements Rule {
 	/**
 	 * @var ?Standard
 	 */
-	private $printerStandard = null;
+	private $printerStandard;
 
 	/**
 	 * @var string
 	 */
-	public const ERROR_MESSAGE = 'Mixed variable in a `%s->...()` can skip important errors. Make sure the type is known';
+	public const ERROR_MESSAGE = 'Mixed variable in a `%s->...()` can skip important errors. Make sure the type is known.';
 
 
 	public function getNodeType(): string {

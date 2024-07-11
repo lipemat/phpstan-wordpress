@@ -186,6 +186,7 @@ class DbGetDynamicFunctionReturnTypeExtension implements DynamicMethodReturnType
 		$columns = [];
 		if ( property_exists( $childClass, 'items' ) && 0 < \count( $childClass->items ) ) {
 			foreach ( $childClass->items as $values ) {
+				// @phpstan-ignore-next-line -- Unknown property type.
 				$columns[ (string) $values->key->value ] = new StringType();
 			}
 		}

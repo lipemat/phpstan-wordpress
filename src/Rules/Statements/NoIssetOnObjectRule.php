@@ -23,7 +23,7 @@ class NoIssetOnObjectRule implements Rule {
 	/**
 	 * @var string
 	 */
-	public const ERROR_MESSAGE = 'Use instanceof instead of isset() on object';
+	public const ERROR_MESSAGE = 'Use `instanceof` instead of isset() on object';
 
 
 	public function getNodeType(): string {

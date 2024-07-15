@@ -1,15 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare( strict_types=1 );
 
-namespace Rector\TypePerfect\Tests\Rules\NoArrayAccessOnObjectRule\Fixture;
+namespace Lipe\Lib\Phpstan\Rules\Test\Fixture\Statements\NoArrayAccessOnObjectRule\Success;
 
-final class SkipIterator
-{
-    public function run()
-    {
-        $iterator = new class extends \Iterator {};
+final class SkipIterator {
+	public function run() {
+		$iterator = new class extends \Iterator {
+		};
 
-        return $iterator[0];
-    }
+		return $iterator[0];
+	}
 }

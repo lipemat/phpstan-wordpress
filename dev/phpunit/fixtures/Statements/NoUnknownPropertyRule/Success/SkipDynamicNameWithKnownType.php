@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace Rector\TypePerfect\Tests\Rules\NoMixedPropertyFetcherRule\Fixture;
+namespace Lipe\Lib\Phpstan\Rules\Test\Fixture\Statements\NoUnknownPropertyRule\Success;
 
 use Rector\TypePerfect\Tests\Rules\NoMixedPropertyFetcherRule\Source\KnownType;
 

@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare( strict_types=1 );
 
-namespace Rector\TypePerfect\Tests\Rules\NoMixedPropertyFetcherRule\Fixture;
+namespace Lipe\Lib\Phpstan\Rules\Test\Fixture\Statements\NoUnknownPropertyRule\Failure;
 
-final class UnknownPropertyFetcher
-{
-    public function run($unknownType)
-    {
-        $unknownType->name;
-    }
+final class UnknownPropertyFetcher {
+	public function run( $unknownType ) {
+		$unknownType->name;
+	}
 }

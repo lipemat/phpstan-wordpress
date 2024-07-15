@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace Rector\TypePerfect\Tests\Rules\NoArrayAccessOnObjectRule\Fixture;
+namespace Lipe\Lib\Phpstan\Rules\Test\Fixture\Statements\NoArrayAccessOnObjectRule\Success;
 
 use SplFixedArray;
 

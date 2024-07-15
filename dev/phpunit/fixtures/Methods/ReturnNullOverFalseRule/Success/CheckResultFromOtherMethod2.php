@@ -1,31 +1,29 @@
 <?php
 
-declare(strict_types=1);
+declare( strict_types=1 );
 
-namespace Rector\TypePerfect\Tests\Rules\ReturnNullOverFalseRule\Fixture;
+namespace Lipe\Lib\Phpstan\Rules\Test\Fixture\Methods\ReturnNullOverFalseRule\Success;
 
-class Entity
-{
-    /**
-     * @param string $name
-     *
-     * @return bool
-     */
-    public function __isset($name)
-    {
-        if (!$this->isPropertyVisible($name)) {
-            return false;
-        }
+class CheckResultFromOtherMethod2 {
+	/**
+	 * @param string $name
+	 *
+	 * @return bool
+	 */
+	public function __isset( $name ) {
+		if ( ! $this->isPropertyVisible( $name ) ) {
+			return false;
+		}
 
-        return isset($this->$name);
-    }
+		return isset( $this->$name );
+	}
 
-    private function isPropertyVisible(string $name): bool
-    {
-        if (mt_rand(1, 0)) {
-            return true;
-        }
 
-        return false;
-    }
+	private function isPropertyVisible( string $name ): bool {
+		if ( mt_rand( 1, 0 ) ) {
+			return true;
+		}
+
+		return false;
+	}
 }

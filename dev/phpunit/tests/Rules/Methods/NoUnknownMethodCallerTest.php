@@ -35,7 +35,7 @@ final class NoUnknownMethodCallerTest extends AbstractTestCase {
 				[
 					\sprintf( NoUnknownMethodCallerRule::ERROR_MESSAGE, 'magic', '$someType' ) . '
     💡 Try checking `instanceof` first.',
-					11,
+					8,
 				],
 			],
 
@@ -44,7 +44,7 @@ final class NoUnknownMethodCallerTest extends AbstractTestCase {
 				[
 					sprintf( NoUnknownMethodCallerRule::ERROR_MESSAGE, 'call', '$mixedType' ) . '
     💡 Try checking `instanceof` first.',
-					11,
+					8,
 				],
 			],
 		];

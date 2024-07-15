@@ -31,8 +31,8 @@ class NoUnknownPropertyRuleTest extends AbstractTestCase {
 		$message .= '
     💡 Try checking `instanceof` first.';
 		$paths = [
-			'dynamic-name'             => [ __DIR__ . '/../../../fixtures/Statements/NoUnknownPropertyRule/Failure/DynamicName.php', [ $message, 11 ] ],
-			'unknown-property-fetcher' => [ __DIR__ . '/../../../fixtures/Statements/NoUnknownPropertyRule/Failure/UnknownPropertyFetcher.php', [ $message, 11 ] ],
+			'dynamic-name'             => [ __DIR__ . '/../../../fixtures/Statements/NoUnknownPropertyRule/Failure/DynamicName.php', [ $message, 9 ] ],
+			'unknown-property-fetcher' => [ __DIR__ . '/../../../fixtures/Statements/NoUnknownPropertyRule/Failure/UnknownPropertyFetcher.php', [ $message, 9 ] ],
 		];
 
 		foreach ( $paths as $description => [$path, $error] ) {

@@ -1,29 +1,27 @@
 <?php
 
-declare(strict_types=1);
+declare( strict_types=1 );
 
-namespace Rector\TypePerfect\Tests\Rules\ReturnNullOverFalseRule\Fixture;
+namespace Lipe\Lib\Phpstan\Rules\Test\Fixture\Methods\ReturnNullOverFalseRule\Success;
 
-class Loader
-{
-    /**
-     * @return bool
-     */
-    public function exists(string $name)
-    {
-        if (!$this->loadFromDb($name)) {
-            return false;
-        }
+class CheckResultFromOtherMethod {
+	/**
+	 * @return bool
+	 */
+	public function exists( string $name ) {
+		if ( ! $this->loadFromDb( $name ) ) {
+			return false;
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    private function loadFromDb(string $name): ?array
-    {
-        if (mt_rand(1, 0)) {
-            return null;
-        }
 
-        return ['test' => 'foo'];
-    }
+	private function loadFromDb( string $name ): ?array {
+		if ( mt_rand( 1, 0 ) ) {
+			return null;
+		}
+
+		return [ 'test' => 'foo' ];
+	}
 }

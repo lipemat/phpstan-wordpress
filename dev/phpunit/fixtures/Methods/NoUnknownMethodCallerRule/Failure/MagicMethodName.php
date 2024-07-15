@@ -1,13 +1,10 @@
 <?php
+declare( strict_types=1 );
 
-declare(strict_types=1);
+namespace Lipe\Lib\Phpstan\Rules\Test\Fixture\Methods\NoUnknownMethodCallerRule\Failure;
 
-namespace Rector\TypePerfect\Tests\Rules\NoMixedMethodCallerRule\Fixture;
-
-final class MagicMethodName
-{
-    public function run($someType, $magic)
-    {
-        $someType->$magic();
-    }
+final class MagicMethodName {
+	public function run( $someType, $magic ) {
+		$someType->$magic();
+	}
 }

@@ -42,7 +42,7 @@ final class ReturnNullOverFalseRuleTest extends AbstractTestCase {
 		$paths = [
 			'return-false-only' => [
 				__DIR__ . '/../../../fixtures/Methods/ReturnNullOverFalseRule/Failure/ReturnFalseOnly.php',
-				[ ReturnNullOverFalseRule::ERROR_MESSAGE, 9 ],
+				[ ReturnNullOverFalseRule::ERROR_MESSAGE, 8 ],
 			],
 		];
 

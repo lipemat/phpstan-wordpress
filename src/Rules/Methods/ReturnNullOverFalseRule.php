@@ -10,6 +10,7 @@ use PhpParser\Node\Stmt\Return_;
 use PhpParser\NodeFinder;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 
 /**
  * @implements Rule<Node\Stmt\ClassMethod>
@@ -19,7 +20,7 @@ class ReturnNullOverFalseRule implements Rule {
 	 * @api
 	 * @var string
 	 */
-	public const ERROR_MESSAGE = 'Returning false in non-return bool class method. Use null with type|null instead or add bool return type';
+	public const ERROR_MESSAGE = 'Returning false in a method without a `bool` return type. Return `null` with `<type>|null` or add `bool` to the return type.';
 
 	/**
 	 * @var ?NodeFinder
@@ -32,11 +33,6 @@ class ReturnNullOverFalseRule implements Rule {
 	}
 
 
-	/**
-	 * @param ClassMethod $node
-	 *
-	 * @return string[]
-	 */
 	public function processNode( Node $node, Scope $scope ): array {
 		if ( null === $node->stmts ) {
 			return [];
@@ -78,8 +74,12 @@ class ReturnNullOverFalseRule implements Rule {
 		}
 
 		if ( ! $hasTrueType && $hasFalseType ) {
+			$ruleErrorBuilder = RuleErrorBuilder::message( self::ERROR_MESSAGE );
+			$ruleErrorBuilder->identifier( 'lipemat.returnNullOverFalse' );
+			$ruleErrorBuilder->tip( 'It is preferred to return `null` when the typed value is not available.' );
+
 			return [
-				self::ERROR_MESSAGE,
+				$ruleErrorBuilder->build(),
 			];
 		}
 

@@ -11,6 +11,7 @@ use PhpParser\Node\Expr\Isset_;
 use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\TypeCombinator;
 use Rector\TypePerfect\Guard\EmptyIssetGuard;
 
@@ -33,8 +34,6 @@ class NoIssetOnObjectRule implements Rule {
 
 	/**
 	 * @param Isset_ $node
-	 *
-	 * @return string[]
 	 */
 	public function processNode( Node $node, Scope $scope ): array {
 		foreach ( $node->vars as $var ) {
@@ -42,8 +41,11 @@ class NoIssetOnObjectRule implements Rule {
 				continue;
 			}
 
+			$ruleErrorBuilder = RuleErrorBuilder::message( self::ERROR_MESSAGE );
+			$ruleErrorBuilder->identifier( 'lipemat.noIssetOnObject' );
+
 			return [
-				self::ERROR_MESSAGE,
+				$ruleErrorBuilder->build(),
 			];
 		}
 

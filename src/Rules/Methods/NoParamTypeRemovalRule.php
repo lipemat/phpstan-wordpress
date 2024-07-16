@@ -11,6 +11,7 @@ use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\Php\PhpMethodReflection;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\Type;
 
@@ -33,8 +34,6 @@ class NoParamTypeRemovalRule implements Rule {
 
 	/**
 	 * @param ClassMethod $node
-	 *
-	 * @return string[]
 	 */
 	public function processNode( Node $node, Scope $scope ): array {
 		if ( [] === $node->params ) {
@@ -57,8 +56,12 @@ class NoParamTypeRemovalRule implements Rule {
 				continue;
 			}
 
-			// removed param type!
-			return [ self::ERROR_MESSAGE ];
+			$ruleErrorBuilder = RuleErrorBuilder::message( self::ERROR_MESSAGE );
+			$ruleErrorBuilder->identifier( 'lipemat.noParamTypeRemoval' );
+
+			return [
+				$ruleErrorBuilder->build(),
+			];
 		}
 
 		return [];

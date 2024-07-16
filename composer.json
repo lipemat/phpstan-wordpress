@@ -13,7 +13,7 @@
     }
   },
   "require": {
-    "php": ">=7.2",
+    "php": ">=7.4",
     "php-stubs/wp-cli-stubs": "^2.6.0",
     "phpstan/extension-installer": "^1.1.0",
     "phpstan/phpstan": "^1.10.38",

@@ -7,21 +7,22 @@
  * - Support Progress Bar
  * - Support Table
  *
- * @link    https://github.com/php-stubs/wp-cli-stubs/pull/14
+ * @link    https://github.com/php-stubs/wp-cli-stubs/pull/19
+ * @link    https://app.asana.com/0/625351607402250/1207889298593878/f
+ *
+ * @todo    Kill this file on the next release of wp-cli-stubs. (2.10.1+)
+ *          Update readme to reflect using the tools stubs from the wp-cli-stubs repo.
  *
  * Generated via running:
- * 1. `git clone git@github.com:szepeviktor/phpstan-wordpress.git`
- * 2. `cd phpstan-wordpress`
- * 3. `composer install`
- * 4. `git clone https://github.com/wp-cli/php-cli-tools.git`
- * 5. `mv php-cli-tools/lib ./lib`
- * 6. Adjust the stub-generators/php-cli-tools-generate-stubs.sh script.
- *       1. Change the `composer require --no-interaction --update-no-dev` command to `composer require --no-interaction
- *       --with-all-dependencies` on line 23.
- * 7. `bash -x ./stub-generators/php-cli-tools-generate-stubs.sh`
- * 8. Rename the stubs file appropriately.
+ * 1. Using GitHub Codespaces.
+ * 2. Rename the `source/composer.json` to something other than `wp-cli-bundle`.
+ *    1. Also delete the PHP 7.1 and ext requirements.
+ * 3. `cd source`
+ * 4. `composer require wp-cli/wp-cli-bundle`
+ * 5. `cd ..`
+ * 6. `bash -x generate.sh`
  *
- * May also be done within GitHub Codespaces.
+ * @notice  Make have to delete the root `composer.lock` and run `composer install` to work.
  *
  * @version 0.11.22
  */

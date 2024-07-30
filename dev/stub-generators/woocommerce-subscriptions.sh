@@ -7,9 +7,10 @@
 #
 # @example `bash dev/stub-generators/woocommerce-subscriptions.sh`
 #
-# Used via `%rootDir%/../../../stubs/woocommerce-subscriptions/woocommerce-subscriptions-4.7.php` under `scanFiles`.
-
-PLUGIN_VERSION="6.2"
+# 1. Copy the generated file to your local project.
+# 2. Add `dev/stubs/woocommerce-subscriptions-<PLUGIN_VERSION>.php` to `scanFiles` in `phpstan.neon`.
+#
+PLUGIN_VERSION="6.5"
 
 ## @todo Switch to finder for exclude. See `generate-stubs --finder`.
 Get_legacy_files() {

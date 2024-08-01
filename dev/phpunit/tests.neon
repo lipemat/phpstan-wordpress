@@ -12,4 +12,3 @@ parameters:
         - ../stubs/pick-example.php
         - ../stubs/required-example.php
         - ../stubs/union-example.php
-        - ../stubs/wp-libs-scheme.php

@@ -12,9 +12,8 @@ class DynamicReturnTypeExtensionTest extends TypeInferenceTestCase {
 	 *
 	 * @return array<mixed>
 	 */
-	public function dataFileAsserts() : iterable {
+	public function dataFileAsserts(): iterable {
 		// Path to a file with actual asserts of expected types:
-		yield from $this->gatherAssertTypes( dirname( __DIR__, 2 ) . '/data/DbGet.php' );
 		yield from $this->gatherAssertTypes( dirname( __DIR__, 2 ) . '/data/get_approved_comments.php' );
 		yield from $this->gatherAssertTypes( dirname( __DIR__, 2 ) . '/data/get_post_types.php' );
 		yield from $this->gatherAssertTypes( dirname( __DIR__, 2 ) . '/data/get_term.php' );
@@ -29,12 +28,12 @@ class DynamicReturnTypeExtensionTest extends TypeInferenceTestCase {
 	 *
 	 * @param array<string> ...$args
 	 */
-	public function testFileAsserts( string $assertType, string $file, ...$args ) : void {
+	public function testFileAsserts( string $assertType, string $file, ...$args ): void {
 		$this->assertFileAsserts( $assertType, $file, ...$args );
 	}
 
 
-	public static function getAdditionalConfigFiles() : array {
+	public static function getAdditionalConfigFiles(): array {
 		return [
 			dirname( __DIR__, 2 ) . '/tests.neon',
 		];

@@ -2142,6 +2142,25 @@ namespace {
          * Helper alias for $wp_customize->add_control().
          *
          * @since 2.6.0
+         * @phpstan-param array{
+         *    instance_number?: int,
+         *    manager?: \WP_Customize_Manager,
+         *    id?: string,
+         *    settings?: array,
+         *    setting?: string,
+         *    capability?: string,
+         *    priority?: int,
+         *    section?: string,
+         *    label?: string,
+         *    description?: string,
+         *    choices?: array,
+         *    input_attrs?: array,
+         *    allow_addition?: bool,
+         *    json?: array,
+         *    type?: string,
+         *    active_callback?: callable,
+         *  }           $control
+         *
          *
          * @param string $control_name Control name.
          * @param array  $control      Control properties.
@@ -5376,9 +5395,9 @@ namespace {
      *
      * Checkbox settings are:
      *
-     * * Enable Genesis Admin Menu?
-     * * Enable SEO Settings Submenu?
-     * * Enable Import/Export Submenu?
+     * Enable Genesis Admin Menu?
+     * Enable SEO Settings Submenu?
+     * Enable Import/Export Submenu?
      *
      * @since 1.4.0
      *
@@ -5393,13 +5412,13 @@ namespace {
      *
      * Input / Textarea fields are:
      *
-     * * Custom Archive Headline
-     * * Custom Description Text
+     * Custom Archive Headline
+     * Custom Description Text
      *
      * Checkbox fields are:
      *
-     * * Enable Author Box on this User's Posts?
-     * * Enable Author Box on this User's Archives?
+     * Enable Author Box on this User's Posts?
+     * Enable Author Box on this User's Archives?
      *
      * @since 1.6.0
      *
@@ -5414,15 +5433,15 @@ namespace {
      *
      * Input / Textarea fields are:
      *
-     * * Custom Document Title
-     * * Meta Description
-     * * Meta Keywords
+     * Custom Document Title
+     * Meta Description
+     * Meta Keywords
      *
      * Checkbox fields are:
      *
-     * * Apply noindex to this archive?
-     * * Apply nofollow to this archive?
-     * * Apply noarchive to this archive?
+     * Apply noindex to this archive?
+     * Apply nofollow to this archive?
+     * Apply noarchive to this archive?
      *
      * @since 1.4.0
      *

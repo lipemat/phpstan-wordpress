@@ -2,9 +2,20 @@
 #
 # Generate Genesis stubs from the vendor directory.
 #
-# Used via `%rootDir%/../../../stubs/genesis/genesis-2.10.php` under `scanFiles`.
+# Used via `%rootDir%/../../../stubs/genesis/genesis-3.5.php` under `scanFiles`.
 
 THEME_VERSION="3.5"
+
+## @todo Switch to finder for exclude. See `generate-stubs --finder`.
+Get_legacy_files() {
+    echo "dev/source/vendor/lipemat/genesis/dev"
+    echo "dev/source/vendor/lipemat/genesis/.idea"
+    echo "dev/source/vendor/lipemat/genesis/.github"
+    echo "dev/source/vendor/lipemat/genesis/.yarn"
+}
+
+# Delete excluded files
+Get_legacy_files | xargs -- rm -v -r
 
 dev/source/vendor/bin/generate-stubs \
     --force \

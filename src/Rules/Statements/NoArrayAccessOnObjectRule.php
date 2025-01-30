@@ -8,6 +8,8 @@ use Lipe\Lib\Phpstan\Traits\TraitHelpers;
 use PhpParser\Node;
 use PhpParser\Node\Expr\ArrayDimFetch;
 use PHPStan\Analyser\Scope;
+use PHPStan\Node\Printer\ExprPrinter;
+use PHPStan\Node\Printer\Printer;
 use PHPStan\Rules;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\ObjectType;
@@ -67,8 +69,7 @@ class NoArrayAccessOnObjectRule implements Rule {
 			return [];
 		}
 
-		$parentNode = $node->getAttribute( 'parent' );
-		$isBeingSet = ( $parentNode instanceof Node\Expr\Assign && $parentNode->var === $node );
+		$isBeingSet = $scope->isInExpressionAssign( $node );
 		$ruleErrorBuilder = Rules\RuleErrorBuilder::message( self::ERROR_MESSAGE );
 
 		foreach ( $varType->getObjectClassNames() as $class ) {

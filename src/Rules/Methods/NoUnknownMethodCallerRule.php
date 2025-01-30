@@ -53,10 +53,16 @@ class NoUnknownMethodCallerRule implements Rule {
 			$this->printerStandard = new Standard();
 		}
 
+		if ( \property_exists( $node->name, 'name' ) && \is_string( $node->name->name ) ) {
+			$methodName = $node->name->name;
+		} else {
+			$methodName = 'unknown';
+		}
+
 		$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
 			\sprintf(
 				self::ERROR_MESSAGE,
-				$node->name->name ?? 'unknown',
+				$methodName,
 				$this->printerStandard->prettyPrintExpr( $node->var )
 			)
 		);

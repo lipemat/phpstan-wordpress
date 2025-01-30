@@ -25,10 +25,12 @@ services:
 # Default parameters passed to phpstan by this extension.
 parameters:
   dynamicConstantNames:
+    - ABSPATH
     - COOKIEPATH
     - DB_NAME
     - DOMAIN_CURRENT_SITE
     - SITECOOKIEPATH
     - WPCOM_IS_VIP_ENV
+    - WP_PLUGIN_DIR
   scanFiles:
     - stubs/wp.php

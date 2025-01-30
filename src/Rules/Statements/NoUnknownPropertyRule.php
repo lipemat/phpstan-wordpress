@@ -43,10 +43,16 @@ class NoUnknownPropertyRule implements Rule {
 			$this->printerStandard = new Standard();
 		}
 
+		if ( \property_exists( $node->name, 'name' ) && \is_string( $node->name->name ) ) {
+			$propName = $node->name->name;
+		} else {
+			$propName = 'unknown';
+		}
+
 		$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
 			\sprintf(
 				self::ERROR_MESSAGE,
-				$node->name->name ?? 'unknown',
+				$propName,
 				$this->printerStandard->prettyPrintExpr( $node->var )
 			)
 		);

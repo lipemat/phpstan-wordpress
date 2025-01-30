@@ -54,7 +54,7 @@ class FinalRule implements Rules\Rule {
 	 * - lipemat.allowedToBeExtended
 	 *
 	 * @param bool  $disallowAbstractClasses
-	 * @param list<class-string> $classesAllowedToBeAbstract
+	 * @param array<int, class-string> $classesAllowedToBeAbstract
 	 */
 	public function __construct( bool $disallowAbstractClasses, array $classesAllowedToBeAbstract ) {
 		$this->allowAbstractClasses = ! $disallowAbstractClasses;

@@ -8,6 +8,7 @@ use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
+use PHPStan\Reflection\ExtendedParameterReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\Php\PhpMethodReflection;
 use PHPStan\Rules\Rule;
@@ -42,7 +43,7 @@ class NoParamTypeRemovalRule implements Rule {
 
 		$classMethodName = (string) $node->name;
 		$parentClassMethodReflection = $this->matchFirstParentClassMethod( $scope, $classMethodName );
-		if ( ! $parentClassMethodReflection instanceof PhpMethodReflection ) {
+		if ( null === $parentClassMethodReflection ) {
 			return [];
 		}
 
@@ -68,14 +69,16 @@ class NoParamTypeRemovalRule implements Rule {
 	}
 
 
-	private function resolveParentParamType( PhpMethodReflection $phpMethodReflection, int $paramPosition ): Type {
+	private function resolveParentParamType( MethodReflection $phpMethodReflection, int $paramPosition ): Type {
 		foreach ( $phpMethodReflection->getVariants() as $parametersAcceptorWithPhpDoc ) {
 			foreach ( $parametersAcceptorWithPhpDoc->getParameters() as $parentParamPosition => $parameterReflectionWithPhpDoc ) {
 				if ( $paramPosition !== $parentParamPosition ) {
 					continue;
 				}
 
-				return $parameterReflectionWithPhpDoc->getNativeType();
+				if ( $parameterReflectionWithPhpDoc instanceof ExtendedParameterReflection ) {
+					return $parameterReflectionWithPhpDoc->getNativeType();
+				}
 			}
 		}
 

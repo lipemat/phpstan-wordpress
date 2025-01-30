@@ -29,13 +29,18 @@ class NoArrayAccessOnObjectRuleTest extends AbstractTestCase {
 		$paths = [
 			'array-access-on-object'        => [
 				__DIR__ . '/../../../fixtures/Statements/NoArrayAccessOnObjectRule/Failure/ArrayAccessOnObject.php',
-				[ NoArrayAccessOnObjectRule::ERROR_MESSAGE, 12 ],
+				[ NoArrayAccessOnObjectRule::ERROR_MESSAGE, 26 ],
 
 			],
 			'array-access-on-nested-object' => [
 				__DIR__ . '/../../../fixtures/Statements/NoArrayAccessOnObjectRule/Failure/ArrayAccessOnNestedObject.php',
 
-				[ NoArrayAccessOnObjectRule::ERROR_MESSAGE, 12 ],
+				[ NoArrayAccessOnObjectRule::ERROR_MESSAGE, 32 ],
+			],
+			'writing-not-allowed'           => [
+				__DIR__ . '/../../../fixtures/Statements/NoArrayAccessOnObjectRule/Failure/WritingNotAllowed.php',
+				[ NoArrayAccessOnObjectRule::ERROR_MESSAGE . '
+    💡 Reading is allowed on `WP_REST_Request`, but writing is not.', 13 ],
 			],
 		];
 

@@ -46,8 +46,35 @@ class NoConstructorParameterWithDefaultValueRule implements Rules\Rule {
 		$classReflection = $scope->getClassReflection();
 
 		if ( $classReflection->isAnonymous() ) {
-			return \array_map(
-				static function ( Node\Param $node ): Rules\RuleError {
+			return \array_values(
+				\array_map(
+					static function ( Node\Param $node ): Rules\RuleError {
+						/** @var Node\Expr\Variable $variable */
+						$variable = $node->var;
+
+						/** @var string $parameterName */
+						$parameterName = $variable->name;
+
+						$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
+							\sprintf(
+								'Constructor in anonymous class has parameter $%s with default value.',
+								$parameterName
+							)
+						);
+						$ruleErrorBuilder->identifier( 'lipemat.noAnonConstructorParameterDefaultValue' );
+
+						return $ruleErrorBuilder->build();
+					},
+					$params
+				)
+			);
+		}
+
+		$className = $classReflection->getName();
+
+		return \array_values(
+			\array_map(
+				function ( Node\Param $node ) use ( $className ) {
 					/** @var Node\Expr\Variable $variable */
 					$variable = $node->var;
 
@@ -56,40 +83,17 @@ class NoConstructorParameterWithDefaultValueRule implements Rules\Rule {
 
 					$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
 						\sprintf(
-							'Constructor in anonymous class has parameter $%s with default value.',
+							'Constructor in %s has parameter $%s with default value.',
+							$className,
 							$parameterName
 						)
 					);
-					$ruleErrorBuilder->identifier( 'lipemat.noAnonConstructorParameterDefaultValue' );
+					$ruleErrorBuilder->identifier( 'lipemat.noConstructorParameterDefaultValue' );
 
 					return $ruleErrorBuilder->build();
 				},
 				$params
-			);
-		}
-
-		$className = $classReflection->getName();
-
-		return \array_map(
-			function ( Node\Param $node ) use ( $className ) {
-				/** @var Node\Expr\Variable $variable */
-				$variable = $node->var;
-
-				/** @var string $parameterName */
-				$parameterName = $variable->name;
-
-				$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
-					\sprintf(
-						'Constructor in %s has parameter $%s with default value.',
-						$className,
-						$parameterName
-					)
-				);
-				$ruleErrorBuilder->identifier( 'lipemat.noConstructorParameterDefaultValue' );
-
-				return $ruleErrorBuilder->build();
-			},
-			$params
+			)
 		);
 	}
 }

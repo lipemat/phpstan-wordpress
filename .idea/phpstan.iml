@@ -4,8 +4,6 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="Lipe\Lib\Phpstan\" />
       <sourceFolder url="file://$MODULE_DIR$/dev/phpunit/fixtures" isTestSource="true" packagePrefix="Lipe\Lib\Phpstan\Rules\Test\Fixture\" />
-      <sourceFolder url="file://$MODULE_DIR$/dev/phpunit/tests" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php73" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/szepeviktor/phpstan-wordpress" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/extension-installer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-stubs/wp-cli-stubs" />
@@ -38,7 +36,6 @@
       <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/polyfill-php80" />
       <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor/symfony/service-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan-deprecation-rules" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan" />
       <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor" />
     </content>
     <orderEntry type="inheritedJdk" />

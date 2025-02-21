@@ -31,6 +31,7 @@ parameters:
     - DOMAIN_CURRENT_SITE
     - SITECOOKIEPATH
     - WPCOM_IS_VIP_ENV
+    - WPINC
     - WP_PLUGIN_DIR
   scanFiles:
     - stubs/wp.php

@@ -24,7 +24,7 @@ composer require lipemat/phpstan-wordpress
 ## Optional Stubs
 
 1. <a href="https://github.com/php-stubs/wp-cli-stubs">WP-CLI stubs</a>.
-2. <a href="https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/wp-cli/php-cli-tools-0.11.11.php">WP-CLI Tools Stubs</a>.
+2. ~~WP-CLI Tools Stubs.~~ Included in the [wp-cli-stubs](https://github.com/php-stubs/wp-cli-stubs/blob/master/wp-cli-tools-stubs.php) package since version 2.11.0.
 3. [CMB2 stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/cmb2/)
 4. [Genesis stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/genesis/)
 5. [VIP stubs](https://github.com/lipemat/phpstan-wordpress/tree/master/stubs/vip.php) some stubs for WP VIP environments.
@@ -38,11 +38,11 @@ These may be selectively added to your `phpstan.neon` or `phpstan.neon.dist` lik
 scanFiles:
   - %rootDir%/../../../stubs/cmb2/cmb2-3.10.php
   - %rootDir%/../../../stubs/genesis/genesis-3.4.php
-  - %rootDir%/../../../stubs/wp-cli/php-cli-tools-0.11.php
   - %rootDir%/../../../stubs/vip.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php
+  - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-tools-stubs.php
 ```
 
 ### When using library as composer dependency
@@ -51,11 +51,11 @@ scanFiles:
 scanFiles:
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/cmb2/cmb2-3.10.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/genesis/genesis-3.4.php
-  - %rootDir%/../../lipemat/phpstan-wordpress/stubs/wp-cli/php-cli-tools-0.11.php
   - %rootDir%/../../lipemat/phpstan-wordpress/stubs/vip.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php
   - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php
+  - %rootDir%/../../php-stubs/wp-cli-stubs/wp-cli-tools-stubs.php
 ```
 
 Alternatively, you may replace `%rootDir%/../../` with the relative path to your `vendor` directory.

@@ -2534,7 +2534,7 @@ namespace {
          *
          * @since 3.1.0
          */
-        public function enqueue_block_editor_scripts()
+        public function enqueue_block_editor_scripts() : void
         {
         }
         /**
@@ -2593,9 +2593,10 @@ namespace {
          * @since 3.1.1
          *
          * @param string $post_type Defaults to current post type if not passed.
-         * @return array Genesis editor sidebar panels that should be displayed for the given post type, with key as panel name.
+         *
+         * @return array{string: 1} Genesis editor sidebar panels that should be displayed for the given post type, with key as panel name.
          */
-        public function visible_genesis_sidebar_panels($post_type = '')
+        public function visible_genesis_sidebar_panels($post_type = '') : array
         {
         }
     }
@@ -3027,6 +3028,14 @@ namespace {
      * Data returned can be saved to a transient to avoid http calls on every page load.
      *
      * @since 2.7.0
+     *
+     * @phpstan-type DATA array{
+     *      theme: string,
+     *      url: string,
+     *      new_version: string,
+     *      package: string,
+     *      changelog_url: string,
+     *  }
      */
     class Genesis_Update_Check
     {
@@ -3081,11 +3090,12 @@ namespace {
         /**
          * The results of an update check.
          *
-         * @var array
-         *
          * @since 2.7.0
+         *
+         * @var array
+         * @phpstan-var DATA|array{}
          */
-        protected array $update = [];
+        protected array $update;
         /**
          * Constructor.
          *
@@ -3100,6 +3110,7 @@ namespace {
          *
          * @since 2.7.0
          *
+         * @phpstan-return DATA|array{}
          * @return array Array of update information.
          */
         public function get_update() : array
@@ -3133,7 +3144,9 @@ namespace {
          *
          * @since 2.7.0
          *
-         * @throws JsonException
+         * @throws JsonException -- If the response is not valid JSON.
+         *
+         * @phpstan-return DATA|array{}
          * @return array
          */
         protected function get_asset_from_github_release() : array

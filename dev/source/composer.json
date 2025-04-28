@@ -15,8 +15,8 @@
   },
   "require-dev": {
     "php": "^8.2",
-    "lipemat/cmb2": "~2.10.1.7",
-    "lipemat/genesis": "~3.5.0.15",
+    "lipemat/cmb2": "~2.10.1.19",
+    "lipemat/genesis": "~3.5.0.18",
     "php-stubs/generator": "^0.8.4",
     "roave/security-advisories": "dev-latest"
   }

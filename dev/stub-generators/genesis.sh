@@ -2,9 +2,9 @@
 #
 # Generate Genesis stubs from the vendor directory.
 #
-# Used via `%rootDir%/../../../stubs/genesis/genesis-3.5.php` under `scanFiles`.
+# Used via `%rootDir%/../../../stubs/genesis/genesis-3.6.php` under `scanFiles`.
 
-THEME_VERSION="3.5"
+THEME_VERSION="3.6"
 
 ## @todo Switch to finder for exclude. See `generate-stubs --finder`.
 Get_legacy_files() {

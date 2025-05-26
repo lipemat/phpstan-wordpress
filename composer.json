@@ -16,11 +16,11 @@
     "php": ">=7.4",
     "php-stubs/wp-cli-stubs": "^2.11.0",
     "phpstan/extension-installer": "^1.4.3",
-    "phpstan/phpstan": "^2.1.11",
-    "szepeviktor/phpstan-wordpress": "^2.0.1"
+    "phpstan/phpstan": "^2.1.17",
+    "szepeviktor/phpstan-wordpress": "^2.0.2"
   },
   "require-dev": {
-    "phpstan/phpstan-deprecation-rules": "^2.0.1",
+    "phpstan/phpstan-deprecation-rules": "^2.0.3",
     "phpstan/phpstan-strict-rules": "^2.0.4",
     "roave/security-advisories": "dev-latest"
   },

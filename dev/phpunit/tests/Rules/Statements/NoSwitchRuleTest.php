@@ -9,10 +9,10 @@ use PHPStan\Rules\Rule;
 final class NoSwitchRuleTest extends AbstractTestCase {
 	use \StaticRule;
 
-	private static $message = "Control structures using `switch` should not be used.\n    💡 The `switch` statement uses loose comparison.";
+	private static string $message = "Control structures using `switch` should not be used.\n    💡 The `switch` statement uses loose comparison. Consider using a `match` statement instead.";
 
 
-	public static function provideCasesWhereAnalysisShouldSucceed(): iterable {
+	public static function provideCasesWhereAnalysisShouldSucceed(): \Generator {
 		$paths = [
 			'isset-used' => __DIR__ . '/../../../fixtures/Statements/NoSwitchRule/Success/switch-not-used.php',
 			'match-used' => __DIR__ . '/../../../fixtures/Statements/NoSwitchRule/Success/match-used.php',
@@ -26,25 +26,19 @@ final class NoSwitchRuleTest extends AbstractTestCase {
 	}
 
 
-	public static function provideCasesWhereAnalysisShouldFail(): iterable {
-		if ( PHP_VERSION_ID >= 80000 ) {
-			$message = self::$message . 'Consider using a `match` statement instead.';
-		} else {
-			$message = self::$message;
-		}
-
+	public static function provideCasesWhereAnalysisShouldFail(): \Generator {
 		$paths = [
 			'switch-used-with-correct-case'   => [
 				__DIR__ . '/../../../fixtures/Statements/NoSwitchRule/Failure/switch-used-with-correct-case.php',
 				[
-					$message,
+					self::$message,
 					5,
 				],
 			],
 			'switch-used-with-incorrect-case' => [
 				__DIR__ . '/../../../fixtures/Statements/NoSwitchRule/Failure/switch-used-with-incorrect-case.php',
 				[
-					$message,
+					self::$message,
 					5,
 				],
 			],

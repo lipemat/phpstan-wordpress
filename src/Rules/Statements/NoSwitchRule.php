@@ -21,11 +21,7 @@ class NoSwitchRule implements Rules\Rule {
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
 		$ruleErrorBuilder = Rules\RuleErrorBuilder::message( 'Control structures using `switch` should not be used.' );
 		$ruleErrorBuilder->identifier( 'lipemat.noSwitch' );
-		if ( PHP_VERSION_ID >= 80000 ) {
-			$ruleErrorBuilder->addTip( 'The `switch` statement uses loose comparison. Consider using a `match` statement instead.' );
-		} else {
-			$ruleErrorBuilder->addTip( 'The `switch` statement uses loose comparison.' );
-		}
+		$ruleErrorBuilder->addTip( 'The `switch` statement uses loose comparison. Consider using a `match` statement instead.' );
 
 		return [
 			$ruleErrorBuilder->build(),

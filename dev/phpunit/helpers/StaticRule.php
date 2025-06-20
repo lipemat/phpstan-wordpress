@@ -4,7 +4,7 @@ declare( strict_types=1 );
 use PHPStan\Rules\Rule;
 
 trait StaticRule {
-	protected static $rule;
+	protected static Rule $rule;
 
 
 	/**
@@ -15,7 +15,7 @@ trait StaticRule {
 	 *
 	 * @return Rule
 	 */
-	final protected static function staticRule( Rule $rule ) {
+	final protected static function staticRule( Rule $rule ): Rule {
 		if ( ! isset( self::$rule ) ) {
 			self::$rule = $rule;
 		}

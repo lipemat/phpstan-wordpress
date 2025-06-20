@@ -3,6 +3,9 @@
   <component name="SharedFileColors">
     <fileColor scope="Non-Project Files" color="Yellow" />
     <fileColor scope="Tests" color="Green" />
-    <fileColor scope="Core Files" color="2b2b2b" />
+    <fileColor scope="Theme Files" color="1f1f1f" />
+    <fileColor scope="Core Files" color="1f1f1f" />
+    <fileColor scope="WP-Libs" color="2b1700" />
+    <fileColor scope="WP Core / 3rd Party" color="2b2d30" />
   </component>
 </project>

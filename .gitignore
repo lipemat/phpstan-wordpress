@@ -5,6 +5,7 @@ composer.lock
 !/dev/source/composer.json
 stubs/woocommerce-subscriptions
 
+.phpunit.cache
 .phpunit.result.cache
 
 # PHPStorm files

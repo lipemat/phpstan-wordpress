@@ -16,7 +16,7 @@ class PickTest extends TypeInferenceTestCase {
 	 *
 	 * @return array<mixed>
 	 */
-	public function dataFileAsserts(): iterable {
+	public static function dataFileAsserts(): iterable {
 		yield from self::gatherAssertTypes( dirname( __DIR__, 3 ) . '/data/TypeNodeResolver/PickExample.php' );
 	}
 

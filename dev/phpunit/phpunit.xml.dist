@@ -1,8 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Version 2.0.8 -->
 <phpunit
-    bootstrap="bootstrap.php"
-    colors="true"
-    failOnRisky="true"
-    failOnWarning="true"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+	beStrictAboutOutputDuringTests="true"
+	bootstrap="bootstrap.php"
+	cacheDirectory=".phpunit.cache"
+	colors="true"
+	displayDetailsOnIncompleteTests="true"
+	displayDetailsOnSkippedTests="true"
+	displayDetailsOnTestsThatTriggerDeprecations="true"
+	displayDetailsOnTestsThatTriggerNotices="true"
+	displayDetailsOnTestsThatTriggerWarnings="true"
+	displayDetailsOnPhpunitDeprecations="true"
+	failOnDeprecation="true"
+	failOnEmptyTestSuite="true"
+	failOnNotice="true"
+	failOnRisky="true"
+	failOnWarning="true"
+	stopOnError="true"
+	stopOnFailure="true"
 >
     <testsuites>
         <testsuite name="main">

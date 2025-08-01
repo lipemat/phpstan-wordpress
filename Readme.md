@@ -165,29 +165,30 @@ Enable in your `phpstan.neon` or `phpstan.neon.dist` like so:
 
 ```yml
 includes:
-# If you are using this library as a global install
+# If you are using this library as a globally installed library.
   - %rootDir%/../../../rules.neon
-# If you are using this library as a composer dependency
+# If you are using this library as a composer dependency.
   - %rootDir%/../../lipemat/phpstan-wordpress/rules.neon
   
 ```
 
 1. Prevent using the `compact` function.
-2. Require all classes to be either abstract or final.
-3. Require a `declare(strict_types=1)` statement in every non-empty file.
-4. Prevent using default values in class constructors.
-5. Prevent declaring a method `protected` in a final class in favor of `private`.
-6. Prevent using the `switch` statement in favor of `match`.
-7. Require any concrete methods in abstract classes to be `private` or `final`.
-8. Prevent child classes from skipping parent parameter types.
-9. Prevent calls to methods on unknown classes.
-10. Prefer returning null over false unless boolean is expected.
-11. Prohibit using `ArrayAccess` to access class data.
-12. Require `instance of` instead of `isset` for object verification.
+2. Prevent using the `extract` function.
+3. Require all classes to be either abstract or final.
+4. Require a `declare(strict_types=1)` statement in every non-empty file.
+5. Prevent using default values in class constructors.
+6. Prevent declaring a method `protected` in a final class in favor of `private`.
+7. Prevent using the `switch` statement in favor of `match`.
+8. Require any concrete methods in abstract classes to be `private` or `final`.
+9. Prevent child classes from skipping parent parameter types.
+10. Prevent calls to methods on unknown classes.
+11. Prefer returning null over false unless boolean is expected.
+12. Prohibit using `ArrayAccess` to access class data.
+13. Require `instance of` instead of `isset` for object verification.
 
 ### Distributed plugins or themes
 Some rules assume you are working on a private project which will not be distributed to the community. 
-If your project will be distributed, you may add the `nonDistributed` parameter to the `lipemat` parameter.
+If your project is distributed, you may add the `nonDistributed` parameter to the `lipemat` parameter.
 
 ```yml
 parameters:

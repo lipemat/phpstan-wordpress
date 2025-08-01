@@ -24,7 +24,7 @@ class NoCompactRule implements Rules\Rule {
 			return [];
 		}
 
-		if ( 'compact' !== $scope->resolveName( $node->name ) ) {
+		if ( 'compact' !== \strtolower( $scope->resolveName( $node->name ) ) ) {
 			return [];
 		}
 

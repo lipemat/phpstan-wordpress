@@ -2,6 +2,9 @@ services:
 - class: Lipe\Lib\Phpstan\Rules\Expressions\NoCompactRule
   tags:
     - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Expressions\NoExtractRule
+  tags:
+    - phpstan.rules.rule
 - class: Lipe\Lib\Phpstan\Rules\Methods\NoConstructorParameterWithDefaultValueRule
   tags:
     - phpstan.rules.rule

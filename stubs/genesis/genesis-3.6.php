@@ -62,6 +62,133 @@ namespace StudioPress\Genesis\Args {
         public const TAXONOMY_ARCHIVE_DESCRIPTION = 'taxonomy-archive-description';
     }
     /**
+     * A fluent interface for configuring Genesis custom header options.
+     *
+     * @author Mat Lipe
+     * @since  3.6.0.1
+     *
+     * @phpstan-type CUSTOM_HEADER_ARGS array{
+     *     admin_header_callback: string,
+     *     header_callback: string,
+     *     header_image: string,
+     *     height: int,
+     *     no_header_text: bool,
+     *     textcolor: string,
+     *     width: int,
+     * }
+     *
+     * @implements ArgsRules<\Partial<CUSTOM_HEADER_ARGS>>
+     */
+    final class Genesis_Custom_Header implements \Lipe\Lib\Args\ArgsRules
+    {
+        /**
+         * @use Args<\Partial<CUSTOM_HEADER_ARGS>>
+         */
+        use \Lipe\Lib\Args\Args;
+        /**
+         * Width of the custom header image.
+         *
+         * @var int
+         */
+        public int $width;
+        /**
+         * Height of the custom header image.
+         *
+         * @var int
+         */
+        public int $height;
+        /**
+         * Default text color for the header text (without #).
+         *
+         * @var string
+         */
+        public string $textcolor;
+        /**
+         * Whether to disable header text display.
+         *
+         * @var bool
+         */
+        public bool $no_header_text;
+        /**
+         * Path to the default header image.
+         * Use %s as a placeholder for stylesheet directory URI.
+         *
+         * @var string
+         */
+        public string $header_image;
+        /**
+         * Callback function for header display.
+         *
+         * @var callable
+         */
+        public $header_callback;
+        /**
+         * Callback function for admin header display.
+         *
+         * @var string
+         */
+        public string $admin_header_callback;
+    }
+    /**
+     * A fluent interface for configuring Genesis custom logo options.
+     *
+     * @author Mat Lipe
+     * @since  3.6.0.1
+     *
+     * @phpstan-type CUSTOM_LOGO_ARGS array{
+     *     height: int,
+     *     width: int,
+     *     flex_height: bool,
+     *     flex_width: bool,
+     *     header_text: string,
+     * }
+     *
+     * @implements ArgsRules<\Partial<CUSTOM_LOGO_ARGS>>
+     */
+    final class Genesis_Custom_Logo implements \Lipe\Lib\Args\ArgsRules
+    {
+        /**
+         * @use Args<\Partial<CUSTOM_LOGO_ARGS>>
+         */
+        use \Lipe\Lib\Args\Args;
+        /**
+         * Height of the custom logo.
+         *
+         * @var int
+         */
+        public int $height;
+        /**
+         * Width of the custom logo.
+         *
+         * @var int
+         */
+        public int $width;
+        /**
+         * Whether to enable flexible height.
+         *
+         * @var bool
+         */
+        public bool $flex_height;
+        /**
+         * Whether to enable flexible width.
+         *
+         * @var bool
+         */
+        public bool $flex_width;
+        /**
+         * Header text configuration.
+         *
+         * @var string
+         */
+        public string $header_text;
+        /**
+         * Whether to unlink the homepage logo.
+         *
+         * @var bool
+         */
+        public bool $unlink_homepage_logo;
+    }
+    /**
      * A fluent interface for calling `genesis_footer_copyright_shortcode()`.
      *
      * @author Mat Lipe
@@ -122,11 +249,11 @@ namespace StudioPress\Genesis\Args {
      *
      * @phpstan-type MarkupArgs array{
      *     atts: array<string, string>,
+     *     class: string|\Stringable,
      *     close: string,
      *     content: string,
      *     context: Genesis_Attr::*,
      *     echo: bool,
-     *     html5: string,
      *     open: string,
      *     params: array<string, mixed>,
      * }
@@ -144,6 +271,12 @@ namespace StudioPress\Genesis\Args {
          * @var array<string, string>
          */
         public array $atts = [];
+        /**
+         * A CSS class to be added to the markup.
+         *
+         * @var string|\Stringable
+         */
+        public string|\Stringable $class;
         /**
          * Closing HTML markup.
          *
@@ -172,12 +305,6 @@ namespace StudioPress\Genesis\Args {
          * @var bool
          */
         public bool $echo;
-        /**
-         * Legacy HTML5 markup.
-         *
-         * @var string
-         */
-        public string $html5 = '';
         /**
          * Opening HTML markup.
          *
@@ -4813,8 +4940,7 @@ namespace Required\Traduttore_Registry {
     }
 }
 namespace {
-
-	/**
+    /**
      * This function outputs a 404 "Not Found" error message.
      *
      * @since 1.6
@@ -6812,22 +6938,22 @@ namespace {
      * - Applies a `genesis_markup_{context}` filter early to allow shortcutting the function.
      * - Applies a `genesis_markup_{context}_output` filter at the end.
      *
-     *
-     * @phpstan-param \Partial<array{
-     *  atts: array<string, string>,
-     *  close: string,
-     *  content: string,
-     *  context: Genesis_Attr::*,
-     *  echo: bool,
-     *  html5: string,
-     *  open: string,
-     *  params: array<string, mixed>,
-     *  }> $args
+     * @phpstan-param Genesis_Markup|\Partial<array{
+     *      atts: array<string, string>,
+     *      class: string|\Stringable,
+     *      close: string,
+     *      content: string,
+     *      context: Genesis_Attr::*,
+     *      echo: bool,
+     *      html5: string,
+     *      open: string,
+     *      params: array<string, mixed>,
+     * }> $args
      *
      * @param array $args {
      *                    Contains markup arguments.
      *
-     * @type string html5   Legacy HTML5 markup.
+     * @type string class   CSS class name to be added to the markup.
      * @type string context Markup context. (Genesis_Attr::*)
      * @type string open    Opening HTML markup.
      * @type string close   Closing HTML markup.
@@ -6838,7 +6964,9 @@ namespace {
      *                    }
      * @return string|null Markup.
      */
-    function genesis_markup($args = []): ?string {}
+    function genesis_markup(array|\StudioPress\Genesis\Args\Genesis_Markup $args = []): ?string
+    {
+    }
     /**
      * Merge array of attributes with defaults, and apply contextual filter on array.
      *
@@ -9421,17 +9549,6 @@ namespace {
     function genesis_footer_scripts()
     {
     }
-    /**
-     * Genesis Framework.
-     *
-     * WARNING: This file is part of the core Genesis Framework. DO NOT edit this file under any circumstances.
-     * Please do all modifications in the form of a child theme.
-     *
-     * @package Genesis\Header
-     * @author  StudioPress
-     * @license GPL-2.0-or-later
-     * @link    https://my.studiopress.com/themes/genesis/
-     */
     /**
      * If rendering a block template, add the genesis meta via the `wp_head`.
      *

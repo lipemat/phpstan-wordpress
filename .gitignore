@@ -16,10 +16,8 @@ stubs/woocommerce-subscriptions
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-.idea/csv-editor.xml
-.idea/csv-plugin.xml
-.idea/php.xml
-.idea/sshConfigs.xml
+# AWS User-specific
+.idea/**/aws.xml
 # Generated files
 .idea/**/contentModel.xml
 # Sensitive or high-churn files
@@ -32,7 +30,15 @@ stubs/woocommerce-subscriptions
 .idea/**/dbnavigator.xml
 # JIRA plugin
 atlassian-ide-plugin.xml
-# Editor-based Rest Client
+# Editor-based HTTP Client
 .idea/httpRequests
+http-client.private.env.json
 # Copilot
 .idea/copilot
+.idea/copilotDiffState.xml
+.idea/copilot.data.migration.*
+# System configs
+.idea/csv-editor.xml
+.idea/csv-plugin.xml
+.idea/php.xml
+.idea/sshConfigs.xml

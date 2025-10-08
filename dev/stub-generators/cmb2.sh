@@ -4,7 +4,7 @@
 #
 # Used via `%rootDir%/../../../stubs/cmb2/cmb2-2.9.php` under `scanFiles`.
 
-PLUGIN_VERSION="2.10"
+PLUGIN_VERSION="2.11"
 
 dev/source/vendor/bin/generate-stubs \
 --force \

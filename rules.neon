@@ -11,9 +11,6 @@ services:
 - class: Lipe\Lib\Phpstan\Rules\Methods\NoParamTypeRemovalRule
   tags:
     - phpstan.rules.rule
-- class: Lipe\Lib\Phpstan\Rules\Methods\PrivateInFinalClassRule
-  tags:
-    - phpstan.rules.rule
 - class: Lipe\Lib\Phpstan\Rules\Methods\ReturnNullOverFalseRule
   tags:
     - phpstan.rules.rule

@@ -23,7 +23,6 @@ class FinalRule implements Rules\Rule {
 	 * @var array<int, string>
 	 */
 	private static $defaultAllowedToBeAbstract = [
-		'Lipe\\Lib\\Schema\\Db',
 		'Lipe_Project_WP_Object_Cache',
 	];
 
@@ -53,7 +52,7 @@ class FinalRule implements Rules\Rule {
 	 * - lipemat.noExtends
 	 * - lipemat.allowedToBeExtended
 	 *
-	 * @param bool  $disallowAbstractClasses
+	 * @param bool                     $disallowAbstractClasses
 	 * @param array<int, class-string> $classesAllowedToBeAbstract
 	 */
 	public function __construct( bool $disallowAbstractClasses, array $classesAllowedToBeAbstract ) {

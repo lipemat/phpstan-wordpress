@@ -53,6 +53,7 @@ class Union implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;
+		/** @var ConstantArrayType[] $passedTypes */
 		$passedTypes = \array_filter(
 			\array_map(
 				function( TypeNode $typeNode ) use ( $nameScope ): ?ConstantArrayType {

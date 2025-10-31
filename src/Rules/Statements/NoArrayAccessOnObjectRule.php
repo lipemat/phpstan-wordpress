@@ -8,8 +8,6 @@ use Lipe\Lib\Phpstan\Traits\TraitHelpers;
 use PhpParser\Node;
 use PhpParser\Node\Expr\ArrayDimFetch;
 use PHPStan\Analyser\Scope;
-use PHPStan\Node\Printer\ExprPrinter;
-use PHPStan\Node\Printer\Printer;
 use PHPStan\Rules;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\ObjectType;
@@ -35,6 +33,7 @@ class NoArrayAccessOnObjectRule implements Rule {
 	private const ALLOWED_CLASSES = [
 		'Aws\ResultInterface',
 		'Iterator',
+		'Lipe\Lib\Theme\Class_Names',
 		'Pimple\Container',
 		'SimpleXMLElement',
 		'SplFixedArray',
@@ -42,6 +41,7 @@ class NoArrayAccessOnObjectRule implements Rule {
 		'Symfony\Component\OptionsResolver\Options',
 
 	];
+
 	/**
 	 * These classes have working types when reading, but
 	 * unable to properly resolve when writing.

@@ -8,14 +8,16 @@
 # 4. Workflow permissions
 # 5. Enable "read and write permissions"
 #
-# @version 3.0.1
+# @version 4.0.0
 #
 ###################################################
 
 name: Create GitHub Release
 run-name: Create release for ${{ github.ref_name }} on GitHub.
+
 permissions:
   contents: write
+  models: read
 
 on:
   push:
@@ -24,4 +26,4 @@ on:
 
 jobs:
   create-release:
-    uses: lipemat/public-actions/.github/workflows/create-release.yml@version/1
+    uses: lipemat/public-actions/.github/workflows/create-release.yml@version/2

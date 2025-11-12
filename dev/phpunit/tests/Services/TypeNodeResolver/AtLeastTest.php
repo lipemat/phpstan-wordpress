@@ -4,6 +4,7 @@ declare( strict_types=1 );
 namespace Lipe\Lib\Phpstan\Services\TypeNodeResolver;
 
 use PHPStan\Testing\TypeInferenceTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * @author Mat Lipe
@@ -24,10 +25,9 @@ class AtLeastTest extends TypeInferenceTestCase {
 	/**
 	 * Go through each `yield` from `dataFileAsserts` and validate the returned types.
 	 *
-	 * @dataProvider dataFileAsserts
-	 *
 	 * @param array<string> ...$args
 	 */
+	#[DataProvider( 'dataFileAsserts' )]
 	public function test_resolve( string $assertType, string $file, ...$args ): void {
 		$this->assertFileAsserts( $assertType, $file, ...$args );
 	}

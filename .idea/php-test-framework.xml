@@ -5,7 +5,7 @@
       <tool tool_name="PHPUnit">
         <cache>
           <versions>
-            <info id="LocalE:\scripts\phpunit\phpunit-10\phpunit-10.phar" version="10.5.48" />
+            <info id="LocalE:\scripts\phpunit\phpunit-11\phpunit-11.phar" version="11.5.42" />
           </versions>
         </cache>
       </tool>

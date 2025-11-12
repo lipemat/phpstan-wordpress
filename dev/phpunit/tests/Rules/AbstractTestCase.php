@@ -5,11 +5,10 @@ declare( strict_types=1 );
 namespace Lipe\Lib\Phpstan\Rules;
 
 use PHPStan\Testing\RuleTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 abstract class AbstractTestCase extends RuleTestCase {
-	/**
-	 * @dataProvider provideCasesWhereAnalysisShouldSucceed
-	 */
+	#[DataProvider( 'provideCasesWhereAnalysisShouldSucceed' )]
 	final public function testAnalysisSucceeds( string $path ): void {
 		self::assertFileExists( $path );
 
@@ -18,13 +17,11 @@ abstract class AbstractTestCase extends RuleTestCase {
 				$path,
 			],
 			[]
-        );
+		);
 	}
 
 
-	/**
-	 * @dataProvider provideCasesWhereAnalysisShouldFail
-	 */
+	#[DataProvider( 'provideCasesWhereAnalysisShouldFail' )]
 	final public function testAnalysisFails( string $path, array $error ): void {
 		self::assertFileExists( $path );
 
@@ -35,7 +32,7 @@ abstract class AbstractTestCase extends RuleTestCase {
 			[
 				$error,
 			]
-        );
+		);
 	}
 
 

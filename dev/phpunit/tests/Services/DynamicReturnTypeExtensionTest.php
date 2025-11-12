@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace Lipe\Lib\Phpstan\Services;
 
 use PHPStan\Testing\TypeInferenceTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class DynamicReturnTypeExtensionTest extends TypeInferenceTestCase {
 	/**
@@ -24,10 +25,9 @@ class DynamicReturnTypeExtensionTest extends TypeInferenceTestCase {
 	/**
 	 * Go through each `yield` from `dataFileAsserts` and validate the returned types.
 	 *
-	 * @dataProvider dataFileAsserts
-	 *
 	 * @param array<string> ...$args
 	 */
+	#[DataProvider( 'dataFileAsserts' )]
 	public function testFileAsserts( string $assertType, string $file, ...$args ): void {
 		$this->assertFileAsserts( $assertType, $file, ...$args );
 	}

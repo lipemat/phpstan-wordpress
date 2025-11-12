@@ -6132,6 +6132,46 @@ namespace {
     {
     }
     /**
+     * Sanitize HTML content for shortcode attributes.
+     *
+     * Uses WordPress core's wp_kses() function with the 'post' context allowlist,
+     * always excluding script tags unless explicitly overridden via the
+     * 'genesis_shortcode_attribute_allowed_html' filter.
+     *
+     * @since 3.6.1
+     *
+     * @param string $content Content to sanitize.
+     * @return string Sanitized content with disallowed HTML removed.
+     */
+    function genesis_sanitize_shortcode_attribute_html($content)
+    {
+    }
+    /**
+     * Sanitize an array of shortcode attributes by removing disallowed HTML.
+     *
+     * @since 3.6.1
+     *
+     * @param array $atts   Shortcode attributes array.
+     * @param array $keys   Array of attribute keys to sanitize.
+     * @return array Sanitized attributes array.
+     *
+     * @example
+     * $atts = [
+     *     'before' => '<script>alert("xss")</script><strong>Bold</strong>',
+     *     'after'  => '<em>Italic</em>',
+     *     'other'   => 'unchanged'
+     * ];
+     * $sanitized = genesis_sanitize_shortcode_attributes( $atts, [ 'before', 'after' ] );
+     * // Result: [
+     * //     'before' => '<strong>Bold</strong>',
+     * //     'after'  => '<em>Italic</em>',
+     * //     'other'   => 'unchanged'
+     * // ];
+     */
+    function genesis_sanitize_shortcode_attributes($atts, $keys)
+    {
+    }
+    /**
      * Enable the author box for ALL users.
      *
      * @since 1.4.1

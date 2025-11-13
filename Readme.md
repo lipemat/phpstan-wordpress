@@ -178,6 +178,7 @@ includes:
 4. Require a `declare(strict_types=1)` statement in every non-empty file.
 5. Prevent using default values in class constructors.
 6. Prevent declaring a method `protected` in a final class in favor of `private`.
+   1. Rule is now disabled by default but may be enabled manually.
 7. Prevent using the `switch` statement in favor of `match`.
 8. Require any concrete methods in abstract classes to be `private` or `final`.
 9. Prevent child classes from skipping parent parameter types.

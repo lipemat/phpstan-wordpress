@@ -10,7 +10,7 @@
 # 1. Copy the generated file to your local project.
 # 2. Add `dev/stubs/woocommerce-subscriptions-<PLUGIN_VERSION>.php` to `scanFiles` in `phpstan.neon`.
 #
-PLUGIN_VERSION="6.5"
+PLUGIN_VERSION="8.1"
 
 ## @todo Switch to finder for exclude. See `generate-stubs --finder`.
 Get_legacy_files() {

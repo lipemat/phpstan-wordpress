@@ -13,7 +13,6 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\TypeCombinator;
-use Rector\TypePerfect\Guard\EmptyIssetGuard;
 
 /**
  * Prevent using isset() on an object in favor of instanceof.

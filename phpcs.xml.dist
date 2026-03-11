@@ -1,26 +1,36 @@
 <?xml version="1.0"?>
-<ruleset name="WP PHPCS - Rules">
-	<!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset -->
+<ruleset
+    name="PHPStan - Rules"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/refs/heads/master/phpcs.xsd"
+>
+    <!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset -->
 
-    <description>The custom ruleset for the WP PHPCS itself.</description>
+    <description>Ruleset for the PHPStan library.</description>
+    <!-- Version: 4.4.0 -->
 
-    <!-- Show file path based on project root. -->
+    <!-- Include when not specified -->
+    <file>./src</file>
+
+    <!-- Show the file path based on the project root. -->
     <arg name="basepath" value="." />
-    <!-- Sniff both PHP and JS. -->
+
+    <!-- Cache between runs -->
+    <arg name="cache" value="./.phpcs.cache" />
+
     <arg name="extensions" value="php/PHP" />
     <!-- Show sniff codes in all reports, and progress when running. -->
     <arg value="sp" />
 
     <!-- @see https://github.com/PHPCompatibility/PHPCompatibility#using-a-custom-ruleset -->
-    <config name="testVersion" value="7.2-" />
+    <config name="testVersion" value="8.2-" />
+
     <!-- @see https://github.com/PHPCompatibility/PHPCompatibilityWP#how-to-use -->
     <rule ref="PHPCompatibilityWP" />
 
-    <!-- Include when not specified -->
-    <file>./src</file>
 
-	<exclude-pattern>*/dev/*</exclude-pattern>
-	<exclude-pattern>*/stubs/*</exclude-pattern>
+    <exclude-pattern>*/dev/*</exclude-pattern>
+    <exclude-pattern>*/stubs/*</exclude-pattern>
 
     <rule ref="Universal.Classes.DisallowFinalClass">
         <type>error</type>
@@ -30,7 +40,7 @@
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
         <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing.SpaceAfterIncrement" />
 
-		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
+        <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
 
         <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
 

@@ -5,8 +5,33 @@ composer.lock
 !/dev/source/composer.json
 stubs/woocommerce-subscriptions
 
+# system/hidden files
+*.bak
+*.code-workspace
+*.map
+*.sublime-project
+*.sublime-workspace
+*.swp
+*~
+.DS_Store
+.DS_Store?
+.Trashes
+.cvs
+.eslintcache
+.phpcs.cache
 .phpunit.cache
 .phpunit.result.cache
+.project
+.ready
+.running
+.sass-cache
+.stylelintcache
+.svn
+.vscode
+Thumbs.db
+apple-developer-merchantid-domain-association
+ehthumbs.db
+tsconfig.tsbuildinfo
 
 # PHPStorm files
 # https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
@@ -21,6 +46,7 @@ stubs/woocommerce-subscriptions
 # Generated files
 .idea/**/contentModel.xml
 # Sensitive or high-churn files
+.idea/data_source_mapping.xml
 .idea/**/dataSources/
 .idea/**/dataSources.ids
 .idea/**/dataSources.local.xml

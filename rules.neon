@@ -5,6 +5,11 @@ services:
 - class: Lipe\Lib\Phpstan\Rules\Expressions\NoExtractRule
   tags:
     - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Internal\TemplatePartExistsRule
+  tags:
+    - phpstan.rules.rule
+  arguments:
+    themePath: %lipemat.themePath%
 - class: Lipe\Lib\Phpstan\Rules\Internal\TemplatePartFunctionExistsRule
   tags:
     - phpstan.rules.rule

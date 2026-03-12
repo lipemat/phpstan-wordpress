@@ -16,7 +16,6 @@ final class TemplatePartFunctionExistsRuleTest extends RuleTestCase {
 	protected function getRule(): TemplatePartFunctionExistsRule {
 		return new TemplatePartFunctionExistsRule( 'fixtures/Internal/TemplatePartFunctionExistsRule',
 			new FileHelper( \dirname( __DIR__, 3 ) ),
-			\dirname( __DIR__, 3 )
 		);
 	}
 

@@ -14,7 +14,8 @@ use PHPUnit\Framework\Attributes\DataProvider;
  */
 final class TemplatePartExistsRuleTest extends RuleTestCase {
 	protected function getRule(): TemplatePartExistsRule {
-		return new TemplatePartExistsRule( new FileHelper( __DIR__ ) );
+		return new TemplatePartExistsRule( 'fixtures/Internal/TemplatePartExistsRule',
+			new FileHelper( \dirname( __DIR__, 3 ) ) );
 	}
 
 
@@ -39,26 +40,28 @@ final class TemplatePartExistsRuleTest extends RuleTestCase {
 
 
 	#[DataProvider( 'providePaths' )]
-	public function testTranslateTempPath( string $raw_path, string $expected_path ): void {
+	public function testGetTemplatePath( string $raw_path, string $expected_path ): void {
 		$rule = $this->getRule();
-		$translated_path = $rule->translateTempPath( $raw_path );
+		$translated_path = $rule->getTemplatePath( $raw_path );
 		$this->assertSame( $expected_path, $translated_path );
 	}
 
 
 	public static function providePaths(): array {
+		$root = ( new FileHelper( __DIR__ ) )->normalizePath( \getcwd(), '/' ) . '/fixtures/Internal/TemplatePartExistsRule/';
+
 		return [
 			'unix'     => [
-				'raw_path'      => '/path/to/template.php',
-				'expected_path' => '/path/to/template.php',
+				'raw_path'      => '/path/to/template',
+				'expected_path' => $root . 'template-parts/path/to/template.php',
 			],
-			'phpstorm' => [
-				'raw_path'      => 'C:\Users\mat\AppData\Local\Temp\PHPStantemp_folder753\wp-content/themes/core/template-parts/TemplatePart.php',
-				'expected_path' => ( new FileHelper( __DIR__ ) )->normalizePath( \getcwd(), '/' ) . '/wp-content/themes/core/template-parts/TemplatePart.php',
+			'special'  => [
+				'raw_path'      => '../woocommerce/email/daily-report',
+				'expected_path' => $root . 'woocommerce/email/daily-report.php',
 			],
 			'standard' => [
-				'raw_path'      => 'E:\SVN\starting-point\wp-content/themes/core/template-parts/TemplatePart.php',
-				'expected_path' => 'E:/SVN/starting-point/wp-content/themes/core/template-parts/TemplatePart.php',
+				'raw_path'      => 'TemplatePart',
+				'expected_path' => $root . 'template-parts/TemplatePart.php',
 			],
 		];
 	}

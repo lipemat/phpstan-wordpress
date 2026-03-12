@@ -16,7 +16,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 /**
  * Custom rule specific to TemplatePart enums.
  *
- * @notice Currently and Easter Egg not yet stable enough to be added to general usage.
+ * @notice Currently an Easter Egg not yet stable enough to be added to general usage.
  *
  * @author Mat Lipe
  * @since  4.4.0
@@ -27,6 +27,7 @@ use PHPStan\Rules\RuleErrorBuilder;
  */
 class TemplatePartExistsRule implements Rule {
 	public function __construct(
+		protected string $themePath,
 		protected FileHelper $fileHelper,
 	) {
 	}
@@ -59,9 +60,7 @@ class TemplatePartExistsRule implements Rule {
 			}
 
 			$value = $stmt->expr->value;
-
-			$raw_path = $this->fileHelper->normalizePath( \dirname( $scope->getFile() ) . '/' . $value . '.php' );
-			$path = $this->translateTempPath( $raw_path );
+			$path = $this->getTemplatePath( $value );
 
 			if ( ! \file_exists( $path ) ) {
 				$error_builder = RuleErrorBuilder::message(
@@ -81,24 +80,16 @@ class TemplatePartExistsRule implements Rule {
 	}
 
 
-	/**
-	 * PHPStorm uses a temporary folder to store the PHP files when running
-	 * through PHPStan. This method translates the temporary path to the
-	 * real path.
-	 *
-	 * @param string $raw_path - Path with possible PHPStorm temporary folder.
-	 *
-	 * @return string
-	 */
-	public function translateTempPath( string $raw_path ): string {
-		\preg_match( '/(?<dir>PHPStantemp_folder\d{3,5})/', $raw_path, $matches, \PREG_OFFSET_CAPTURE );
-		if ( ! isset( $matches['dir'] ) ) {
-			return $this->fileHelper->normalizePath( $raw_path, '/' );
-		}
+	public function getTemplatePath( string $raw_path ): string {
+		$theme_path = $this->sanitize_path( $this->themePath );
 
-		$offset = $matches['dir'][1];
-		$dir_length = \strlen( $matches['dir'][0] );
+		$full_path = $this->fileHelper->absolutizePath( "{$theme_path}/template-parts/{$raw_path}.php" );
+		return $this->fileHelper->normalizePath( $full_path, '/' );
+	}
 
-		return $this->fileHelper->normalizePath( \getcwd() . \DIRECTORY_SEPARATOR . \substr( $raw_path, $offset + $dir_length ), '/' );
+
+	public function sanitize_path( string $path ): string {
+		$path = $this->fileHelper->normalizePath( $path, '/' );
+		return \rtrim( $path, '/\\' );
 	}
 }

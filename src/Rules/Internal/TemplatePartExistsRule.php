@@ -45,6 +45,9 @@ class TemplatePartExistsRule implements Rule {
 	 * @return list<IdentifierRuleError>
 	 */
 	public function processNode( Node $node, Scope $scope ): array {
+		if ( '' === $this->themePath ) {
+			return [];
+		}
 		$fqn = $scope->getNamespace() . '\\' . $node->name?->toString();
 		if ( 'Lipe\Project\Theme\TemplatePart' !== $fqn ) {
 			return [];

@@ -13,6 +13,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 
 /**
  * Custom rule specific to `lipe_template_part()` and `lipe_template_contents()` functions.
+ *  - Only active if `themePath` is set in the config.
  *
  * @author Mat Lipe
  * @since  4.4.0

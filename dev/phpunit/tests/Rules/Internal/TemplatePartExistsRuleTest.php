@@ -20,9 +20,6 @@ final class TemplatePartExistsRuleTest extends RuleTestCase {
 
 
 	public function testRule(): void {
-		// first argument: path to the example file that contains some errors that should be reported by MyRule
-		// second argument: an array of expected errors,
-		// each error consists of the asserted error message, and the asserted error file line
 		$this->analyse( [
 			__DIR__ . '/../../../fixtures/Internal/TemplatePartExistsRule/Failure/TemplatePart.php',
 		],
@@ -34,8 +31,22 @@ final class TemplatePartExistsRuleTest extends RuleTestCase {
 			]
 		);
 
-		// the test fails, if the expected error does not occur,
-		// or if there are other errors reported beside the expected one
+		$this->analyse( [
+			__DIR__ . '/../../../fixtures/Internal/TemplatePartExistsRule/Failure/OtherTemplatePart.php',
+		],
+			[
+				[
+					'Template part file "email/daily-report.php" does not exist.', // asserted error message
+					9, // asserted error line
+				],
+			]
+		);
+
+		$this->analyse( [
+			__DIR__ . '/../../../fixtures/Internal/TemplatePartExistsRule/Failure/NonBacked.php',
+		],
+			[]
+		);
 	}
 
 

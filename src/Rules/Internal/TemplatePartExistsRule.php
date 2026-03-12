@@ -15,6 +15,9 @@ use PHPStan\Rules\RuleErrorBuilder;
 
 /**
  * Custom rule specific to TemplatePart enums.
+ * - Any Enum named `TemplatePart` in a `Theme` namespace.
+ * - Enum must be backed.
+ * - Only active if `themePath` is set in the config.
  *
  * @notice Currently an Easter Egg not yet stable enough to be added to general usage.
  *
@@ -48,8 +51,7 @@ class TemplatePartExistsRule implements Rule {
 		if ( '' === $this->themePath ) {
 			return [];
 		}
-		$fqn = $scope->getNamespace() . '\\' . $node->name?->toString();
-		if ( 'Lipe\Project\Theme\TemplatePart' !== $fqn ) {
+		if ( ! \str_contains( (string) $scope->getNamespace(), 'Theme' ) || 'TemplatePart' !== $node->name?->toString() || null === $node->scalarType ) {
 			return [];
 		}
 

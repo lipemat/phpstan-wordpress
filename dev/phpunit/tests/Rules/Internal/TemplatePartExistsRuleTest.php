@@ -1,7 +1,7 @@
 <?php
 declare( strict_types=1 );
 
-namespace Lipe\Lib\Phpstan\Rules\Custom;
+namespace Lipe\Lib\Phpstan\Rules\Internal;
 
 use PHPStan\File\FileHelper;
 use PHPStan\Testing\RuleTestCase;
@@ -23,7 +23,7 @@ final class TemplatePartExistsRuleTest extends RuleTestCase {
 		// second argument: an array of expected errors,
 		// each error consists of the asserted error message, and the asserted error file line
 		$this->analyse( [
-			__DIR__ . '/../../../fixtures/Custom/TemplatePartExistsRule/Failure/TemplatePart.php',
+			__DIR__ . '/../../../fixtures/Internal/TemplatePartExistsRule/Failure/TemplatePart.php',
 		],
 			[
 				[

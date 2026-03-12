@@ -5,6 +5,11 @@ services:
 - class: Lipe\Lib\Phpstan\Rules\Expressions\NoExtractRule
   tags:
     - phpstan.rules.rule
+- class: Lipe\Lib\Phpstan\Rules\Internal\TemplatePartFunctionExistsRule
+  tags:
+    - phpstan.rules.rule
+  arguments:
+    themePath: %lipemat.themePath%
 - class: Lipe\Lib\Phpstan\Rules\Methods\NoConstructorParameterWithDefaultValueRule
   tags:
     - phpstan.rules.rule
@@ -55,7 +60,8 @@ parametersSchema:
   lipemat: structure([
     allowedToBeExtended: listOf(string()),
     noExtends: bool(),
-    nonDistributed: bool()
+    nonDistributed: bool(),
+    themePath: string(),
   ])
 
 # Default parameters passed to phpstan by this extension.
@@ -64,3 +70,4 @@ parameters:
     allowedToBeExtended: []
     noExtends: false
     nonDistributed: true
+    themePath: ''

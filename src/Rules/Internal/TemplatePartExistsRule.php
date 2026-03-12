@@ -1,7 +1,7 @@
 <?php
 declare( strict_types=1 );
 
-namespace Lipe\Lib\Phpstan\Rules\Custom;
+namespace Lipe\Lib\Phpstan\Rules\Internal;
 
 use PhpParser\Node;
 use PhpParser\Node\Scalar\String_;
@@ -27,7 +27,7 @@ use PHPStan\Rules\RuleErrorBuilder;
  */
 class TemplatePartExistsRule implements Rule {
 	public function __construct(
-		protected FileHelper $fileHelper
+		protected FileHelper $fileHelper,
 	) {
 	}
 

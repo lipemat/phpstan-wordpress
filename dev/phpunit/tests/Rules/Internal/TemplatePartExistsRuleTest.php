@@ -21,7 +21,7 @@ final class TemplatePartExistsRuleTest extends RuleTestCase {
 
 	public function testRule(): void {
 		$this->analyse( [
-			__DIR__ . '/../../../fixtures/Internal/TemplatePartExistsRule/Failure/TemplatePart.php',
+			__DIR__ . '/../../../fixtures/Internal/TemplatePartExistsRule/Failure/Theme/TemplatePart.php',
 		],
 			[
 				[
@@ -32,7 +32,7 @@ final class TemplatePartExistsRuleTest extends RuleTestCase {
 		);
 
 		$this->analyse( [
-			__DIR__ . '/../../../fixtures/Internal/TemplatePartExistsRule/Failure/OtherTemplatePart.php',
+			__DIR__ . '/../../../fixtures/Internal/TemplatePartExistsRule/Failure/Theme/Other/TemplatePart.php',
 		],
 			[
 				[
@@ -43,7 +43,7 @@ final class TemplatePartExistsRuleTest extends RuleTestCase {
 		);
 
 		$this->analyse( [
-			__DIR__ . '/../../../fixtures/Internal/TemplatePartExistsRule/Failure/NonBacked.php',
+			__DIR__ . '/../../../fixtures/Internal/TemplatePartExistsRule/Failure/Theme/NonBacked/TemplatePart.php',
 		],
 			[]
 		);

@@ -1,7 +1,7 @@
 <?php
 declare( strict_types=1 );
 
-namespace TemplatePartExistsRule\Theme;
+namespace Lipe\Lib\Phpstan\Rules\Test\Fixture\Internal\TemplatePartExistsRule\Failure\Theme;
 
 enum TemplatePart: string {
 	case BLOCKS__TEST        = 'blocks/test';

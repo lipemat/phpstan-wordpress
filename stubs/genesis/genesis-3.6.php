@@ -243,6 +243,112 @@ namespace StudioPress\Genesis\Args {
         public string $first;
     }
     /**
+     * A Fluent interface for the `genesis_get_image()` function.
+     *
+     * @see genesis_image()
+     * @see genesis_get_image()
+     *
+     * @author Mat Lipe
+     * @since  3.6.1.1
+     *
+     * @phpstan-type IMAGE_ARGS array{
+     *    attachment_id: int,
+     *    attr: array<string, string>,
+     *    context: string,
+     *    fallback: 'first-attached'|int|array{html:string, url:string},
+     *    format: self::FORMAT_*,
+     *    num: int,
+     *    post_id: ?int,
+     *    size: string,
+     * }
+     *
+     * @implements ArgsRules<\Partial<IMAGE_ARGS>>
+     */
+    final class Genesis_Get_Image implements \Lipe\Lib\Args\ArgsRules
+    {
+        /**
+         * @use Args<\Partial<IMAGE_ARGS>>
+         */
+        use \Lipe\Lib\Args\Args {
+            get_args as parentGetArgs;
+        }
+        public const FALLBACK_FIRST_ATTACHED = 'first-attached';
+        public const FORMAT_HTML = 'html';
+        public const FORMAT_URL = 'url';
+        /**
+         * HTML attributes to apply to the image.
+         *
+         * @var array<string, string>
+         */
+        public array $attr;
+        /**
+         * Attachment ID to pull the image from.
+         *
+         * Overrides any usage of feature image, fallback or post num images.
+         *
+         * @var int
+         */
+        public int $attachment_id;
+        /**
+         * Passed to `genesis_parse_attr` to generate the image attributes.
+         *
+         * @example Genesis_Attr::ENTRY_IMAGE_WIDGET
+         *
+         * @phpstan-var Genesis_Attr::*
+         * @var string
+         */
+        public string $context;
+        /**
+         * Fallback image if the post does not have a featured image.
+         * - 'first-attached' - Use the first image attached to the post.
+         * - int - Use the image with the given ID.
+         * - array{html:string, url:string} - Use the given HTML and URL.
+         *
+         * @var array|int|self::FALLBACK_*
+         */
+        public array|int|string $fallback;
+        /**
+         * Format to return the image in.
+         *
+         * - 'html' - Return the image as HTML.
+         * - 'url' - Return the image URL.
+         *
+         * @phpstan-var self::FORMAT_*
+         * @var string
+         */
+        public string $format;
+        /**
+         * Image index number of images uploaded to the post.
+         *
+         * @var int
+         */
+        public int $num;
+        /**
+         * Post id to pull the image from.
+         *
+         * - null - Use the current post.
+         *
+         * @var ?int
+         */
+        public ?int $post_id;
+        /**
+         * Image size to use.
+         *
+         * @see \Lipe\Project\Post_Types\Attachment\Images::SIZE_*
+         *
+         * @var string
+         */
+        public string $size;
+        /**
+         * Adjust the arguments before returning them.
+         *
+         * @phpstan-return  \Partial<IMAGE_ARGS>
+         */
+        public function get_args(): array
+        {
+        }
+    }
+    /**
      * A fluent interface for calling `genesis_markup()`.
      *
      * @author Mat Lipe

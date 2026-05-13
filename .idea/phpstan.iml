@@ -39,6 +39,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan-deprecation-rules" />
       <excludeFolder url="file://$MODULE_DIR$/dev/source/vendor" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan" />
+      <excludeFolder url="file://$MODULE_DIR$/stubs/cmb2" />
+      <excludeFolder url="file://$MODULE_DIR$/stubs/genesis" />
+      <excludeFolder url="file://$MODULE_DIR$/stubs/woocommerce-subscriptions" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -4,7 +4,7 @@
 #
 # Used via `%rootDir%/../../../stubs/genesis/genesis-3.6.php` under `scanFiles`.
 
-THEME_VERSION="3.6"
+THEME_VERSION="3.6.2"
 
 ## @todo Switch to finder for exclude. See `generate-stubs --finder`.
 Get_legacy_files() {

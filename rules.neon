@@ -15,6 +15,9 @@ services:
     - phpstan.rules.rule
   arguments:
     themePath: %lipemat.themePath%
+- class: Lipe\Lib\Phpstan\Rules\Internal\FactorizeConstructorArgsRule
+  tags:
+    - phpstan.rules.rule
 - class: Lipe\Lib\Phpstan\Rules\Methods\NoConstructorParameterWithDefaultValueRule
   tags:
     - phpstan.rules.rule

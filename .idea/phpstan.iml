@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="Lipe\Lib\Phpstan\" />
       <sourceFolder url="file://$MODULE_DIR$/dev/phpunit/tests" isTestSource="true" packagePrefix="Lipe\Lib\Phpstan" />
       <sourceFolder url="file://$MODULE_DIR$/dev/phpunit/fixtures" isTestSource="true" packagePrefix="Lipe\Lib\Phpstan\Rules\Test\Fixture\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/phpunit/stubs/Container" isTestSource="true" packagePrefix="Lipe\Lib\Container\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/szepeviktor/phpstan-wordpress" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/extension-installer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-stubs/wp-cli-stubs" />

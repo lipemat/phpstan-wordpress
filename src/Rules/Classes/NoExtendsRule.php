@@ -23,6 +23,7 @@ class NoExtendsRule implements Rules\Rule {
 		'PHPUnit\\Framework\\TestCase',
 		'WP_List_Table',
 		'WP_REST_Controller',
+		'WP_REST_Posts_Controller',
 		'WP_Widget',
 	];
 
@@ -33,7 +34,7 @@ class NoExtendsRule implements Rules\Rule {
 
 
 	/**
-	* Receives the arguments from these parameter in the `rules.neon` file.
+	 * Receives the arguments from these parameter in the `rules.neon` file.
 	 * - lipemat.allowedToBeExtended
 	 *
 	 * @param array<int, class-string> $classesAllowedToBeExtended
@@ -43,7 +44,7 @@ class NoExtendsRule implements Rules\Rule {
 			\array_merge(
 				self::$defaultClassesAllowedToBeExtended,
 				\array_map(
-					function ( string $classAllowedToBeExtended ): string {
+					function( string $classAllowedToBeExtended ): string {
 						return $classAllowedToBeExtended;
 					},
 					$classesAllowedToBeExtended

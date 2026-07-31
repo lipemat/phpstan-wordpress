@@ -11,6 +11,8 @@ parameters:
         - src
     bootstrapFiles:
         - vendor/autoload.php
+    scanFiles:
+      - dev/phpunit/stubs/Container/Factory.php
     scanDirectories:
         - dev/stubs
     ignoreErrors:

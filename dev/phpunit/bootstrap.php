@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-ini_set( 'memory_limit', '512M' );
+ini_set( 'memory_limit', '1G' );
 
 require_once dirname( __DIR__, 2 ) . '/vendor/autoload.php';
 

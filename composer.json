@@ -22,6 +22,7 @@
   "require-dev": {
     "phpstan/phpstan-deprecation-rules": "^2.0.5",
     "phpstan/phpstan-strict-rules": "^2.0.12",
+    "php-stubs/wordpress-stubs": "v7.1.0 as 6.9.4",
     "roave/security-advisories": "dev-latest"
   },
   "extra": {

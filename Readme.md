@@ -62,6 +62,22 @@ Alternatively, you may replace `%rootDir%/../../` with the relative path to your
 
 Example `wp-content/plugins/core/vendor/lipemat/phpstan-wordpress/stubs/cmb2/cmb2-3.10.php`
 
+## Runtime PHP Version
+
+PHPStan checks language features against the lowest PHP version allowed by `require.php` in the discovered `composer.json`.
+Projects without a root `composer.json` fall back to this library's `composer.json` instead of their own.
+
+`php-version.php` analyses against the PHP version running PHPStan.
+A globally installed library includes it automatically.
+When using this library as a composer dependency, include it in your `phpstan.neon` or `phpstan.neon.dist`:
+
+```yml
+includes:
+  - %rootDir%/../../lipemat/phpstan-wordpress/php-version.php
+```
+
+Setting `phpVersion` in your project's configuration overrides it.
+
 ## Utility Types
 
 

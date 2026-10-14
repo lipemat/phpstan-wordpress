@@ -28,7 +28,7 @@ class AddRootToExtensions {
 		$composer = $event->getComposer();
 		$package = $composer->getPackage();
 		$extra = $package->getExtra();
-		$extra['phpstan']['includes'] = [ '../../../extension.neon' ];
+		$extra['phpstan']['includes'] = [ '../../../extension.neon', '../../../php-version.php' ];
 		$package->setExtra( $extra );
 		$io = $event->getIO();
 

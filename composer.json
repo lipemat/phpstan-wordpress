@@ -16,12 +16,12 @@
     "php": ">=8.2",
     "php-stubs/wp-cli-stubs": "^2.12.0",
     "phpstan/extension-installer": "^1.4.3",
-    "phpstan/phpstan": "^2.2.14",
-    "szepeviktor/phpstan-wordpress": "^2.0.4"
+    "phpstan/phpstan": "~2.3.1",
+    "szepeviktor/phpstan-wordpress": "2.0.4"
   },
   "require-dev": {
-    "phpstan/phpstan-deprecation-rules": "^2.0.5",
-    "phpstan/phpstan-strict-rules": "^2.0.12",
+    "phpstan/phpstan-deprecation-rules": "~2.0.5",
+    "phpstan/phpstan-strict-rules": "~2.1.0",
     "php-stubs/wordpress-stubs": "v7.1.0 as 6.9.4",
     "roave/security-advisories": "dev-latest"
   },

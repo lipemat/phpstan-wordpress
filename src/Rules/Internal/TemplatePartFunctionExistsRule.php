@@ -24,7 +24,7 @@ use PHPStan\Rules\RuleErrorBuilder;
  */
 class TemplatePartFunctionExistsRule implements Rule {
 	public function __construct(
-		protected string $themePath,
+		protected ?string $themePath,
 		protected FileHelper $fileHelper,
 	) {
 	}
@@ -42,7 +42,7 @@ class TemplatePartFunctionExistsRule implements Rule {
 	 * @return list<IdentifierRuleError>
 	 */
 	public function processNode( Node $node, Scope $scope ): array {
-		if ( '' === $this->themePath || ! $node->name instanceof Node\Name ) {
+		if ( null === $this->themePath || ! $node->name instanceof Node\Name ) {
 			return [];
 		}
 
@@ -80,7 +80,7 @@ class TemplatePartFunctionExistsRule implements Rule {
 
 
 	public function getTemplatePath( string $raw_path ): string {
-		$theme_path = $this->sanitize_path( $this->themePath );
+		$theme_path = $this->sanitize_path( (string) $this->themePath );
 
 		$full_path = $this->fileHelper->absolutizePath( "{$theme_path}/template-parts/{$raw_path}.php" );
 		return $this->fileHelper->normalizePath( $full_path, '/' );

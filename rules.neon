@@ -69,8 +69,12 @@ parametersSchema:
     allowedToBeExtended: listOf(string()),
     noExtends: bool(),
     nonDistributed: bool(),
-    themePath: string(),
+    themePath: schema(string(), nullable()),
   ])
+
+# Resolve a relative `themePath` against the config file which declares it, not the working directory.
+expandRelativePaths:
+  - '[parameters][lipemat][themePath]'
 
 # Default parameters passed to phpstan by this extension.
 parameters:
@@ -78,4 +82,4 @@ parameters:
     allowedToBeExtended: []
     noExtends: false
     nonDistributed: true
-    themePath: ''
+    themePath: null

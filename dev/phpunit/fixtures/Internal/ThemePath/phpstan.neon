@@ -1,0 +1,6 @@
+includes:
+    - ../../../../../rules.neon
+
+parameters:
+    lipemat:
+        themePath: child-theme

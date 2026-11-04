@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace Lipe\Lib\Phpstan\Rules\Methods;
 
-use Lipe\Lib\Phpstan\Traits\UnknownSubject;
+use Lipe\Lib\Phpstan\Traits\UnknownSubjectError;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
@@ -22,7 +22,7 @@ use PHPStan\Type\MixedType;
  */
 #[RegisteredRule( level: 6 )]
 class NoUnknownMethodCallerRule implements Rule {
-	use UnknownSubject;
+	use UnknownSubjectError;
 
 	/**
 	 * @var string

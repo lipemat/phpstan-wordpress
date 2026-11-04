@@ -3,7 +3,7 @@ declare( strict_types=1 );
 
 namespace Lipe\Lib\Phpstan\Rules\Statements;
 
-use Lipe\Lib\Phpstan\Traits\UnknownSubject;
+use Lipe\Lib\Phpstan\Traits\UnknownSubjectError;
 use PhpParser\Node;
 use PhpParser\Node\Expr\PropertyFetch;
 use PHPStan\Analyser\Scope;
@@ -20,7 +20,7 @@ use PHPStan\Type\MixedType;
  */
 #[RegisteredRule( level: 6 )]
 class NoUnknownPropertyRule implements Rule {
-	use UnknownSubject;
+	use UnknownSubjectError;
 
 	/**
 	 * @var string

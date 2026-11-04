@@ -188,6 +188,14 @@ includes:
   
 ```
 
+The rules register by level, so a `level` must be set. With `customRulesetUsed: true` and no `level`, none of them load; list the wanted rule classes under `rules:` yourself:
+
+```yml
+rules:
+  - Lipe\Lib\Phpstan\Rules\Expressions\NoCompactRule
+  - Lipe\Lib\Phpstan\Rules\Statements\NoSwitchRule
+```
+
 1. Prevent using the `compact` function.
 2. Prevent using the `extract` function.
 3. Require all classes to be either abstract or final.

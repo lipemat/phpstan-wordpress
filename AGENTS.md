@@ -5,7 +5,7 @@ PHPStan extension (`lipemat/phpstan-wordpress`) for WordPress projects. Distribu
 ## Layout
 
 - `extension.neon`: always loaded (via `extra.phpstan.includes`). Scans `src/Services` for the utility types in `src/Services/TypeNodeResolver/` and ships `stubs/wp.php`.
-- `rules.neon`: scans `src/Rules` for the opt-in rules in `src/Rules/<NodeCategory>/`, plus the `lipemat` parameter schema (`nonDistributed`, `noExtends`, `allowedToBeExtended`, `themePath`). The two scans stay in separate files: scanning `src` from `extension.neon` would force every rule on every consumer.
+- `rules.neon`: scans `src/Rules` for the opt-in rules in `src/Rules/<NodeCategory>/`, plus the `lipemat` parameter schema (`nonDistributed`, `noExtends`, `allowedToBeExtended`, `themePath`). Keep the two scans separate; see `.github/agents-sections/rules.md`.
 - `stubs/`: optional `scanFiles` for consumers (CMB2, Genesis, VIP). One file per upstream version; old versions stay because consumers pin them by path.
 - `php-version.php`: analyse against the running PHP version instead of `require.php`.
 - `src/AddRootToExtensions.php`: composer hook so the package works when it is the root package (global install). Excluded from analysis.

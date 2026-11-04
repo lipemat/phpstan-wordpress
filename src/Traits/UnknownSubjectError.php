@@ -16,7 +16,7 @@ use PHPStan\ShouldNotHappenException;
 /**
  * Error for a method call or property fetch on an unknown subject.
  */
-trait UnknownSubject {
+trait UnknownSubjectError {
 	/**
 	 * @param string $message    - `sprintf` format receiving the member name, then the subject.
 	 * @param string $identifier - Error identifier.

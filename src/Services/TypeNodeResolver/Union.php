@@ -4,6 +4,7 @@ declare( strict_types=1 );
 namespace Lipe\Lib\Phpstan\Services\TypeNodeResolver;
 
 use PHPStan\Analyser\NameScope;
+use PHPStan\DependencyInjection\AutowiredService;
 use PHPStan\PhpDoc\TypeNodeResolver;
 use PHPStan\PhpDoc\TypeNodeResolverAwareExtension;
 use PHPStan\PhpDoc\TypeNodeResolverExtension;
@@ -30,6 +31,7 @@ use PHPStan\Type\Type;
  * @template U of array<string, mixed>
  * @template W of array<string, mixed>
  */
+#[AutowiredService]
 class Union implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension {
 	/**
 	 * @var TypeNodeResolver

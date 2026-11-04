@@ -5,6 +5,7 @@ namespace Lipe\Lib\Phpstan\Rules\Statements;
 
 use PhpParser\Node;
 use PHPStan\Analyser;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Rules;
 
 /**
@@ -12,6 +13,7 @@ use PHPStan\Rules;
  *
  * @implements Rules\Rule<Node\Stmt\Switch_>
  */
+#[RegisteredRule( level: 0 )]
 class NoSwitchRule implements Rules\Rule {
 	public function getNodeType(): string {
 		return Node\Stmt\Switch_::class;

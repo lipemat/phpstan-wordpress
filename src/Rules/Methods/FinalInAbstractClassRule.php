@@ -5,6 +5,8 @@ namespace Lipe\Lib\Phpstan\Rules\Methods;
 
 use PhpParser\Node;
 use PHPStan\Analyser;
+use PHPStan\DependencyInjection\Conditional;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Reflection;
 use PHPStan\Rules;
 
@@ -21,6 +23,7 @@ use PHPStan\Rules;
  *
  * @implements Rules\Rule<Node\Stmt\ClassMethod>
  */
+#[Conditional( new RegisteredRule( level: 0 ), if: '%lipemat.nonDistributed%' )]
 class FinalInAbstractClassRule implements Rules\Rule {
 	public function getNodeType(): string {
 		return Node\Stmt\ClassMethod::class;

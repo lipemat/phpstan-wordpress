@@ -7,6 +7,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\PrettyPrinter\Standard;
 use PHPStan\Analyser\Scope;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Rules;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\MixedType;
@@ -16,6 +17,7 @@ use PHPStan\Type\MixedType;
  *
  * @implements Rule<PropertyFetch>
  */
+#[RegisteredRule( level: 0 )]
 class NoUnknownPropertyRule implements Rule {
 	/**
 	 * @var ?Standard

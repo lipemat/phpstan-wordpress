@@ -1,26 +1,6 @@
-services:
-  - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\AtLeast
-    tags:
-      - phpstan.phpDoc.typeNodeResolverExtension
-  - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\Exclude
-    tags:
-      - phpstan.phpDoc.typeNodeResolverExtension
-  - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\Partial
-    tags:
-      - phpstan.phpDoc.typeNodeResolverExtension
-  - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\Pick
-    tags:
-      - phpstan.phpDoc.typeNodeResolverExtension
-  - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\Required
-    tags:
-      - phpstan.phpDoc.typeNodeResolverExtension
-  - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\Sarcastic
-    tags:
-      - phpstan.phpDoc.typeNodeResolverExtension
-  - class: \Lipe\Lib\Phpstan\Services\TypeNodeResolver\Union
-    tags:
-      - phpstan.phpDoc.typeNodeResolverExtension
-
+# Services only; `src/Rules` belongs to the opt-in `rules.neon`.
+attributeServicesDirectories:
+  - src/Services
 
 # Default parameters passed to phpstan by this extension.
 parameters:

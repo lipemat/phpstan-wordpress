@@ -4,6 +4,7 @@ declare( strict_types=1 );
 namespace Lipe\Lib\Phpstan\Services\TypeNodeResolver;
 
 use PHPStan\Analyser\NameScope;
+use PHPStan\DependencyInjection\AutowiredService;
 use PHPStan\PhpDoc\TypeNodeResolver;
 use PHPStan\PhpDoc\TypeNodeResolverAwareExtension;
 use PHPStan\PhpDoc\TypeNodeResolverExtension;
@@ -14,6 +15,7 @@ use PHPStan\Type\ErrorType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
 
+#[AutowiredService]
 class Pick implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension {
 	/**
 	 * @var TypeNodeResolver

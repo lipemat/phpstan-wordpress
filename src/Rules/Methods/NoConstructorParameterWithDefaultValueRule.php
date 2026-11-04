@@ -6,6 +6,7 @@ namespace Lipe\Lib\Phpstan\Rules\Methods;
 
 use PhpParser\Node;
 use PHPStan\Analyser;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Reflection;
 use PHPStan\Rules;
 
@@ -16,6 +17,7 @@ use PHPStan\Rules;
  *
  * @implements Rules\Rule<Node\Stmt\ClassMethod>
  */
+#[RegisteredRule( level: 0 )]
 class NoConstructorParameterWithDefaultValueRule implements Rules\Rule {
 	public function getNodeType(): string {
 		return Node\Stmt\ClassMethod::class;

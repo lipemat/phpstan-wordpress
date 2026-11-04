@@ -6,6 +6,8 @@ namespace Lipe\Lib\Phpstan\Rules\Internal;
 use PhpParser\Node;
 use PhpParser\Node\Scalar\String_;
 use PHPStan\Analyser\Scope;
+use PHPStan\DependencyInjection\AutowiredParameter;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\File\FileHelper;
 use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
@@ -22,8 +24,10 @@ use PHPStan\Rules\RuleErrorBuilder;
  *
  * @implements Rule<Node\Expr\FuncCall>
  */
+#[RegisteredRule( level: 0 )]
 class TemplatePartFunctionExistsRule implements Rule {
 	public function __construct(
+		#[AutowiredParameter( ref: '%lipemat.themePath%' )]
 		protected ?string $themePath,
 		protected FileHelper $fileHelper,
 	) {

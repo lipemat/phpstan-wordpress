@@ -6,6 +6,9 @@ namespace Lipe\Lib\Phpstan\Rules\Classes;
 
 use PhpParser\Node;
 use PHPStan\Analyser;
+use PHPStan\DependencyInjection\AutowiredParameter;
+use PHPStan\DependencyInjection\Conditional;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Rules;
 
 /**
@@ -18,6 +21,7 @@ use PHPStan\Rules;
  *
  * @implements Rules\Rule<Node\Stmt\Class_>
  */
+#[Conditional( new RegisteredRule( level: 0 ), if: '%lipemat.nonDistributed%' )]
 class FinalRule implements Rules\Rule {
 	/**
 	 * @var array<int, string>
@@ -48,14 +52,15 @@ class FinalRule implements Rules\Rule {
 
 
 	/**
-	 * Receives the arguments from these parameter in the `rules.neon` file.
-	 * - lipemat.noExtends
-	 * - lipemat.allowedToBeExtended
-	 *
 	 * @param bool                     $disallowAbstractClasses
 	 * @param array<int, class-string> $classesAllowedToBeAbstract
 	 */
-	public function __construct( bool $disallowAbstractClasses, array $classesAllowedToBeAbstract ) {
+	public function __construct(
+		#[AutowiredParameter( ref: '%lipemat.noExtends%' )]
+		bool $disallowAbstractClasses,
+		#[AutowiredParameter( ref: '%lipemat.allowedToBeExtended%' )]
+		array $classesAllowedToBeAbstract,
+	) {
 		$this->allowAbstractClasses = ! $disallowAbstractClasses;
 
 		$this->classesAllowedToBeAbstract = \array_merge( self::$defaultAllowedToBeAbstract, \array_values( $classesAllowedToBeAbstract ) );

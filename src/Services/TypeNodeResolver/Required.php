@@ -4,6 +4,7 @@ declare( strict_types=1 );
 namespace Lipe\Lib\Phpstan\Services\TypeNodeResolver;
 
 use PHPStan\Analyser\NameScope;
+use PHPStan\DependencyInjection\AutowiredService;
 use PHPStan\PhpDoc\TypeNodeResolver;
 use PHPStan\PhpDoc\TypeNodeResolverAwareExtension;
 use PHPStan\PhpDoc\TypeNodeResolverExtension;
@@ -28,6 +29,7 @@ use PHPStan\Type\Type;
  * @template T of array<string, mixed>
  * @template K of key-of<T>
  */
+#[AutowiredService]
 class Required implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension {
 	/**
 	 * @var TypeNodeResolver

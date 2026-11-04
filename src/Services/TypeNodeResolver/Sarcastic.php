@@ -4,6 +4,7 @@ declare( strict_types=1 );
 namespace Lipe\Lib\Phpstan\Services\TypeNodeResolver;
 
 use PHPStan\Analyser\NameScope;
+use PHPStan\DependencyInjection\AutowiredService;
 use PHPStan\PhpDoc\TypeNodeResolverExtension;
 use PHPStan\PhpDocParser\Ast\Type\GenericTypeNode;
 use PHPStan\PhpDocParser\Ast\Type\TypeNode;
@@ -13,6 +14,7 @@ use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
 
+#[AutowiredService]
 class Sarcastic implements TypeNodeResolverExtension {
 
 	public function resolve( TypeNode $typeNode, NameScope $nameScope ): ?Type {

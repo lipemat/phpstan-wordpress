@@ -8,6 +8,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\PrettyPrinter\Standard;
 use PHPStan\Analyser\Scope;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Rules;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\ErrorType;
@@ -16,6 +17,7 @@ use PHPStan\Type\MixedType;
 /**
  * @implements Rule<MethodCall>
  */
+#[RegisteredRule( level: 0 )]
 class NoUnknownMethodCallerRule implements Rule {
 	/**
 	 * @var ?Standard

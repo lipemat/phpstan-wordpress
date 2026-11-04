@@ -203,6 +203,27 @@ includes:
 12. Prohibit using `ArrayAccess` to access class data.
 13. Require `instance of` instead of `isset` for object verification.
 
+### Automatic fixes
+Rules 1, 3, 6, 8, and 9 above can fix the errors they report.
+Run `phpstan analyse --fix` to apply the fixes. Fixable errors are marked with a 🔧 in the default table output.
+
+- `compact` calls (1) are rewritten to arrays only when every argument is a plain string naming a variable known to be defined. Other calls are reported without a fix.
+- Named, non-abstract classes (3) and concrete methods in abstract classes (8) are made `final`. PHP rejects this if the class is extended or the method overridden elsewhere, so review the diff before committing.
+- `protected` methods in final classes (6) are made `private`. The rule is disabled by default but is worth enabling temporarily as a one-time `--fix` cleanup.
+- Skipped parameter types (9) are restored from the parent, one parameter per method per round.
+
+Enable rule 6 for a cleanup run like so:
+
+```yml
+rules:
+  - Lipe\Lib\Phpstan\Rules\Methods\PrivateInFinalClassRule
+```
+
+Fixes are applied in rounds, each followed by a re-analysis, so the first `--fix` on a large codebase is slow.
+
+**Warning:** `--fix-ignored` rewrites errors your project has deliberately ignored via `ignoreErrors`, a baseline, or inline `@phpstan-ignore` comments.
+Combined with `--fix`, it rewrites reported and ignored errors alike. Do not use it unless every ignored error should be fixed.
+
 ### Distributed plugins or themes
 Some rules assume you are working on a private project which will not be distributed to the community. 
 If your project is distributed, you may add the `nonDistributed` parameter to the `lipemat` parameter.

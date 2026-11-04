@@ -17,6 +17,7 @@ Run from the repo root unless noted:
 
 - Tests: `cd dev/phpunit; phpunit` (config is `dev/phpunit/phpunit.xml.dist`; stops on first defect, notice, or deprecation).
 - Static analysis: `phpstan analyse --no-progress --memory-limit=2G` (level 10, analyses `src` with this repo's own `rules.neon`).
+  - Plain `--fix` is safe. Never pass `--fix-ignored`: it applies the ignored `lipemat.classMustBeFinal` fix, adding `final` to every class in `src` (see Conventions).
 - Coding standard: `phpcs` (WordPress-Extra on `src` only).
 - `dev/git-hooks/pre-commit` runs all three; install with `composer git-hooks`.
 

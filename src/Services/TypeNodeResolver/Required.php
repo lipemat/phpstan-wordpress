@@ -52,7 +52,7 @@ class Required implements TypeNodeResolverExtension, TypeNodeResolverAwareExtens
 		}
 
 		$typeName = $typeNode->type;
-		if ( '\Required' !== $typeName->name ) {
+		if ( '\Required' !== (string) $typeName ) {
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;

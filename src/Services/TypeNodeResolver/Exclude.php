@@ -37,7 +37,7 @@ class Exclude implements TypeNodeResolverExtension, TypeNodeResolverAwareExtensi
 			return null;
 		}
 
-		if ( '\Exclude' !== $typeNode->type->name ) {
+		if ( '\Exclude' !== (string) $typeNode->type ) {
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;

@@ -65,7 +65,7 @@ class ReturnNullOverFalseRule implements Rule {
 				continue;
 			}
 
-			if ( \method_exists( $exprType, 'getValue' ) && $exprType->getValue() ) {
+			if ( $exprType->isTrue()->yes() ) {
 				$hasTrueType = true;
 				continue;
 			}

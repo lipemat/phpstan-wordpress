@@ -49,7 +49,7 @@ class AtLeast implements TypeNodeResolverExtension, TypeNodeResolverAwareExtensi
 		}
 
 		$typeName = $typeNode->type;
-		if ( '\AtLeast' !== $typeName->name ) {
+		if ( '\AtLeast' !== (string) $typeName ) {
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;

@@ -43,7 +43,7 @@ class Partial implements TypeNodeResolverExtension, TypeNodeResolverAwareExtensi
 		}
 
 		$typeName = $typeNode->type;
-		if ( '\Partial' !== $typeName->name ) {
+		if ( '\Partial' !== (string) $typeName ) {
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;

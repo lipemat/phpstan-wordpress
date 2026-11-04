@@ -32,7 +32,7 @@ class Pick implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension 
 			return null;
 		}
 
-		if ( '\Pick' !== $typeNode->type->name ) {
+		if ( '\Pick' !== (string) $typeNode->type ) {
 			return null;
 		}
 

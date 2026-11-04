@@ -21,7 +21,7 @@ class Sarcastic implements TypeNodeResolverExtension {
 			return null;
 		}
 
-		if ( '\Sarcastic' !== $typeNode->type->name ) {
+		if ( '\Sarcastic' !== (string) $typeNode->type ) {
 			return null;
 		}
 

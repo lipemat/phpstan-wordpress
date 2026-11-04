@@ -34,7 +34,7 @@ class Union implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension
 	/**
 	 * @var TypeNodeResolver
 	 */
-	private $typeNodeResolver;
+	private TypeNodeResolver $typeNodeResolver;
 
 
 	public function setTypeNodeResolver( TypeNodeResolver $typeNodeResolver ): void {
@@ -49,7 +49,7 @@ class Union implements TypeNodeResolverExtension, TypeNodeResolverAwareExtension
 		}
 
 		$typeName = $typeNode->type;
-		if ( '\Union' !== $typeName->name ) {
+		if ( '\Union' !== (string) $typeName ) {
 			return null;
 		}
 		$arguments = $typeNode->genericTypes;

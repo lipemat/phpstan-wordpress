@@ -25,16 +25,16 @@ RESET_COLOR="$(tput sgr0)"
 # Point to specific version of PHP if supported via environmental variables.
 if [[ "true" == "$PHP_MULTI_VERSION_SUPPORT" ]]; then
     PHP="php ${PHP_VERSION}"
-	PHPCS='phpcs'
-	PHPSTAN='phpstan'
+	  PHPCS='phpcs'
+	  PHPSTAN='phpstan'
     PHPUNIT="phpunit ${PHP_VERSION}"
 else
-	PHP='php'
-	PHPCS='phpcs'
+	  PHP='php'
+	  PHPCS='phpcs'
     PHPSTAN='phpstan'
-	PHPUNIT='phpunit'
+	  PHPUNIT='phpunit'
 fi
-PROJECT=$(${PHP} -r "echo dirname(realpath('$0'), 3);")
+PROJECT=$(git rev-parse --show-toplevel)
 ## Fix windows paths
 PROJECT=${PROJECT//\\//}
 

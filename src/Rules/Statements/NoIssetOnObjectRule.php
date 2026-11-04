@@ -10,6 +10,7 @@ use PhpParser\Node\Expr\ArrayDimFetch;
 use PhpParser\Node\Expr\Isset_;
 use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\TypeCombinator;
@@ -19,6 +20,7 @@ use PHPStan\Type\TypeCombinator;
  *
  * @implements Rule<Isset_>
  */
+#[RegisteredRule( level: 0 )]
 class NoIssetOnObjectRule implements Rule {
 	/**
 	 * @var string

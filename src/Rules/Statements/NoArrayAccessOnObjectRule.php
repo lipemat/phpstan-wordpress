@@ -8,6 +8,7 @@ use Lipe\Lib\Phpstan\Traits\TraitHelpers;
 use PhpParser\Node;
 use PhpParser\Node\Expr\ArrayDimFetch;
 use PHPStan\Analyser\Scope;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Rules;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\ObjectType;
@@ -17,6 +18,7 @@ use PHPStan\Type\ObjectType;
  *
  * @implements Rule<ArrayDimFetch>
  */
+#[RegisteredRule( level: 0 )]
 class NoArrayAccessOnObjectRule implements Rule {
 	use TraitHelpers;
 

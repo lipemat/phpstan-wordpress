@@ -188,6 +188,14 @@ includes:
   
 ```
 
+The rules register by level, so a `level` must be set. With `customRulesetUsed: true` and no `level`, none of them load; list the wanted rule classes under `rules:` yourself:
+
+```yml
+rules:
+  - Lipe\Lib\Phpstan\Rules\Expressions\NoCompactRule
+  - Lipe\Lib\Phpstan\Rules\Statements\NoSwitchRule
+```
+
 1. Prevent using the `compact` function.
 2. Prevent using the `extract` function.
 3. Require all classes to be either abstract or final.
@@ -199,9 +207,12 @@ includes:
 8. Require any concrete methods in abstract classes to be `private` or `final`.
 9. Prevent child classes from skipping parent parameter types.
 10. Prevent calls to methods on unknown classes.
-11. Prefer returning null over false unless boolean is expected.
-12. Prohibit using `ArrayAccess` to access class data.
-13. Require `instance of` instead of `isset` for object verification.
+    1. Only enabled on `level: 6` and higher, where PHPStan also reports the missing types behind it.
+11. Prevent accessing properties on unknown classes.
+    1. Only enabled on `level: 6` and higher, where PHPStan also reports the missing types behind it.
+12. Prefer returning null over false unless boolean is expected.
+13. Prohibit using `ArrayAccess` to access class data.
+14. Require `instance of` instead of `isset` for object verification.
 
 ### Distributed plugins or themes
 Some rules assume you are working on a private project which will not be distributed to the community. 

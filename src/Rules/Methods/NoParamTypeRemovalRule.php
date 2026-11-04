@@ -7,6 +7,7 @@ namespace Lipe\Lib\Phpstan\Rules\Methods;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\ExtendedParameterReflection;
 use PHPStan\Reflection\MethodReflection;
@@ -21,6 +22,7 @@ use PHPStan\Type\Type;
  *
  * @implements Rule<ClassMethod>
  */
+#[RegisteredRule( level: 0 )]
 class NoParamTypeRemovalRule implements Rule {
 	/**
 	 * @var string

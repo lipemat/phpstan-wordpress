@@ -4,23 +4,25 @@ declare( strict_types=1 );
 
 namespace Lipe\Lib\Phpstan\Rules\Methods;
 
+use Lipe\Lib\Phpstan\Traits\UnknownSubjectError;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
-use PhpParser\PrettyPrinter\Standard;
 use PHPStan\Analyser\Scope;
-use PHPStan\Rules;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\MixedType;
 
 /**
+ * Prevent calling a method on an unknown object.
+ *
+ * Level 6 is where PHPStan starts requiring the missing types.
+ *
  * @implements Rule<MethodCall>
  */
+#[RegisteredRule( level: 6 )]
 class NoUnknownMethodCallerRule implements Rule {
-	/**
-	 * @var ?Standard
-	 */
-	private $printerStandard;
+	use UnknownSubjectError;
 
 	/**
 	 * @var string
@@ -49,29 +51,8 @@ class NoUnknownMethodCallerRule implements Rule {
 			return [];
 		}
 
-		if ( ! $this->printerStandard instanceof Standard ) {
-			$this->printerStandard = new Standard();
-		}
-
-		if ( \property_exists( $node->name, 'name' ) && \is_string( $node->name->name ) ) {
-			$methodName = $node->name->name;
-		} else {
-			$methodName = 'unknown';
-		}
-
-		$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
-			\sprintf(
-				self::ERROR_MESSAGE,
-				$methodName,
-				$this->printerStandard->prettyPrintExpr( $node->var )
-			)
-		);
-
-		$ruleErrorBuilder->addTip( 'Try checking `instanceof` first.' );
-		$ruleErrorBuilder->identifier( 'lipemat.noUnknownMethodCaller' );
-
 		return [
-			$ruleErrorBuilder->build(),
+			$this->unknownSubjectError( $node, self::ERROR_MESSAGE, 'lipemat.noUnknownMethodCaller' ),
 		];
 	}
 

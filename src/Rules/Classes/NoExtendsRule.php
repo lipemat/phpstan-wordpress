@@ -6,6 +6,9 @@ namespace Lipe\Lib\Phpstan\Rules\Classes;
 
 use PhpParser\Node;
 use PHPStan\Analyser;
+use PHPStan\DependencyInjection\AutowiredParameter;
+use PHPStan\DependencyInjection\Conditional;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Rules;
 
 /**
@@ -13,6 +16,7 @@ use PHPStan\Rules;
  *
  * @implements Rules\Rule<Node\Stmt\Class_>
  */
+#[Conditional( new RegisteredRule( level: 0 ), if: '%lipemat.noExtends%' )]
 class NoExtendsRule implements Rules\Rule {
 	/**
 	 * @var array<int, string>
@@ -34,12 +38,12 @@ class NoExtendsRule implements Rules\Rule {
 
 
 	/**
-	 * Receives the arguments from these parameter in the `rules.neon` file.
-	 * - lipemat.allowedToBeExtended
-	 *
 	 * @param array<int, class-string> $classesAllowedToBeExtended
 	 */
-	public function __construct( array $classesAllowedToBeExtended ) {
+	public function __construct(
+		#[AutowiredParameter( ref: '%lipemat.allowedToBeExtended%' )]
+		array $classesAllowedToBeExtended,
+	) {
 		$this->classesAllowedToBeExtended = \array_unique(
 			\array_merge(
 				self::$defaultClassesAllowedToBeExtended,

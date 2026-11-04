@@ -6,6 +6,7 @@ namespace Lipe\Lib\Phpstan\Rules\Expressions;
 
 use PhpParser\Node;
 use PHPStan\Analyser;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Rules;
 
 /**
@@ -13,6 +14,7 @@ use PHPStan\Rules;
  *
  * @implements Rules\Rule<Node\Expr\FuncCall>
  */
+#[RegisteredRule( level: 0 )]
 class NoExtractRule implements Rules\Rule {
 	public function getNodeType(): string {
 		return Node\Expr\FuncCall::class;

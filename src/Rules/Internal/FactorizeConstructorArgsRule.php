@@ -8,6 +8,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Identifier;
 use PHPStan\Analyser\Scope;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\ParameterReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;
@@ -26,6 +27,7 @@ use PHPStan\Type\VerbosityLevel;
  *
  * @implements Rule<StaticCall>
  */
+#[RegisteredRule( level: 0 )]
 class FactorizeConstructorArgsRule implements Rule {
 	/**
 	 * @var string

@@ -13,6 +13,8 @@ use PHPStan\Rules;
  * Prevent any methods in a final class from being protected.
  * They should be private instead.
  *
+ * Disabled: carries no registration attribute.
+ *
  * @implements Rules\Rule<Node\Stmt\ClassMethod>
  */
 class PrivateInFinalClassRule implements Rules\Rule {

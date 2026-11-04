@@ -9,12 +9,14 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Return_;
 use PhpParser\NodeFinder;
 use PHPStan\Analyser\Scope;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 
 /**
  * @implements Rule<Node\Stmt\ClassMethod>
  */
+#[RegisteredRule( level: 0 )]
 class ReturnNullOverFalseRule implements Rule {
 	/**
 	 * @api

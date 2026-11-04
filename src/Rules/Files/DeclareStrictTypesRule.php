@@ -6,6 +6,8 @@ namespace Lipe\Lib\Phpstan\Rules\Files;
 
 use PhpParser\Node;
 use PHPStan\Analyser;
+use PHPStan\DependencyInjection\Conditional;
+use PHPStan\DependencyInjection\RegisteredRule;
 use PHPStan\Node\FileNode;
 use PHPStan\Rules;
 
@@ -14,6 +16,7 @@ use PHPStan\Rules;
  *
  * @implements Rules\Rule<FileNode>
  */
+#[Conditional( new RegisteredRule( level: 0 ), if: '%lipemat.nonDistributed%' )]
 class DeclareStrictTypesRule implements Rules\Rule {
 	public function getNodeType(): string {
 		return FileNode::class;

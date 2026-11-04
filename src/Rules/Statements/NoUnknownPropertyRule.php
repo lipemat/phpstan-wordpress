@@ -3,26 +3,24 @@ declare( strict_types=1 );
 
 namespace Lipe\Lib\Phpstan\Rules\Statements;
 
+use Lipe\Lib\Phpstan\Traits\UnknownSubject;
 use PhpParser\Node;
 use PhpParser\Node\Expr\PropertyFetch;
-use PhpParser\PrettyPrinter\Standard;
 use PHPStan\Analyser\Scope;
 use PHPStan\DependencyInjection\RegisteredRule;
-use PHPStan\Rules;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\MixedType;
 
 /**
  * Prevent using property fetch on an unknown object.
  *
+ * Level 6 is where PHPStan starts requiring the missing types.
+ *
  * @implements Rule<PropertyFetch>
  */
-#[RegisteredRule( level: 0 )]
+#[RegisteredRule( level: 6 )]
 class NoUnknownPropertyRule implements Rule {
-	/**
-	 * @var ?Standard
-	 */
-	private $printerStandard;
+	use UnknownSubject;
 
 	/**
 	 * @var string
@@ -41,29 +39,8 @@ class NoUnknownPropertyRule implements Rule {
 			return [];
 		}
 
-		if ( ! $this->printerStandard instanceof Standard ) {
-			$this->printerStandard = new Standard();
-		}
-
-		if ( \property_exists( $node->name, 'name' ) && \is_string( $node->name->name ) ) {
-			$propName = $node->name->name;
-		} else {
-			$propName = 'unknown';
-		}
-
-		$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
-			\sprintf(
-				self::ERROR_MESSAGE,
-				$propName,
-				$this->printerStandard->prettyPrintExpr( $node->var )
-			)
-		);
-
-		$ruleErrorBuilder->addTip( 'Try checking `instanceof` first.' );
-		$ruleErrorBuilder->identifier( 'lipemat.noUnknownProperty' );
-
 		return [
-			$ruleErrorBuilder->build(),
+			$this->unknownSubjectError( $node, self::ERROR_MESSAGE, 'lipemat.noUnknownProperty' ),
 		];
 	}
 }

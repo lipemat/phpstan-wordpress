@@ -4,6 +4,7 @@ Every rule touches three places; a change is done when all three agree.
 
 1. **Class** in `src/Rules/<NodeCategory>/<Name>Rule.php` implementing `PHPStan\Rules\Rule` with `@implements Rules\Rule<NodeType>`. Build errors with `RuleErrorBuilder`, an `identifier( 'lipemat.<camelName>' )`, and usually an `addTip()`. Example: `src/Rules/Statements/NoSwitchRule.php`. Registration rides on the class, from the `attributeServicesDirectories` scan of `src/Rules` which `rules.neon` declares:
    - Always-on rules carry `#[RegisteredRule( level: 0 )]`; `level: 0` means every level.
+   - A rule which is only actionable once types are present carries the level which demands them (`NoUnknownMethodCallerRule`, `NoUnknownPropertyRule` -> `level: 6`, where `checkMissingTypehints` turns on). The level is the lowest one the rule registers on, so a consumer below it never sees the rule; note any level above 0 in `Readme.md`.
    - Rules gated by a `lipemat` parameter wrap that registration in `#[Conditional]` (see `FinalRule` -> `#[Conditional( new RegisteredRule( level: 0 ), if: '%lipemat.nonDistributed%' )]`).
    - Constructor arguments come from `%lipemat.*%` through `#[AutowiredParameter( ref: '%lipemat.themePath%' )]` on the parameter; parameters taking a PHPStan service are autowired by type and carry no attribute. A new parameter needs, in `rules.neon`, an entry in `parametersSchema`, a default under `parameters.lipemat`, and `expandRelativePaths` if it is a path.
    - `PrivateInFinalClassRule` exists but carries no attribute, which is what keeps it disabled.

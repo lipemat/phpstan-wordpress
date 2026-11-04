@@ -49,12 +49,74 @@ final class NoCompactRuleTest extends AbstractTestCase {
 					10,
 				],
 			],
+			'compact-used-with-array-of-names'  => [
+				__DIR__ . '/../../../fixtures/Expressions/NoCompactRule/Failure/compact-used-with-array-of-names.php',
+				[
+					self::$message,
+					10,
+				],
+			],
+			'compact-used-with-named-argument'  => [
+				__DIR__ . '/../../../fixtures/Expressions/NoCompactRule/Failure/compact-used-with-named-argument.php',
+				[
+					self::$message,
+					9,
+				],
+			],
+			'compact-used-with-spread-names'    => [
+				__DIR__ . '/../../../fixtures/Expressions/NoCompactRule/Failure/compact-used-with-spread-names.php',
+				[
+					self::$message,
+					11,
+				],
+			],
+			'compact-used-with-undefined-variable' => [
+				__DIR__ . '/../../../fixtures/Expressions/NoCompactRule/Failure/compact-used-with-undefined-variable.php',
+				[
+					self::$message,
+					9,
+				],
+			],
 		];
 
 		foreach ( $paths as $description => [$path, $error] ) {
 			yield $description => [
 				$path,
 				$error,
+			];
+		}
+	}
+
+
+	public static function provideCasesWithFixes(): iterable {
+		$failure = __DIR__ . '/../../../fixtures/Expressions/NoCompactRule/Failure/';
+		$fixed = __DIR__ . '/../../../fixtures/Expressions/NoCompactRule/Fixed/';
+
+		$fixable = [
+			'compact-used-with-alias',
+			'compact-used-with-correct-case',
+			'compact-used-with-incorrect-case',
+		];
+
+		foreach ( $fixable as $name ) {
+			yield $name => [
+				$failure . $name . '.php',
+				$fixed . $name . '.php',
+			];
+		}
+
+		// Names this rule cannot resolve to known variables carry no fix.
+		$unfixable = [
+			'compact-used-with-array-of-names',
+			'compact-used-with-named-argument',
+			'compact-used-with-spread-names',
+			'compact-used-with-undefined-variable',
+		];
+
+		foreach ( $unfixable as $name ) {
+			yield $name => [
+				$failure . $name . '.php',
+				$failure . $name . '.php',
 			];
 		}
 	}

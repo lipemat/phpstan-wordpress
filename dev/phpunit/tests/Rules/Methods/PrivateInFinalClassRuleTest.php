@@ -50,6 +50,14 @@ final class PrivateInFinalClassRuleTest extends AbstractTestCase {
 	}
 
 
+	public static function provideCasesWithFixes(): iterable {
+		yield 'final-class-with-protected-method' => [
+			__DIR__ . '/../../../fixtures/Methods/PrivateInFinalClassRule/Failure/FinalClassWithProtectedMethod.php',
+			__DIR__ . '/../../../fixtures/Methods/PrivateInFinalClassRule/Fixed/FinalClassWithProtectedMethod.php',
+		];
+	}
+
+
 	protected function getRule(): Rules\Rule {
 		return new PrivateInFinalClassRule();
 	}

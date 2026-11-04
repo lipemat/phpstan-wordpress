@@ -3,6 +3,7 @@ declare( strict_types=1 );
 
 namespace Lipe\Lib\Phpstan\Rules\Methods;
 
+use PhpParser\Modifiers;
 use PhpParser\Node;
 use PHPStan\Analyser;
 use PHPStan\Reflection;
@@ -27,6 +28,9 @@ class FinalInAbstractClassRule implements Rules\Rule {
 	}
 
 
+	/**
+	 * @param Node\Stmt\ClassMethod $node
+	 */
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
 		/** @var Reflection\ClassReflection $containingClass */
 		$containingClass = $scope->getClassReflection();
@@ -64,7 +68,15 @@ class FinalInAbstractClassRule implements Rules\Rule {
 		);
 		$ruleErrorBuilder->identifier( 'lipemat.finalInAbstractClass' );
 		$ruleErrorBuilder->addTip( 'If overriding is necessary, an abstract method should be used instead.' );
+		// `private` is the other option, but it would narrow visibility and break callers.
+		$ruleErrorBuilder->fixNode( $node, $this->addFinal( ... ) );
 
 		return [ $ruleErrorBuilder->build() ];
+	}
+
+
+	private function addFinal( Node\Stmt\ClassMethod $node ): Node\Stmt\ClassMethod {
+		$node->flags |= Modifiers::FINAL;
+		return $node;
 	}
 }

@@ -64,6 +64,24 @@ final class FinalInAbstractClassRuleTest extends AbstractTestCase {
 	}
 
 
+	public static function provideCasesWithFixes(): iterable {
+		$failure = __DIR__ . '/../../../fixtures/Methods/FinalInAbstractClassRule/Failure/';
+		$fixed = __DIR__ . '/../../../fixtures/Methods/FinalInAbstractClassRule/Fixed/';
+
+		$names = [
+			'abstract-class-with-protected-method' => 'AbstractClassWithProtectedMethod',
+			'abstract-class-with-public-method'    => 'AbstractClassWithPublicMethod',
+		];
+
+		foreach ( $names as $description => $name ) {
+			yield $description => [
+				$failure . $name . '.php',
+				$fixed . $name . '.php',
+			];
+		}
+	}
+
+
 	protected function getRule(): Rules\Rule {
 		return self::staticRule( new FinalInAbstractClassRule() );
 	}

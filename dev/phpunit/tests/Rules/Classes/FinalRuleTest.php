@@ -107,6 +107,33 @@ final class FinalRuleTest extends AbstractTestCase {
 	}
 
 
+	public static function provideCasesWithFixes(): iterable {
+		$failure = __DIR__ . '/../../../fixtures/Classes/FinalRule/Failure/';
+		$fixed = __DIR__ . '/../../../fixtures/Classes/FinalRule/Fixed/';
+
+		$names = [
+			'neither-abstract-nor-final-class'                                      => 'NeitherAbstractNorFinalClass',
+			'non-final-class-without-entity-annotation-in-inline-doc-block'         => 'NonFinalClassWithoutEntityAnnotationInInlineDocBlock',
+			'non-final-class-without-entity-annotation-in-multi-line-doc-block'     => 'NonFinalClassWithoutEntityAnnotationInMultilineDocBlock',
+			'non-final-class-without-orm-entity-annotation-in-inline-doc-block'     => 'NonFinalClassWithoutOrmEntityAnnotationInInlineDocBlock',
+			'non-final-class-without-orm-entity-annotation-in-multi-line-doc-block' => 'NonFinalClassWithoutOrmEntityAnnotationInMultilineDocBlock',
+		];
+
+		foreach ( $names as $description => $name ) {
+			yield $description => [
+				$failure . $name . '.php',
+				$fixed . $name . '.php',
+			];
+		}
+
+		// An allowed abstract is either listed or made concrete, so it carries no fix.
+		yield 'abstract-class' => [
+			$failure . 'AbstractClass.php',
+			$failure . 'AbstractClass.php',
+		];
+	}
+
+
 	protected function getRule(): Rules\Rule {
 		return self::staticRule( new FinalRule( true, [] ) );
 	}

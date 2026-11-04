@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Lipe\Lib\Phpstan\Rules\Methods;
 
+use PhpParser\Modifiers;
 use PhpParser\Node;
 use PHPStan\Analyser;
 use PHPStan\Reflection;
@@ -21,6 +22,9 @@ class PrivateInFinalClassRule implements Rules\Rule {
 	}
 
 
+	/**
+	 * @param Node\Stmt\ClassMethod $node
+	 */
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
 		/** @var Reflection\ClassReflection $containingClass */
 		$containingClass = $scope->getClassReflection();
@@ -57,9 +61,17 @@ class PrivateInFinalClassRule implements Rules\Rule {
 			)
 		);
 		$ruleErrorBuilder->identifier( 'lipemat.privateInFinalClass' );
+		$ruleErrorBuilder->fixNode( $node, $this->makePrivate( ... ) );
 
 		return [
 			$ruleErrorBuilder->build(),
 		];
+	}
+
+
+	private function makePrivate( Node\Stmt\ClassMethod $node ): Node\Stmt\ClassMethod {
+		$node->flags &= ~Modifiers::PROTECTED;
+		$node->flags |= Modifiers::PRIVATE;
+		return $node;
 	}
 }

@@ -210,7 +210,7 @@ Run `phpstan analyse --fix` to apply the fixes. Fixable errors are marked with a
 - `compact` calls (1) are rewritten to arrays only when every argument is a plain string naming a variable known to be defined. Other calls are reported without a fix.
 - Named, non-abstract classes (3) and concrete methods in abstract classes (8) are made `final`. PHP rejects this if the class is extended or the method overridden elsewhere, so review the diff before committing.
 - `protected` methods in final classes (6) are made `private`. The rule is disabled by default but is worth enabling temporarily as a one-time `--fix` cleanup.
-- Skipped parameter types (9) are restored from the parent, one parameter per method per round.
+- Skipped parameter types (9) are restored from the parent.
 
 Enable rule 6 for a cleanup run like so:
 

@@ -67,4 +67,25 @@ abstract class AbstractTestCase extends RuleTestCase {
 			];
 		}
 	}
+
+
+	/**
+	 * Pair each `Failure/` fixture of a variant with its expected content after fixing.
+	 *
+	 * @param string                    $variant  Fixtures directory of the variant, e.g. `Classes/FinalRule`.
+	 * @param array<int|string, string> $names    Fixture names without `.php`, keyed by case description when it differs.
+	 * @param string                    $expected `Failure` for fixtures the fix must leave unchanged.
+	 *
+	 * @return iterable<string, array{string, string}>
+	 */
+	protected static function fixCases( string $variant, array $names, string $expected = 'Fixed' ): iterable {
+		$fixtures = \dirname( __DIR__, 2 ) . '/fixtures/' . $variant . '/';
+
+		foreach ( $names as $description => $name ) {
+			yield ( \is_string( $description ) ? $description : $name ) => [
+				$fixtures . 'Failure/' . $name . '.php',
+				$fixtures . $expected . '/' . $name . '.php',
+			];
+		}
+	}
 }

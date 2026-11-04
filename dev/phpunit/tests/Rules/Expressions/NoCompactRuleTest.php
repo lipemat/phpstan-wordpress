@@ -11,7 +11,7 @@ use PHPStan\Rules;
 final class NoCompactRuleTest extends AbstractTestCase {
 	use \StaticRule;
 
-	private static $message = "Function compact() should not be used.\n    💡 Using the `compact` function prevents static analysis. Consider declaring an associative array instead.";
+	private static string $message = "Function compact() should not be used.\n    💡 Using the `compact` function prevents static analysis. Consider declaring an associative array instead.";
 
 	public static function provideCasesWhereAnalysisShouldSucceed(): iterable {
 		$paths = [
@@ -89,36 +89,19 @@ final class NoCompactRuleTest extends AbstractTestCase {
 
 
 	public static function provideCasesWithFixes(): iterable {
-		$failure = __DIR__ . '/../../../fixtures/Expressions/NoCompactRule/Failure/';
-		$fixed = __DIR__ . '/../../../fixtures/Expressions/NoCompactRule/Fixed/';
-
-		$fixable = [
+		yield from self::fixCases( 'Expressions/NoCompactRule', [
 			'compact-used-with-alias',
 			'compact-used-with-correct-case',
 			'compact-used-with-incorrect-case',
-		];
-
-		foreach ( $fixable as $name ) {
-			yield $name => [
-				$failure . $name . '.php',
-				$fixed . $name . '.php',
-			];
-		}
+		] );
 
 		// Names this rule cannot resolve to known variables carry no fix.
-		$unfixable = [
+		yield from self::fixCases( 'Expressions/NoCompactRule', [
 			'compact-used-with-array-of-names',
 			'compact-used-with-named-argument',
 			'compact-used-with-spread-names',
 			'compact-used-with-undefined-variable',
-		];
-
-		foreach ( $unfixable as $name ) {
-			yield $name => [
-				$failure . $name . '.php',
-				$failure . $name . '.php',
-			];
-		}
+		], 'Failure' );
 	}
 
 

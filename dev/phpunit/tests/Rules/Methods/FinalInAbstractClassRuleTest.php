@@ -11,7 +11,7 @@ use PHPStan\Rules;
 final class FinalInAbstractClassRuleTest extends AbstractTestCase {
 	use \StaticRule;
 
-	private static $message = "Method %s::method() is not final, but since the containing class is abstract, it should be.\n    💡 If overriding is necessary, an abstract method should be used instead.";
+	private static string $message = "Method %s::method() is not final, but since the containing class is abstract, it should be.\n    💡 If overriding is necessary, an abstract method should be used instead.";
 
 
 	public static function provideCasesWhereAnalysisShouldSucceed(): iterable {
@@ -65,20 +65,10 @@ final class FinalInAbstractClassRuleTest extends AbstractTestCase {
 
 
 	public static function provideCasesWithFixes(): iterable {
-		$failure = __DIR__ . '/../../../fixtures/Methods/FinalInAbstractClassRule/Failure/';
-		$fixed = __DIR__ . '/../../../fixtures/Methods/FinalInAbstractClassRule/Fixed/';
-
-		$names = [
+		yield from self::fixCases( 'Methods/FinalInAbstractClassRule', [
 			'abstract-class-with-protected-method' => 'AbstractClassWithProtectedMethod',
 			'abstract-class-with-public-method'    => 'AbstractClassWithPublicMethod',
-		];
-
-		foreach ( $names as $description => $name ) {
-			yield $description => [
-				$failure . $name . '.php',
-				$fixed . $name . '.php',
-			];
-		}
+		] );
 	}
 
 

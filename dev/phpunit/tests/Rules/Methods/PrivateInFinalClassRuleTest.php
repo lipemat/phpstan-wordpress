@@ -9,6 +9,8 @@ use Lipe\Lib\Phpstan\Rules\Test;
 use PHPStan\Rules;
 
 final class PrivateInFinalClassRuleTest extends AbstractTestCase {
+	use \StaticRule;
+
 	public static function provideCasesWhereAnalysisShouldSucceed(): iterable {
 		$paths = [
 			'abstract-class-with-protected-method'                                                         => __DIR__ . '/../../../fixtures/Methods/PrivateInFinalClassRule/Success/AbstractClassWithProtectedMethod.php',
@@ -50,7 +52,15 @@ final class PrivateInFinalClassRuleTest extends AbstractTestCase {
 	}
 
 
+	public static function provideCasesWithFixes(): iterable {
+		yield 'final-class-with-protected-method' => [
+			__DIR__ . '/../../../fixtures/Methods/PrivateInFinalClassRule/Failure/FinalClassWithProtectedMethod.php',
+			__DIR__ . '/../../../fixtures/Methods/PrivateInFinalClassRule/Fixed/FinalClassWithProtectedMethod.php',
+		];
+	}
+
+
 	protected function getRule(): Rules\Rule {
-		return new PrivateInFinalClassRule();
+		return self::staticRule( new PrivateInFinalClassRule() );
 	}
 }

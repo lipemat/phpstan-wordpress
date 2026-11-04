@@ -52,6 +52,14 @@ final class FinalRuleWithAbstractClassesAllowedTest extends AbstractTestCase {
 	}
 
 
+	public static function provideCasesWithFixes(): iterable {
+		yield 'neither-abstract-nor-final-class' => [
+			__DIR__ . '/../../../fixtures/Classes/FinalRuleWithAbstractClassesAllowed/Failure/NeitherAbstractNorFinalClass.php',
+			__DIR__ . '/../../../fixtures/Classes/FinalRuleWithAbstractClassesAllowed/Fixed/NeitherAbstractNorFinalClass.php',
+		];
+	}
+
+
 	protected function getRule(): Rules\Rule {
 		return self::staticRule( new FinalRule( false, [] ) );
 	}

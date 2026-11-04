@@ -11,7 +11,7 @@ use PHPStan\Rules;
 final class NoCompactRuleTest extends AbstractTestCase {
 	use \StaticRule;
 
-	private static $message = "Function compact() should not be used.\n    💡 Using the `compact` function prevents static analysis. Consider declaring an associative array instead.";
+	private static string $message = "Function compact() should not be used.\n    💡 Using the `compact` function prevents static analysis. Consider declaring an associative array instead.";
 
 	public static function provideCasesWhereAnalysisShouldSucceed(): iterable {
 		$paths = [
@@ -49,6 +49,34 @@ final class NoCompactRuleTest extends AbstractTestCase {
 					10,
 				],
 			],
+			'compact-used-with-array-of-names'  => [
+				__DIR__ . '/../../../fixtures/Expressions/NoCompactRule/Failure/compact-used-with-array-of-names.php',
+				[
+					self::$message,
+					10,
+				],
+			],
+			'compact-used-with-named-argument'  => [
+				__DIR__ . '/../../../fixtures/Expressions/NoCompactRule/Failure/compact-used-with-named-argument.php',
+				[
+					self::$message,
+					9,
+				],
+			],
+			'compact-used-with-spread-names'    => [
+				__DIR__ . '/../../../fixtures/Expressions/NoCompactRule/Failure/compact-used-with-spread-names.php',
+				[
+					self::$message,
+					11,
+				],
+			],
+			'compact-used-with-undefined-variable' => [
+				__DIR__ . '/../../../fixtures/Expressions/NoCompactRule/Failure/compact-used-with-undefined-variable.php',
+				[
+					self::$message,
+					9,
+				],
+			],
 		];
 
 		foreach ( $paths as $description => [$path, $error] ) {
@@ -57,6 +85,23 @@ final class NoCompactRuleTest extends AbstractTestCase {
 				$error,
 			];
 		}
+	}
+
+
+	public static function provideCasesWithFixes(): iterable {
+		yield from self::fixCases( 'Expressions/NoCompactRule', [
+			'compact-used-with-alias',
+			'compact-used-with-correct-case',
+			'compact-used-with-incorrect-case',
+		] );
+
+		// Names this rule cannot resolve to known variables carry no fix.
+		yield from self::fixCases( 'Expressions/NoCompactRule', [
+			'compact-used-with-array-of-names',
+			'compact-used-with-named-argument',
+			'compact-used-with-spread-names',
+			'compact-used-with-undefined-variable',
+		], 'Failure' );
 	}
 
 

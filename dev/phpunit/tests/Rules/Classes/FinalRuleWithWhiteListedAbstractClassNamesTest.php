@@ -78,6 +78,27 @@ final class FinalRuleWithWhiteListedAbstractClassNamesTest extends AbstractTestC
 	}
 
 
+	public static function provideCasesWithFixes(): iterable {
+		$variant = __DIR__ . '/../../../fixtures/Classes/FinalRuleWithWhiteListedAbstractClassNames/';
+
+		yield 'neither-abstract-nor-final-class' => [
+			$variant . 'Failure/NeitherAbstractNorFinalClass.php',
+			$variant . 'Fixed/NeitherAbstractNorFinalClass.php',
+		];
+
+		yield 'final-class-checking-for-message' => [
+			__DIR__ . '/../../../fixtures/Classes/FinalRule/Failure/NeitherAbstractNorFinalClass.php',
+			__DIR__ . '/../../../fixtures/Classes/FinalRule/Fixed/NeitherAbstractNorFinalClass.php',
+		];
+
+		// An unlisted abstract is either listed or made concrete, so it carries no fix.
+		yield 'abstract-class' => [
+			$variant . 'Failure/UnlistedAbstractClass.php',
+			$variant . 'Failure/UnlistedAbstractClass.php',
+		];
+	}
+
+
 	protected function getRule(): Rules\Rule {
 		return self::staticRule( new FinalRule( true, [
 				AbstractAndWhitelisted::class,

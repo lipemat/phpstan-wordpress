@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Lipe\Lib\Phpstan\Rules\Classes;
 
+use PhpParser\Modifiers;
 use PhpParser\Node;
 use PHPStan\Analyser;
 use PHPStan\DependencyInjection\AutowiredParameter;
@@ -79,12 +80,17 @@ class FinalRule implements Rules\Rule {
 	}
 
 
+	/**
+	 * @param Node\Stmt\Class_ $node
+	 */
 	public function processNode( Node $node, Analyser\Scope $scope ): array {
 		if ( ! isset( $node->namespacedName ) ) {
 			return [];
 		}
 		$error = $this->errorMessageTemplate;
 		$id = $this->identifier;
+		// Anonymous classes may not be made final.
+		$fixable = $node->name instanceof Node\Identifier;
 
 		if ( $node->isFinal() ) {
 			return [];
@@ -99,6 +105,8 @@ class FinalRule implements Rules\Rule {
 			}
 			$error = 'Class %s is not an allowed abstract.';
 			$id = 'lipemat.classMustBeAllowedAbstract';
+			// Allow-listing the class and dropping `abstract` are both valid, so neither may be applied.
+			$fixable = false;
 		}
 
 		$ruleErrorBuilder = Rules\RuleErrorBuilder::message(
@@ -110,6 +118,16 @@ class FinalRule implements Rules\Rule {
 
 		$ruleErrorBuilder->identifier( $id );
 
+		if ( $fixable ) {
+			$ruleErrorBuilder->fixNode( $node, $this->addFinal( ... ) );
+		}
+
 		return [ $ruleErrorBuilder->build() ];
+	}
+
+
+	private function addFinal( Node\Stmt\Class_ $node ): Node\Stmt\Class_ {
+		$node->flags |= Modifiers::FINAL;
+		return $node;
 	}
 }

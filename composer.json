@@ -40,7 +40,10 @@
   "autoload-dev": {
     "psr-4": {
       "Lipe\\Lib\\Phpstan\\Rules\\Test\\Fixture\\": "dev/phpunit/fixtures/"
-    }
+    },
+    "exclude-from-classmap": [
+      "/dev/phpunit/fixtures/**/Fixed/"
+    ]
   },
   "scripts": {
     "git-hooks": "dev/bin/git-hooks.sh",
